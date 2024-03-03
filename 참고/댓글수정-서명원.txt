@@ -1,0 +1,140 @@
+먼저... 코드 정리를 안해서 많이 지저분해죄송합니다... 에러 처리도 안하고 대충 돌리기만 한거라 구멍많습니다.
+ 
+1. 전체 코드 https://github.com/insamju300/2024_01_Spring_AM
+2. 수정관련 코드
+
+2-1. 아래는 아작스로 전체 html 작성하는 코드입니다. 일단 코드 첨부후 설명은 아래에서 하겠습니다.
+-------------------------------------------------------------------------------------------------------------
+	    tmp.setAttribute("class", "chat chat-start");
+	    tmp.setAttribute("data-id", comment.id);
+	    let tmpInnerHTML = `
+	        <div class= "flex flex-col originCommentParentCotainner">
+            <div class="chat-header">
+	            ${"${comment.extra__writer}"}
+	            <time class="text-xs opacity-50"> ${"${comment.regDate}"}</time>
+	        </div>
+	        <div class="chat-bubble ml-5 chat-bubble-view">
+	                <p class="bubble-content">${"${comment.body}"}</p>
+	        
+	        </div>
+	        `;
+	      
+         
+         if("${rq.isLogined()}"=="true"){
+        	 //벨류 보여줄때마다 수정으로 설정해줘야할듯...
+        	 if(comment.accessible){
+        		 
+        		 tmpInnerHTML += `
+        		 <div class="chat-bubble-form hidden">
+        		     <form name="commentModifyForm">
+        		         <input type="hidden" value=${"${comment.id}"} name="id">
+        		         <div class="flex">
+			        		 <div class="chat-bubble ml-5">
+			        		 	<input type="text" name="body" value="${'${comment.body}'}" class="input input-bordered input-sm w-full max-w-xs text-gray-900"/>
+			        		  </div>
+			        		 <button type="button" onclick="doCommentModify(this);" class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200">전송하기</button>
+		        		 </div>
+	        		 </form>
+        		 </div>
+        		 <div class="flex">
+        		   <button onclick='toggleChatBubble(this)' class="showModifyButton w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200">수정</button>
+        		   <button onclick='doCommentDelete(this, ${"${comment.id}"})' class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200">삭제</button>
+        		 </div>
+        		 `;
+        	 }
+        	 
+		     tmpInnerHTML += `
+		        <button class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200" onclick="showNextDoWriteForm(this)"> 답글달기 </button>
+		        <div class="hidden doWriteFormContainer">
+					<form class="doWriteForm">
+						<input type="hidden" name="articleId" value="${article.id }">
+						<input type="hidden" name="originalParentId" value=${"${comment.id}" }>
+						<input type="hidden" name="parentId" value=${"${comment.id}" }>
+							<div class="bg-white p-4 rounded shadow">
+								<div class="flex flex-col">
+				
+									<h3 class="font-semibold">${rq.loginedMemberNicname }</h3>
+									<input type="text" name="body"
+										class="mt-1 w-96 border-b-2 border-gray-300 border-solid focus:outline-none focus:border-black" />
+									<div class="flex">
+									    <button type="button" onclick="hiddenDoWriteForm(this)" class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200">취소</button>
+									    <button type="button" onclick="doCommentWriteForDescendantLv1(this)" class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200">댓글 달기</button>
+									</div>
+				
+									</div>
+							</div>
+					</form>
+				</div>`
+         }
+       if(comment.descendantCommentCount!=0){
+	        tmpInnerHTML += `<button
+	        class="w-20 m-1 hover:shadow hover:bg-gray-600 hover:text-gray-200 descendantCommentsButton"
+	        onclick="toggleDescendantComment(${article.id}, null,${'${comment.id }'},this,${'${comment.descendantCommentCount }'})"> ▼답글 ${"${comment.descendantCommentCount}"}개</button>`;
+	    }
+		tmpInnerHTML += `
+		<div class="appendedDescendantComments  pl-10">
+	    </div>
+		
+		<div class="descendantComments pl-10 hidden">
+	    </div>
+	    </div>
+	    `;
+	    
+	    tmp.innerHTML=tmpInnerHTML;
+
+	    if(!isPre){
+	        document.querySelector("#commentsGroup").append(tmp);
+	    }else{
+	    	document.querySelector("#commentsGroup").prepend(tmp);
+	    }
+-------------------------------------------------------------------------------------------------------------        	 
+
+
+2-1. toggleChatBubble(this) -> 수정 버튼 클릭시 처리입니다.
+
+//수정버튼 눌렀을 때 처리.
+function toggleChatBubble(e){
+	$(e).parent().siblings(".chat-bubble-view").toggle();   -> 댓글 내용이 글자로 적혀있는 부분을 toggle .
+	$(e).parent().siblings(".chat-bubble-form").toggle();   -> 댓글 내용 수정 form을 토글.
+	$(e).parent().siblings(".chat-bubble-form").find("input[name=body]").val($(e).parent().siblings(".chat-bubble-view").find(".bubble-content").text()); --> 댓글 내용 수정 form에서 본문 입력창의 값을 댓글 내용의 글자에서 가져오기.
+	if($(e).text()=="수정"){ -> 수정 버튼에 있는 단어도 누를때마다 취소랑 수정으로 toggle
+	    $(e).text("취소");
+	}else{
+		$(e).text("수정");
+	}
+}
+
+
+2-2. 전송시 처리입니다.
+function doCommentModify(e){
+	let id = $(e).parents(".chat-bubble-form").find("input[name=id]").val();                             -> 폼에서 hidden으로 숨겨둔 댓글 id 가져옵니다.
+	let body = $(e).parents(".chat-bubble-form").find("input[name=body]").val();                     -> 댓글 내용 가져옵니다.
+	
+	$.post('../comment/doModify', {
+		id : id,
+		body : body
+	}, function(data) {
+		if(data.success==true){                                                                                                              -> 문제없이 return 되었다면(resultdata가 true라면)
+		    $(e).parents(".chat-bubble-form").siblings(".chat-bubble-view").find(".bubble-content").text(data.data1.body); -> 먼저 댓글 본문을 담고 있는 p태그의 값을 리턴되어온 body값으로 변경합니다.
+		    $(e).parents(".chat-bubble-form").siblings(".chat-bubble-view").show();                                                -> 댓글 본문 글씨를 보여줍니다.
+		    $(e).parents(".chat").find(".showModifyButton").text("수정");                                                              -> 수정, 삭제 토글 버튼의 값을 수정으로 변경합니다.
+		    $(e).parents(".chat-bubble-form").hide();                                                                                     -> 댓글 수정 form을 숨깁니다.
+		}else{
+			alert(data.msg);                                                                                                            -> return된 resultdata의 success값이 false라면 메시지를 알럿으로ㅓ 띄워줍니다.
+		}
+	}, 'json');
+}
+
+
+
+2-3 컨트롤러 ~ 레포지터리
+댓글 id와 댓글 본문을 파라미터로 받아서, 
+간단하게 UPDATE Comment SET body = #{body} , updateDate = NOW(), WHERE id = #{id}
+처리 후 id로 댓글 테이블을 조회해서 댓글 객체를 다시 가져옵니다.
+여기까지 문제 없이 처리됬으면 댓글 객체를 resultdate의 data1에 담아서 반환해 줍니다. 
+
+아작스로 javascript에서 받아서 data.data1.body을 2-2처럼 처리해줍니다.
+
+
+추신:  ...이거 적당히 하다 관둬서 중간에 에러 있을 때 resultdata에 fail돌려주는 작업이 하나도 안되있습니다.죄송함다.
+
