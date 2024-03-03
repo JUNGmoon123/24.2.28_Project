@@ -70,4 +70,10 @@
 		</div>
 		<div class="text4">텍스트 내용을 여기에 입력하세요.</div>
 	</div>
+		<div class="img_place4">
+		<div class="main_img_box_4">
+			<a href="#"><img src="https://i.ibb.co/sV4jrZB/5.jpg" alt="2"></a>
+		</div>
+		<div class="text4">텍스트 내용을 여기에 입력하세요.</div>
+	</div>
 	<%@ include file="../common/foot.jspf"%>
