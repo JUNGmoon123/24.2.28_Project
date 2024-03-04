@@ -14,13 +14,12 @@
 	<div class="slider">
 		<div class="credits">
 			<p>Anime.js implementation of the Diagonal Thumbnail Slideshow Animation</p>
-			<a href="https://tympanus.net/codrops/2020/09/01/diagonal-thumbnail-slideshow-animation/" target="_blank">Inspired
-				from Codedrops</a>
+			<a href="#" target="_blank">여기도 뭔가 써 넣자.</a>
 		</div>
 		<div class="nav">
 			<div class="next"></div>
 			<div class="prev"></div>
-			<div class="explore-btn">Explore</div>
+			<div class="explore-btn">바로가기로만들기?</div>
 		</div>
 		<div class="item is-active">
 			<div class="content">
@@ -227,5 +226,4 @@
 		</div>
 	</div>
 </div>
-
 <%@ include file="../common/foot.jspf"%>

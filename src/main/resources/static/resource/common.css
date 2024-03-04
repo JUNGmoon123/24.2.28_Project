@@ -373,7 +373,6 @@ post2_main2 {
 	width: 20%;
 	height: 100%;
 	margin-left: 10px;
-	
 }
 
 post3_main3 {
@@ -590,7 +589,6 @@ post4_main4 {
 	height: 1200px;
 	border: 2px solid green;
 }
-
 .background-box3 {
 	position: absolute;
 	top: 100px; /* 원하는 위치로 조정합니다. */
@@ -610,196 +608,234 @@ post4_main4 {
 	color: white;
 }
 
-/* 움직이는화면실행 */
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/*  로그인쪽 배경화면 */
+.background-box4 .box {
+	position: absolute;
+	background-image:
+		url(https://img.freepik.com/premium-photo/wine-cellar-of-a-winery_916191-27112.jpg);
+	background-attachment: local;
+	background-repeat: space;
+	background-position: center;
+	/* 	overflow-y: scroll; */
+	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
+	width: 100%;
+	height: 1200px;
+	border: 2px solid green;
+	z-index: -1;
 }
 
-html,
-body {
-    font-family: "Commissioner", sans-serif;
-    line-height: 1.65;
-    position:relative;
-/*     background-color: green; */
+
+/* 움직이는화면실행 */
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	font-family: "Commissioner", sans-serif;
+	line-height: 1.65;
+	position: relative;
+	/*     background-color: green; */
 }
 
 .slider {
-    height: 50vh;
-    width: 100vw;
-    background-color: #0a0908;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 2s;
-    
+	height: 50vh;
+	width: 100vw;
+	background-color: #0a0908;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	position: relative;
+	overflow: hidden;
+	transition: background-color 2s;
 }
 
 .slider .credits {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    line-height: 1.65;
-    z-index: 10;
-    max-width: 320px;
+	position: absolute;
+	top: 2rem;
+	left: 2rem;
+	line-height: 1.65;
+	z-index: 10;
+	max-width: 320px;
 }
 
 .slider .item .imgs {
-    position: relative;
-    width: 60%;
-    padding-top: 60%;
+	position: relative;
+	width: 60%;
+	padding-top: 60%;
 }
 
 .slider .item .imgs .grid {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    grid-column-gap: 32px;
-    grid-row-gap: 32px;
-    transform: rotate(-20deg);
-    opacity: 0.65;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: repeat(12, 1fr);
+	grid-column-gap: 32px;
+	grid-row-gap: 32px;
+	transform: rotate(-20deg);
+	opacity: 0.65;
 }
 
 .slider .item .imgs .grid .img {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    will-change: transform, opacity;
-    
+	width: 100%;
+	height: 100%;
+	position: relative;
+	will-change: transform, opacity;
 }
 
 .slider .item .imgs .grid .img img {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    position: relative;
-    -webkit-filter: contrast(110%) brightness(110%) saturate(130%);
-    filter: contrast(110%) brightness(110%) saturate(130%);
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	position: relative;
+	-webkit-filter: contrast(110%) brightness(110%) saturate(130%);
+	filter: contrast(110%) brightness(110%) saturate(130%);
 }
 
 .img-1 {
-    grid-area: 1/1/7/5;
+	grid-area: 1/1/7/5;
 }
 
 .img-2 {
-    grid-area: 2/5/7/13;
+	grid-area: 2/5/7/13;
 }
 
 .img-3 {
-    grid-area: 7/1/12/9;
+	grid-area: 7/1/12/9;
 }
 
 .img-4 {
-    grid-area: 7/9/13/13;
+	grid-area: 7/9/13/13;
 }
 
 .slider .item .content {
-    position: absolute;
-    z-index: 2;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.15;
-    font-size: 8rem;
-    font-weight: 700;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 1.15;
+	font-size: 8rem;
+	font-weight: 700;
 }
 
 .slider .item .content .wrap {
-    text-align: center;
-    text-shadow: 1px 1px 4px rgba(10, 9, 8, 0.2);
-    width: 100%;
-    max-width: 600px;
-    line-height: 1;
+	text-align: center;
+	text-shadow: 1px 1px 4px rgba(10, 9, 8, 0.2);
+	width: 100%;
+	max-width: 600px;
+	line-height: 1;
 }
 
 .slider .item .content .wrap .letter {
-    display: inline-block;
+	display: inline-block;
 }
 
-.slider .nav .next,
-.slider .nav .prev {
-    height: 2rem;
-    width: 2rem;
-    position: absolute;
-    top: calc(50% - 1rem);
-    cursor: pointer;
-    z-index: 3;
-    transition: transform 0.3s;
+.slider .nav .next, .slider .nav .prev {
+	height: 2rem;
+	width: 2rem;
+	position: absolute;
+	top: calc(50% - 1rem);
+	cursor: pointer;
+	z-index: 3;
+	transition: transform 0.3s;
 }
 
 .slider .nav .next {
-    right: 2rem;
-    background-image: url("data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M 19 8 L 19 11 L 1 11 L 1 13 L 19 13 L 19 16 L 23 12 L 19 8 z' fill='white'/%3E%3C/svg%3E");
+	right: 2rem;
+	background-image:
+		url("data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M 19 8 L 19 11 L 1 11 L 1 13 L 19 13 L 19 16 L 23 12 L 19 8 z' fill='white'/%3E%3C/svg%3E");
 }
 
 .slider .nav .next:hover {
-    transform: translateX(0.5rem);
+	transform: translateX(0.5rem);
 }
 
 .slider .nav .prev {
-    left: 2rem;
-    background-image: url("data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M 5 8 L 1 12 L 5 16 L 5 13 L 23 13 L 23 11 L 5 11 L 5 8 z' fill='white'/%3E%3C/svg%3E");
+	left: 2rem;
+	background-image:
+		url("data:image/svg+xml,%3C?xml version='1.0' encoding='utf-8'?%3E%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M 5 8 L 1 12 L 5 16 L 5 13 L 23 13 L 23 11 L 5 11 L 5 8 z' fill='white'/%3E%3C/svg%3E");
 }
 
 .slider .nav .prev:hover {
-    transform: translateX(-0.5rem);
+	transform: translateX(-0.5rem);
 }
 
 .slider .nav .explore-btn {
-    z-index: 4;
-    position: absolute;
-    bottom: 2rem;
-    left: calc(50% - 4rem);
-    width: 8em;
-    text-align: center;
-    padding: 1rem 0;
-    border: solid 2px white;
-    background: transparent;
-    color: white;
-    transition: background-color 0.3s;
-    cursor: pointer;
+	z-index: 4;
+	position: absolute;
+	bottom: 2rem;
+	left: calc(50% - 4rem);
+	width: 8em;
+	text-align: center;
+	padding: 1rem 0;
+	border: solid 2px white;
+	background: transparent;
+	color: white;
+	transition: background-color 0.3s;
+	cursor: pointer;
 }
 
 .slider .nav .explore-btn:hover {
-    color: #0a0908;
-    background: white;
+	color: #0a0908;
+	background: white;
 }
 
 .slider .item:not(.is-active) {
-    opacity: 0;
-    pointer-events: none;
+	opacity: 0;
+	pointer-events: none;
 }
 
-/* src="https://e0.pxfuel.com/wallpapers/653/882/desktop-wallpaper-2-glasses-of-red-wine.jpg" alt="" */
 
-/* .background-box2 .box { */
-/* 	position: absolute; */
-/* 	background-image: */
-/* 		url(https://cdn-pro-web-222-172.cdn-nhncommerce.com/ycwine_godomall_com/data/skin/front/ycwine_new_C/img/banner/28d529f1802f24dd45315181912b6daf_72903.jpg); */
-/* 	background-attachment: fixed; */
-/* 	background-repeat: repeat-x; */
-/* 	background-position: center; */
-/* 	background-size: cover; 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
-/* 	top: 1377px; */
-/* 	height: 1200px; */
-/* 	border: 2px solid green; */
-/* } */
 
 /* 로그인css부분 */
+.login_main {
+	position: absolute;
+	top: 500px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin-top: 20px; /* 로그인 창과 뒤로가기 버튼 간격 조정 */
+	 z-index: 999;
+/* 	background-color: green; */
+}
+
+.login_table {
+	display: flex;
+	width: 400px;
+	background-color: #fff;
+	padding: 30px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login_back {
+	position: relative;
+	/* 	margin-top: 260px; */
+	margin-right: 100px;
+	left: 40%;
+	right: 10%;
+/* 	background-color: green; */	
+}
+/* 로그인쪽먼지효과 */
+.dust-paarticle {
+	position: relative;
+	width: 100%;
+	top: 10px;
+}
+
+#dust-paarticle path {
+	transform-box: fill-box;
+	transform-origin: center;
+}
