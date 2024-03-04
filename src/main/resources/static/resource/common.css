@@ -246,6 +246,7 @@ body {
 	width: 100%;
 	height: 60%;
 	z-index: -1000;
+	border: 2px solid green;
 }
 
 /* 메뉴박스1 */
@@ -254,16 +255,16 @@ body {
 }
 
 .main_background {
-	/* 	background-color: red; */
+	/* 		background-color: red; */
 	width: 100%;
 	height: 100%;
 }
 
-.main_box1 {
-	position: absolute;
-	top: 50%;
-	margin: auto;
-}
+/* .main_box1 { */
+/* 	position: absolute; */
+/* 	top: 50%; */
+/* 	margin: auto; */
+/* } */
 
 /* main_요약글게시판목록 모음 */
 .post-summary {
@@ -272,7 +273,7 @@ body {
 	/* 	background-color: green; */
 	width: 55%;
 	height: 2.5%;
-	top: 3%;
+	top: 3.0%;
 	left: 25%;
 	z-index: 1;
 	border: 2px solid blue;
@@ -286,6 +287,7 @@ body {
 	height: 5%;
 	left: 40px;
 	top: 20px;
+	margin-top: 20px;
 	z-index: 1;
 }
 
@@ -420,7 +422,7 @@ post4_main4 {
 /* main하단쪽이미지들 */
 .img_place1, .img_place2, .img_place3, .img_place4 {
 	position: relative;
-	top: 3.5%;
+	top: 0.4%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -437,7 +439,6 @@ post4_main4 {
 /* 	width: 100%; 이미지 상자의 너비를 조정하여 이미지 크기를 줄입니다. */
 /* 	margin-right: 100px; 이미지와 텍스트 사이의 간격을 조정합니다. */
 /* } */
-
 .main_img_box_1 img, .main_img_box_2 img, .main_img_box_3 img,
 	.main_img_box_4 img {
 	max-width: 200%; /* 이미지의 최대 너비를 100%로 설정하여 이미지 크기를 조절합니다. */
@@ -487,23 +488,84 @@ post4_main4 {
 .text1 {
 	width: 90%;
 	height: 90px;
+	background-color: white; /* 원하는 배경색으로 설정합니다. */
+	padding: 10px; /* 내용을 감싸는 여백을 지정합니다. */
 	border: 2px solid black;
+	padding: 10px;
 }
 
 .text2 {
 	width: 90%;
 	height: 90px;
+	background-color: white; /* 원하는 배경색으로 설정합니다. */
+	padding: 10px; /* 내용을 감싸는 여백을 지정합니다. */
 	border: 2px solid black;
+	padding: 10px;
 }
 
 .text3 {
 	width: 90%;
 	height: 90px;
+	background-color: white; /* 원하는 배경색으로 설정합니다. */
+	padding: 10px; /* 내용을 감싸는 여백을 지정합니다. */
 	border: 2px solid black;
+	font-weight: bold;
+	border: 2px solid black;
+	padding: 10px;
 }
 
 .text4 {
 	width: 90%;
 	height: 90px;
+	background-color: white; /* 원하는 배경색으로 설정합니다. */
+	padding: 10px; /* 내용을 감싸는 여백을 지정합니다. */
 	border: 2px solid black;
+	padding: 10px;
 }
+
+/* 배경화면실험 */
+.background-box .box {
+	background-image:
+		url(https://d3b39vpyptsv01.cloudfront.net/photo/1/2/a4bfdae89a920f56e67eeb228790ee75.jpg);
+	background-attachment: fixed;
+	background-repeat: space;
+	background-position: center;
+	/* 	overflow-y: scroll; */
+	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
+	top: 10px;
+	height: 800px;
+	border: 2px solid green;
+}
+
+.background-box2 {
+	position: absolute;
+	top: 1373px; /* 원하는 위치로 조정합니다. */
+	width: 100%; /* 전체 너비로 설정합니다. */
+	height: 1200px; /* 원하는 높이로 설정합니다. */
+	z-index: -1; /* 다른 요소 뒤로 이동하도록 설정합니다. */
+}
+
+.background-box2 .box {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-image:
+		url(https://cdn-pro-web-222-172.cdn-nhncommerce.com/ycwine_godomall_com/data/skin/front/ycwine_new_C/img/banner/28d529f1802f24dd45315181912b6daf_72903.jpg);
+	background-attachment: fixed;
+	background-repeat: repeat-x;
+	background-position: center;
+	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
+	border: 2px solid green;
+}
+/* .background-box2 .box { */
+/* 	position: absolute; */
+/* 	background-image: */
+/* 		url(https://cdn-pro-web-222-172.cdn-nhncommerce.com/ycwine_godomall_com/data/skin/front/ycwine_new_C/img/banner/28d529f1802f24dd45315181912b6daf_72903.jpg); */
+/* 	background-attachment: fixed; */
+/* 	background-repeat: repeat-x; */
+/* 	background-position: center; */
+/* 	background-size: cover; 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
+/* 	top: 1377px; */
+/* 	height: 1200px; */
+/* 	border: 2px solid green; */
+/* } */
