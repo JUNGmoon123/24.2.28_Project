@@ -2,14 +2,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="MYPAGE"></c:set>
 <%@ include file="../common/head.jspf"%>
-
+<div class="myPage_background">
+	<div class="box">
+		<ul>
+			<li>3background 속성은 애니메이션 속성을 설정합니다.</li>
+		</ul>
+	</div>
+</div>
 <div>1${loginedMember }</div>
 <div>2${rq.loginedMember }</div>
 <div>${loginedMember.loginId }</div>
 <div>${rq.loginedMember.loginId }</div>
 <div>${rq.loginedMember.getLoginId() }</div>
-<section class="mt-8 text-xl px-4 ">
-	<div class="">
+<section class="myPage_main mt-8 text-xl px-4 ">
+	<div class="myPage_bar">
 		<table class="table-box-1 " border="1">
 			<colgroup>
 				<col width="200" />
@@ -51,8 +57,6 @@
 	</div>
 	<div class="btns">
 		<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">뒤로가기</button>
-
-
 	</div>
 </section>
 
