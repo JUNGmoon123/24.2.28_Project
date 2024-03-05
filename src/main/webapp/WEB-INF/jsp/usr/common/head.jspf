@@ -28,23 +28,23 @@
 	<header class="header_bar">
 		<div class="top_bar visible-on-web_size flex justify-around">
 			<div class="con height-100p flex flex-jc-sa">
-				<a href="#" class="logo flex flex-ai-c">LOGO</a>
+				<a href="/" class="logo flex flex-ai-c">LOGO</a>
 				<nav class="menu_box_1 flex justify-around ml-8">
 					<ul class="height-100p flex">
 						<li>
-							<a href="#" class="flex flex-ai-c height-100p">홈</a>
+							<a href="/" class="flex flex-ai-c height-100p">홈</a>
 						</li>
 						<li>
 							<a href="#" class="flex flex-ai-c height-100p">와인</a>
 							<ul>
 								<li>
-									<a href="#">레드와인</a>
+									<a href="../article/list?boardId=1&page=1">레드와인</a>
 								</li>
 								<li>
-									<a href="#">화이트와인</a>
+									<a href="../article/list?boardId=2&page=1">화이트와인</a>
 								</li>
 								<li>
-									<a href="#">스파클링와인</a>
+									<a href="../article/list?boardId=3&page=1">스파클링와인</a>
 								</li>
 							</ul>
 						</li>
@@ -52,13 +52,13 @@
 							<a href="#" class="flex flex-ai-c height-100p">맥주</a>
 							<ul>
 								<li>
-									<a href="#">브랜드</a>
+									<a href="../article/list?boardId=1&page=1">브랜드</a>
 								</li>
 								<li>
-									<a href="#">흑맥주</a>
+									<a href="../article/list?boardId=2&page=1">흑맥주</a>
 								</li>
 								<li>
-									<a href="#">수제맥주</a>
+									<a href="../article/list?boardId=3&page=1">수제맥주</a>
 								</li>
 							</ul>
 						</li>
@@ -66,10 +66,10 @@
 							<a href="#" class="flex flex-ai-c height-100p">전통주</a>
 							<ul>
 								<li>
-									<a href="#">탁주</a>
+									<a href="../article/list?boardId=1&page=1">탁주</a>
 								</li>
 								<li>
-									<a href="#">청주</a>
+									<a href="../article/list?boardId=2&page=1">청주</a>
 								</li>
 							</ul>
 						</li>
@@ -77,10 +77,10 @@
 							<a href="#" class="flex flex-ai-c height-100p">와이너리</a>
 							<ul>
 								<li>
-									<a href="#">양조장찾기</a>
+									<a href="../article/list?boardId=1&page=1">양조장찾기</a>
 								</li>
 								<li>
-									<a href="#">나의 여행일지</a>
+									<a href="../article/list?boardId=2&page=1">나의 여행일지</a>
 								</li>
 							</ul>
 						</li>
@@ -88,13 +88,13 @@
 							<a href="#" class="flex flex-ai-c height-100p">커뮤니티</a>
 							<ul>
 								<li>
-									<a href="#">자유게시판</a>
+									<a href="../article/list?boardId=1&page=1">자유게시판</a>
 								</li>
 								<li>
-									<a href="#">술 리뷰</a>
+									<a href="../article/list?boardId=2&page=1">술 리뷰</a>
 								</li>
 								<li>
-									<a href="#">와이너리 리뷰</a>
+									<a href="../article/list?boardId=3&page=1">와이너리 리뷰</a>
 								</li>
 							</ul>
 						</li>
@@ -103,7 +103,7 @@
 				<div style="margin: auto">
 					<!-- 간격을 조정할 부분 -->
 					<label class="input input-bordered flex items-center gap-2" style="height: 28px;">
-						<input type="text" class="grow" placeholder="검색어를입력해주세요." />
+						<input input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?" />
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="w-4 h-4 opacity-70">
                         <path fill-rule="evenodd"
 								d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
@@ -123,6 +123,7 @@
 							</c:if>
 							<c:if test="${rq.isLogined() }">
 								<li style="text-align: center;">
+									<a class="hover:underline" href="../article/write">WRITE</a>
 									<a class="h-full px-3 flex items-center hover:underline" href="/usr/member/myPage">MYPAGE</a>
 									<a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline" href="../member/doLogout">LOGOUT</a>
 								</li>

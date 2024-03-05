@@ -167,7 +167,7 @@
 	<div class="background-box">
 		<div class="box">
 			<ul>
-				<li>background 속성은 애니메이션 속성을 설정합니다.</li>
+				<li>2background 속성은 애니메이션 속성을 설정합니다.</li>
 			</ul>
 		</div>
 	</div>
@@ -221,8 +221,9 @@
 	<div class="background-box3">
 		<div class="box">
 			<ul>
-				<li>뭔가 설명이 들어가면 좋을거같은데...</li>
+				<li>1background 속성은 애니메이션 속성을 설정합니다.</li>
 			</ul>
+			<div class="box3_text">여기에 뭐적지?</div>
 		</div>
 	</div>
 </div>

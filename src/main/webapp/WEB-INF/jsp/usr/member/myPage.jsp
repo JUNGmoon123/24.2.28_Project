@@ -15,48 +15,33 @@
 <div>${rq.loginedMember.loginId }</div>
 <div>${rq.loginedMember.getLoginId() }</div>
 <section class="myPage_main mt-8 text-xl px-4 ">
-	<div class="myPage_bar">
-		<table class="table-box-1 " border="1">
-			<colgroup>
-				<col width="200" />
-			</colgroup>
+	<div class="myPage_bar mx-auto">
+		<table class="table-box-1" border="1">
 
 			<tbody>
 				<tr>
-					<th>가입일</th>
-					<td>${rq.loginedMember.regDate }</td>
+					<th><a href="../member/checkPw" >내 정보 수정하기</a></th>
 				</tr>
 				<tr>
-					<th>아이디</th>
-					<td>${rq.loginedMember.loginId }</td>
+					<th><a href="#">내가 찜한 목록</a></th>
 				</tr>
 				<tr>
-					<th>이름</th>
-					<td>${rq.loginedMember.name }</td>
+					<th><a href="#">1 : 1 문의 상황</a></th>
 				</tr>
 				<tr>
-					<th>닉네임</th>
-					<td>${rq.loginedMember.nickname }</td>
+					<th><a href="#">내가 구입한 목록</a></th>
 				</tr>
 				<tr>
-					<th>전화번호</th>
-					<td>${rq.loginedMember.cellphoneNum }</td>
+					<th><a href="#">내가 쓴 댓글</a></th>
 				</tr>
 				<tr>
-					<th>이메일</th>
-					<td>${rq.loginedMember.email }</td>
-				</tr>
-				<tr>
-					<th></th>
-					<td>
-						<a href="../member/checkPw" class="btn btn-active btn-ghost">회원정보 수정</a>
-					</td>
+					<th><a href="#">내가 쓴 게시글</a></th>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	<div class="btns">
-		<button class="btn-text-link btn btn-active btn-ghost" type="button" onclick="history.back();">뒤로가기</button>
+	<div class="myPage_btn ">
+		<button class="btn-text-link btn btn-active " type="button" onclick="history.back();">뒤로가기</button>
 	</div>
 </section>
 

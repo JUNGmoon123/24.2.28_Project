@@ -2,10 +2,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="JOIN"></c:set>
 <%@ include file="../common/head.jspf"%>
+<div class="myPage_background">
+	<div class="box">
+		<ul>
+			<li>3background 속성은 애니메이션 속성을 설정합니다.</li>
+		</ul>
+	</div>
+</div>
 
-
-<section class="mt-8 text-xl px-4">
-	<div class="mx-auto">
+<section class="join_main mt-8 text-xl px-4">
+	<div class="join_bar mx-auto">
 		<form action="../member/doJoin" method="POST">
 			<table class="join-box table-box-1" border="1">
 				<tbody>

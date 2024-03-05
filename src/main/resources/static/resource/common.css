@@ -288,7 +288,7 @@ body {
 	/* 	background-color: green; */
 	width: 55%;
 	height: 2.5%;
-	top: 3.0%;
+	top: 5.5%;
 	left: 25%;
 	z-index: 1;
 	border: 2px solid blue;
@@ -551,21 +551,23 @@ post4_main4 {
 	background-position: center;
 	/* 	overflow-y: scroll; */
 	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
-	top: 10px;
-	height: 800px;
+	margin-top: 350px;
+	top: 5px;
+	height: 1000px;
 	border: 2px solid green;
+	top: 5px;
 }
 
 .background-box2 {
 	position: absolute;
-	top: 1833px; /* 원하는 위치로 조정합니다. */
+	top: 2108px; /* 원하는 위치로 조정합니다. */
 	width: 100%; /* 전체 너비로 설정합니다. */
 	height: 1200px; /* 원하는 높이로 설정합니다. */
 	z-index: -1; /* 다른 요소 뒤로 이동하도록 설정합니다. */
 }
 
 .background-box2 .box {
-	position: relative;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	background-image:
@@ -575,39 +577,50 @@ post4_main4 {
 	background-position: center;
 	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
 	border: 2px solid green;
+	margin-top: 500px;
 }
 
 .background-box3 .box {
 	position: relative;
+	width: 100%;
+	height: 80%;
 	background-image:
 		url(https://previews.123rf.com/images/neznamco/neznamco1507/neznamco150700005/43609761-%EC%99%80%EC%9D%B4%EB%84%88%EB%A6%AC%EC%9D%98-%EC%98%A4%EB%9E%98%EB%90%9C-%EC%A7%80%ED%95%98%EC%8B%A4-%EC%9E%A5%EB%9E%98%EC%97%90-%EC%99%80%EC%9D%B8%EC%9D%98-%EB%B0%B0%EB%9F%B4-%EA%B1%B0%EB%8C%80%ED%95%9C-%EC%B0%BD%EA%B3%A0-%EC%99%80%EC%9D%B8.jpg);
 	background-attachment: fixed;
-	background-repeat: space;
+	background-repeat: repeat-x;
 	background-position: center;
-	/* 	overflow-y: scroll; */
-	background-size: cover; /* 배경 이미지를 요소에 맞게 자동으로 조절합니다. */
-	height: 1200px;
+	background-size: cover;
+	margin-top: 650px; /*배경화면 위쪽 차지하는부분 조절 */
 	border: 2px solid green;
 }
 
 .background-box3 {
 	position: absolute;
-	top: 100px; /* 원하는 위치로 조정합니다. */
-	width: 100%; /* 전체 너비로 설정합니다. */
-	height: 100px; /* 원하는 높이로 설정합니다. */
-	z-index: -1; /* 다른 요소 뒤로 이동하도록 설정합니다. */
+	top: 150px;
+	width: 100%;
+	height: 1600px; /* 텍스트를 아래로 이동하기 위해 부모 요소의 높이를 늘립니다. */
+	z-index: -1;
 }
 
-.background-box3 .box ul {
-	text-align: center; /* 내용을 가운데 정렬합니다. */
+.box3_text {
+	width: 80%;
+	height: auto;
+	margin: 240px auto 0; /* 위쪽 여백을 100px로 설정하여 텍스트를 아래로 내립니다. */
+	border: 2px solid green;
+	text-align: center;
+	color: white; /* 텍스트 색상을 흰색으로 설정합니다. */
+	font-size: 80px; /* 텍스트 크기를 조절합니다. */
 }
+/* .background-box3 .box ul { */
+/* 	text-align: center; 내용을 가운데 정렬합니다. */
+/* } */
 
-.background-box3 .box ul li {
-	display: inline-block;
-	margin-top: 600px;
-	font: italic 5.2rem "Fira Sans", serif;
-	color: white;
-}
+/* .background-box3 .box ul li { */
+/* 	display: inline-block; */
+/* 	margin-top: 600px; */
+/* 	font: italic 5.2rem "Fira Sans", serif; */
+/* 	color: white; */
+/* } */
 
 /*  로그인쪽 배경화면 */
 .background-box4 .box {
@@ -655,7 +668,7 @@ html, body {
 }
 
 .slider {
-	height: 50vh;
+	height: 79vh;
 	width: 100vw;
 	background-color: #0a0908;
 	display: flex;
@@ -816,12 +829,12 @@ html, body {
 /* 로그인css부분 */
 .login_main {
 	position: absolute;
-	top: 500px;
+	top: 670px;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	margin-top: 20px; /* 로그인 창과 뒤로가기 버튼 간격 조정 */
+	margin-top: 0px; /* 로그인 창과 뒤로가기 버튼 간격 조정 */
 	z-index: 999;
-	/* 	background-color: green; */
+	background-color: green;
 }
 
 .login_table {
@@ -831,15 +844,17 @@ html, body {
 	padding: 30px;
 	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	/* 	background-color: green; */
 }
 
 .login_back {
-	position: relative;
-	/* 	margin-top: 260px; */
-	margin-right: 100px;
-	left: 40%;
-	right: 10%;
-	/* 	background-color: green; */
+	position: absolute;
+	bottom: -50px; /* 아래 여백 조정 */
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: green;
+	left: 50%;
+	transform: translateX(40%);
 }
 /* 로그인쪽먼지효과 */
 .dust-paarticle {
@@ -859,21 +874,23 @@ html, body {
 	justify-content: center;
 	align-items: center;
 	height: 80vh; /* 화면 전체 높이의 80%로 설정 */
-	width: 45%; /* 화면 전체 너비의 80%로 설정 */
-	margin: 0 150px; /* 가운데 정렬을 위해 좌우 마진을 자동으로 설정 */
-	border-radius: 500px;
+	width: 100%; /* 화면 전체 너비로 설정 */
+	margin: 50px auto; /* 상하 50px, 좌우 자동으로 설정하여 가운데 정렬 */
 }
 
 .myPage_bar {
-	border-radius: 50px; /* 테두리를 둥글게 설정 */
 	background-color: #808080;
 	background-color: rgb(255, 255, 255, 0.8);
-	width: 300px; /* 예시로 설정한 너비 */
+	width: 70%; /* 너비를 70%로 설정 */
+	max-width: 700px; /* 최대 너비를 500px로 설정 */
+	padding: 30px; /* 내부 여백 설정 */
+	border-radius: 10px; /* 테두리를 둥글게 설정 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
 }
 
 .myPage_bar table {
+	width: 100%; /* 테이블 너비를 부모 요소에 맞게 설정 */
 	border-collapse: collapse; /* 테이블의 셀 테두리를 합칩니다. */
-	border-radius: 500px; /* 테두리를 둥글게 설정합니다. */
 }
 
 .myPage_bar th, .myPage_bar td {
@@ -881,12 +898,89 @@ html, body {
 	padding: 8px; /* 셀의 내부 여백을 추가합니다. */
 }
 
-.btns {
-	background-color: #808080;
+.myPage_btn {
+	width: 90px;
+	height: 60px;
+	margin-top: -60px; /* 위로 이동시키기 위해 음수값으로 설정 */
+	margin-bottom: -450px;
+	margin-left: -500px; /* 좌측 마진을 자동으로 설정하여 우측으로 이동 */
+	margin-right: auto; /* 우측 마진을 자동으로 설정하여 좌측으로 이동 */
+	text-align: center; /* 버튼을 가운데 정렬 */
+	/*     border: 5px solid green; */
+}
+
+/* join쪽 설정하기 */
+.join_main {
 	display: flex;
 	justify-content: center;
-	margin-left: -20%;
-	margin-top: 440px; /* 버튼과 상단 간격 조정 */
-	background-color: rgb(255, 255, 255, 0.8);
-	border-radius: 30px; /* 테두리를 둥글게 설정 */
+	align-items: center;
+	height: 80vh; /* 화면 전체 높이의 80%로 설정 */
+	width: 100%; /* 화면 전체 너비를 차지하도록 설정 */
+	margin: 0 auto; /* 좌우 마진을 자동으로 설정하여 가운데 정렬 */
+}
+
+.join_bar {
+	width: 50%; /* 예시로 설정한 너비 */
+	border-radius: 10px; /* 테두리를 둥글게 설정 */
+	background-color: rgb(255, 255, 255, 0.8); /* 배경 색상 및 투명도 설정 */
+	padding: 20px; /* 내부 여백 설정 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 설정 */
+}
+
+.join-box {
+	width: 100%; /* 테이블 너비를 100%로 설정하여 가로 스크롤이 생기지 않도록 합니다. */
+}
+
+.join_bar table {
+	border-collapse: collapse; /* 테이블의 셀 테두리를 합칩니다. */
+	width: 100%; /* 테이블 너비를 100%로 설정하여 가로 스크롤이 생기지 않도록 합니다. */
+}
+
+.join_bar th, .join_bar td {
+	border: 1px solid black; /* 테두리를 검은색으로 설정합니다. */
+	padding: 8px; /* 셀의 내부 여백을 추가합니다. */
+}
+
+.btns {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px; /* 버튼과 상단 간격 조정 */
+}
+
+/* list쪽 설정 */
+.list_top_bar {
+	width: 40%;
+	height: 40px;
+	margin-top: 50px;
+	margin-left: 100px;
+/* 	border: 2px solid green; */
+}
+
+.list_top_bar > div {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    flex: 1; /* 동일한 너비의 영역을 가지도록 설정 */
+    text-align: center;
+    border: none; /* 테두리 제거 */
+    position: relative; /* 상대적 위치 설정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+.list_top_bar > div::after {
+    content: '';
+    position: absolute;
+    left: 44px;
+    bottom: -2px; /* 텍스트 아래로 조정 */
+    width: 50%;
+    height: 2px; /* 밑줄의 높이 */
+    background-color: black; /* 밑줄 색상 */
+    opacity: 0; /* 초기에는 밑줄을 숨깁니다. */
+    transition: opacity 0.3s ; /* 밑줄 나타내는 애니메이션을 추가합니다. */
+}
+
+.list_top_bar > div:hover::after {
+	white-space: nowrap;
+    opacity: 1; /* 마우스 호버 시 밑줄을 나타냅니다. */
+    visibility: visible;
+	transition: opacity 0.5s, visibility 0.5s;
 }

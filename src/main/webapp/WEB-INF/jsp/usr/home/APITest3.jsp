@@ -15,27 +15,16 @@
 	<!-- 지도를 표시할 div 입니다 -->
 	<div id="map" style="width: 100%; height: 350px;"></div>
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 API 키"></script>
 	<script>
 		async function getData2() {
-			const API_KEY = '발급받은 API 키';
-			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
+			const API_KEY = 'ZQ%2BxIGD58N5UvuUXzJtGBoszPcFwmlnoSF%2Bs%2Bkski23QWapgj9WTE6vlrvNgjyeRGUk94TKqYRAIKw7GHAE80g%3D%3D';
+			const url = 'https://api.odcloud.kr/api/15089109/v1/uddi:c7468573-84ff-4a92-a84b-884439ce23d3?page=1&perPage=10&serviceKey=' + API_KEY; ;
 			const response = await fetch(url);
 			const data = await response.json();
 			console.log("data", data);
 		}
 
 		getData2();
-
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
-
-		// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-		var map = new kakao.maps.Map(mapContainer, mapOption);
 	</script>
 </body>
 </html>

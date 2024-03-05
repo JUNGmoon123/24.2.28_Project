@@ -3,6 +3,11 @@
 <c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<div class="list_top_bar flex ">
+	<div><a href="../article/list?boardId=4&page=1">자유게시판</a></div>
+	<div><a href="../article/list?boardId=5&page=1">술 리뷰</a></div>
+	<div><a href="../article/list?boardId=6&page=1">와이너리 리뷰</a></div>
+</div>
 
 <section class="mt-8 text-xl px-4">
 	<div class="mx-auto overflow-x-auto">
