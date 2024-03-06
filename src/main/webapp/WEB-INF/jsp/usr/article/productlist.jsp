@@ -6,6 +6,7 @@
 
 <section class="mt-8 text-xl px-4">
 	<div>상품판매할 곳</div>
+	<div></div>
 </section>
 
 

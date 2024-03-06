@@ -12,11 +12,9 @@ public class Product {
 	private String regDate;
 	private String updateDate;
 	private int memberId;
+	private int boardId;
     private String productName;
     private int abv;
     private String price;
 	private String body;
-	private int hitCount;
-	private int goodReactionPoint;
-	private int badReactionPoint;
 }

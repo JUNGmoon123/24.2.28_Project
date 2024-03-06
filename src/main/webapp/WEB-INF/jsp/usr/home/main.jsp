@@ -19,11 +19,11 @@
 		<div class="nav">
 			<div class="next"></div>
 			<div class="prev"></div>
-			<div class="explore-btn">바로가기로만들기?</div>
+			<div class="explore-btn" onclick="redirectToNextPage(0)">바로가기로만들기?</div>
 		</div>
 		<div class="item is-active">
 			<div class="content">
-				<div class="wrap">맥 주</div>
+				 <div class="wrap" onclick="changeUrl(2)">맥 주</div>
 			</div>
 			<div class="imgs">
 				<div class="grid">
@@ -44,7 +44,7 @@
 		</div>
 		<div class="item">
 			<div class="content">
-				<div class="wrap">와 인</div>
+				<div class="wrap" onclick="changeUrl(1)">와 인</div>
 			</div>
 			<div class="imgs">
 				<div class="grid">
@@ -65,7 +65,7 @@
 		</div>
 		<div class="item">
 			<div class="content">
-				<div class="wrap">전 통 주</div>
+				 <div class="wrap" onclick="changeUrl(3)">전 통 주</div>
 			</div>
 			<div class="imgs">
 				<div class="grid">

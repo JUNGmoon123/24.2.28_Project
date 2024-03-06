@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `Spring_AM_01`;
-CREATE DATABASE `Spring_AM_01`;
-USE `Spring_AM_01`;
+DROP DATABASE IF EXISTS `project`;
+CREATE DATABASE `project`;
+USE `project`;
 
 # article 테이블 생성
 CREATE TABLE article(
@@ -128,6 +128,25 @@ SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'QnA',
 `name` = '질의응답';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE1',
+`name` = '자유게시판';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE2',
+`name` = '술리뷰';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE3',
+`name` = '와이너리리뷰';
+
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -329,6 +348,52 @@ ON R.id = RP_SUM.relId
 SET R.goodReactionPoint = RP_SUM.goodReactionPoint,
 R.badReactionPoint = RP_SUM.badReactionPoint;
 
+
+# 상품테이블 생성
+CREATE TABLE product(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    regDate DATETIME NOT NULL,
+    updateDate DATETIME NOT NULL,
+    memberId INT(10) UNSIGNED NOT NULL,
+    productName CHAR(50) NOT NULL,
+    abv INT(10) NOT NULL,
+    `body`TEXT NOT NULL ,
+    price CHAR(50) NOT NULL
+)
+
+ALTER TABLE product ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
+
+#상품테스트 데이터
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+boardId = 2,
+productName = '여우목',
+abv = 40,
+`body` = '오미자 증류주',
+price = '12000';
+
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+boardId = 3,
+productName = '강산명주',
+abv = 13,
+`body` = '복분자주',
+price = '3800';
+
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 1,
+boardId = 3,
+productName = '고창명산품',
+abv = 18,
+`body` = '복분자주',
+price = '22800';
+
 ###############################################
 
 SELECT * FROM article;
@@ -341,6 +406,7 @@ SELECT * FROM reactionPoint;
 
 SELECT * FROM `reply`;
 
+SELECT * FROM product;
 
 
 SELECT goodReactionPoint
@@ -351,7 +417,7 @@ INSERT INTO article
 (
     regDate, updateDate, memberId, boardId, title, `body`
 )
-SELECT NOW(),NOW(), FLOOR(RAND() * 2) + 2, FLOOR(RAND() * 3) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
+SELECT NOW(),NOW(), FLOOR(RAND() * 2) + 2, FLOOR(RAND() * 6) + 1, CONCAT('제목_',RAND()), CONCAT('내용_',RAND())
 FROM article;
 
 SELECT IFNULL(SUM(RP.point),0)
@@ -388,12 +454,9 @@ SELECT LAST_INSERT_ID();
 SELECT *
 FROM article AS A
 WHERE 1
-
-	AND boardId = 1
-
-			AND A.title LIKE CONCAT('%','0000','%')
-			OR A.body LIKE CONCAT('%','0000','%')
-
+AND boardId = 1
+AND A.title LIKE CONCAT('%','0000','%')
+OR A.body LIKE CONCAT('%','0000','%')
 ORDER BY id DESC
 
 SELECT COUNT(*)
@@ -473,4 +536,9 @@ SUM(IF(RP.point > 0,RP.point,0)) AS goodReactionPoint,
 SUM(IF(RP.point < 0,RP.point * -1,0)) AS badReactionPoint
 FROM reactionPoint AS RP
 GROUP BY RP.relTypeCode,RP.relId
+
+
+DROP DATABASE IF EXISTS `project`;
+CREATE DATABASE `project`;
+USE `project`;
 
