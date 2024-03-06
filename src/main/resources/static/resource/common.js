@@ -243,6 +243,12 @@ function init() {
 // DOMContentLoaded 이벤트가 발생하면 init 함수 실행
 document.addEventListener("DOMContentLoaded", init);
 
+//위의 자동슬라이드부분 설명.
+//startAutoSlide() 함수를 통해 자동으로 슬라이드가 전환됩니다. 이 함수는 페이지 로드 시 자동으로 호출되며 4초마다 다음 슬라이드로 이동합니다.
+//다음과 이전 버튼을 클릭하면 자동 슬라이드가 멈추고 해당 방향으로 슬라이드가 이동합니다.
+//다음 버튼 클릭 시 stopAutoSlide() 함수를 호출하여 자동 슬라이드를 멈추고 next() 함수를 호출하여 다음 슬라이드로 이동합니다.
+//이전 버튼 클릭 시도 마찬가지로 stopAutoSlide() 함수를 호출하여 자동 슬라이드를 멈추고 prev() 함수를 호출하여 이전 슬라이드로 이동합니다.
+//마지막으로, 페이지 로드 시 DOMContentLoaded 이벤트가 발생하면 init() 함수를 호출하여 슬라이더를 초기화합니다.
 
 //화면 자동없음, 클릭시 움직임만가능
 //function init() {
