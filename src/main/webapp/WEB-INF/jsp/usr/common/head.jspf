@@ -35,7 +35,7 @@
 							<a href="/" class="flex flex-ai-c height-100p">홈</a>
 						</li>
 						<li>
-							<a href="../article/productlist?boardId=1&page=1" class="flex flex-ai-c height-100p">와인</a>
+							<a href="../article/productlist?boardId=7&page=1" class="flex flex-ai-c height-100p">와인</a>
 							<ul>
 								<li>
 									<a href="../article/list?boardId=1&page=1">레드와인</a>

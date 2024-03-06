@@ -147,6 +147,24 @@ updateDate = NOW(),
 `code` = 'FREE3',
 `name` = '와이너리리뷰';
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE4',
+`name` = '와인';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE5',
+`name` = '맥주';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'FREE6',
+`name` = '전통주';
+
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -356,8 +374,8 @@ CREATE TABLE product(
     updateDate DATETIME NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
     productName CHAR(50) NOT NULL,
-    abv INT(10) NOT NULL,
-    `body`TEXT NOT NULL ,
+    `body`TEXT NOT NULL,
+    abv CHAR(20) NOT NULL,
     price CHAR(50) NOT NULL
 )
 
@@ -368,31 +386,62 @@ INSERT INTO product
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 1,
-boardId = 2,
+boardId = 9,
 productName = '여우목',
-abv = 40,
 `body` = '오미자 증류주',
+abv = '40도',
 price = '12000';
 
 INSERT INTO product
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
-boardId = 3,
+boardId = 9,
 productName = '강산명주',
-abv = 13,
 `body` = '복분자주',
+abv = '13도',
 price = '3800';
 
 INSERT INTO product
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 1,
-boardId = 3,
+boardId = 9,
 productName = '고창명산품',
-abv = 18,
 `body` = '복분자주',
+abv = '18도',
 price = '22800';
+
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+boardId = 7,
+productName = '로버트몬다비',
+`body` = '와인',
+abv = '18도',
+price = '69000';
+
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+boardId = 7,
+productName = '파비아',
+`body` = '와인',
+abv = '18도',
+price = '63000';
+
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
+memberId = 2,
+boardId = 7,
+productName = '모엣 샹동 샴페인',
+`body` = '샴페인',
+abv = '18도',
+price = '63000';
+
 
 ###############################################
 
@@ -407,6 +456,10 @@ SELECT * FROM reactionPoint;
 SELECT * FROM `reply`;
 
 SELECT * FROM product;
+
+SELECT * 
+FROM product
+WHERE boardId = 7;
 
 
 SELECT goodReactionPoint

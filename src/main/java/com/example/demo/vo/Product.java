@@ -14,7 +14,7 @@ public class Product {
 	private int memberId;
 	private int boardId;
     private String productName;
-    private int abv;
+    private String abv;
     private String price;
 	private String body;
 }
