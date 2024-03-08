@@ -63,7 +63,7 @@ public class UsrProductController {
 
 		List<Product> products = productService.getForPrintProducts(boardId, itemsInAPage, page, searchKeywordTypeCode,
 				searchKeyword);
-
+		System.err.println(board);
 		model.addAttribute("board", board);
 		model.addAttribute("boardId", boardId);
 		model.addAttribute("page", page);

@@ -25,6 +25,9 @@ public class MyWebMVCConfigurer implements WebMvcConfigurer {
 	@Autowired
 	NeedLogoutInterceptor needLogoutInterceptor;
 
+//	이부분에 ir.으로 등록하면 로그인을 해야만 url주소에 접속하게 한다
+	
+	
 	// 인터셉터 등록(적용)
 	public void addInterceptors(InterceptorRegistry registry) {
 //		registry.addInterceptor(beforeActionInterceptor).addPathPatterns("/**").excludePathPatterns("/resource/**")
@@ -55,7 +58,7 @@ public class MyWebMVCConfigurer implements WebMvcConfigurer {
 		ir.addPathPatterns("/usr/article/doDelete");
 
 //		상품관련
-		ir.addPathPatterns("/usr/article/productlist");
+//		ir.addPathPatterns("/usr/article/productlist");
 		
 //		회원관련
 		ir.addPathPatterns("/usr/member/myPage");

@@ -3,26 +3,35 @@
 <c:set var="pageTitle" value="#{board.code } Products"></c:set>
 <%@ include file="../common/head.jspf"%>
 
-
 <section class="mt-8 text-xl px-4">
-	<div>상품판매할 곳</div>
-	<div class="product_main_bar">
-		<a href="#">레드 와인</a>
-		<a href="#">화이트 와인</a>
-		<a href="#">스파클링 와인</a>
+	<div>상품설명</div>
+	<div class="product_main_bar" id="product_main_bar">
+		<!-- 메뉴가 여기에 동적으로 설정됩니다. -->
+		<c:choose>
+			<c:when test="${board.code eq 'FREE4'}">
+				<!-- 와인 메뉴 -->
+				<a href="../article/productlist?boardId=7&page=1">레드 와인</a>
+				<a href="../article/productlist?boardId=7&page=1">화이트 와인</a>
+				<a href="../article/productlist?boardId=7&page=1">스파클링 와인</a>
+			</c:when>
+			<c:when test="${board.code eq 'FREE5'}">
+				<!-- 전통주 메뉴 -->
+				<a href="../article/productlist?boardId=8&page=1">브랜드</a>
+				<a href="../article/productlist?boardId=8&page=1">흑맥주</a>
+				<a href="../article/productlist?boardId=8&page=1">수제맥주</a>
+			</c:when>
+			<c:when test="${board.code eq 'FREE6'}">
+				<!-- 전통주 메뉴 -->
+				<a href="../article/productlist?boardId=9&page=1">탁주</a>
+				<a href="../article/productlist?boardId=9&page=1">청주</a>
+			</c:when>
+		</c:choose>
 	</div>
 	<div class="product_register">
-		<thead>
-			<tr style="display: none;">
-				<div>번호</div>
-				<div>술 이름</div>
-				<div>도수</div>
-				<div>종류?</div>
-				<div>가격</div>
-			</tr>
-		</thead>
-		<tbody>
+		<div id="productList">
+			<!-- 여기에 상품 목록이 동적으로 추가될 것입니다. -->
 			<c:forEach var="product" items="${products}">
+				<!-- 각 상품 행 -->
 				<tr class="hover">
 					<div>${product.id}</div>
 					<div>${product.productName}</div>
@@ -31,7 +40,7 @@
 					<div>${product.price}</div>
 				</tr>
 			</c:forEach>
-		</tbody>
+		</div>
 	</div>
 </section>
 

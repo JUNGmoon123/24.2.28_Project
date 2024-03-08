@@ -38,38 +38,38 @@
 							<a href="../article/productlist?boardId=7&page=1" class="flex flex-ai-c height-100p">와인</a>
 							<ul>
 								<li>
-									<a href="../article/list?boardId=1&page=1">레드와인</a>
+									<a href="../article/productlist?boardId=7&page=1">레드와인</a>
 								</li>
 								<li>
-									<a href="../article/list?boardId=2&page=1">화이트와인</a>
+									<a href="../article/productlist?boardId=7&page=1">화이트와인</a>
 								</li>
 								<li>
-									<a href="../article/list?boardId=3&page=1">스파클링와인</a>
-								</li>
-							</ul>
-						</li>
-						<li>
-							<a href="#" class="flex flex-ai-c height-100p">맥주</a>
-							<ul>
-								<li>
-									<a href="../article/list?boardId=1&page=1">브랜드</a>
-								</li>
-								<li>
-									<a href="../article/list?boardId=2&page=1">흑맥주</a>
-								</li>
-								<li>
-									<a href="../article/list?boardId=3&page=1">수제맥주</a>
+									<a href="../article/productlist?boardId=7&page=1">스파클링와인</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="#" class="flex flex-ai-c height-100p">전통주</a>
+							<a href="../article/productlist?boardId=8&page=1" class="flex flex-ai-c height-100p">맥주</a>
 							<ul>
 								<li>
-									<a href="../article/list?boardId=1&page=1">탁주</a>
+									<a href="../article/productlist?boardId=8&page=1">브랜드</a>
 								</li>
 								<li>
-									<a href="../article/list?boardId=2&page=1">청주</a>
+									<a href="../article/productlist?boardId=8&page=1">흑맥주</a>
+								</li>
+								<li>
+									<a href="../article/productlist?boardId=8&page=1">수제맥주</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="../article/productlist?boardId=9&page=1" class="flex flex-ai-c height-100p">전통주</a>
+							<ul>
+								<li>
+									<a href="../article/productlist?boardId=9&page=1">탁주</a>
+								</li>
+								<li>
+									<a href="../article/productlist?boardId=9&page=1">청주</a>
 								</li>
 							</ul>
 						</li>

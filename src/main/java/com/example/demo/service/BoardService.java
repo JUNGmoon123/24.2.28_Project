@@ -21,9 +21,5 @@ public class BoardService {
 		return boardRepository.getBoardById(boardId);
 	}
 
-	public Board getProductById(int id) {
-	
-		return null;
-	}
 
 }
