@@ -35,16 +35,16 @@
 							<a href="/" class="flex flex-ai-c height-100p">홈</a>
 						</li>
 						<li>
-							<a href="../article/productlist?boardId=7&page=1" class="flex flex-ai-c height-100p">와인</a>
+							<a href="#" class="flex flex-ai-c height-100p">와인</a>
 							<ul>
 								<li>
-									<a href="../article/productlist?boardId=7&page=1">레드와인</a>
+									<a href="../product/Redwine?boardId=7&page=1">레드와인</a>
 								</li>
 								<li>
-									<a href="../article/productlist?boardId=7&page=1">화이트와인</a>
+									<a href="../product/Whitewine?boardId=8&page=1">화이트와인</a>
 								</li>
 								<li>
-									<a href="../article/productlist?boardId=7&page=1">스파클링와인</a>
+									<a href="../product/Sparklingwine?boardId=9&page=1">스파클링와인</a>
 								</li>
 							</ul>
 						</li>
@@ -85,7 +85,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="#" class="flex flex-ai-c height-100p">커뮤니티</a>
+							<a href="../article/list?boardId=1&page=1" class="flex flex-ai-c height-100p">커뮤니티</a>
 							<ul>
 								<li>
 									<a href="../article/list?boardId=1&page=1">자유게시판</a>

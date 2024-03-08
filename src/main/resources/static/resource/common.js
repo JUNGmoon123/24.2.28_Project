@@ -431,3 +431,55 @@ function changeUrl(index) {
 	exploreBtn.setAttribute('onclick', 'redirectToNextPage(' + index + ')');
 }
 
+
+//sparkling 설정 
+var cars = [
+	{ "type": "Sedan", "model": "Focus", "year": 2016, "color": "red", "price": 16000, "src": "http://www.ford.com/cmslibs/content/dam/vdm_ford/live/en_us/ford/nameplate/focus/2016/collections/AdPlanner/16_frd_fcs_ext_4dr_se_3qtr_rcrd.png/_jcr_content/renditions/cq5dam.web.1280.1280.png" },
+	{ "type": "Sedan", "model": "Fusion", "year": 2015, "color": "white", "price": 30000, "src": "http://o.aolcdn.com/commerce/autodata/images/CAC70FOC201B021001.jpg" },
+	{ "type": "SUV", "model": "Edge", "year": 2017, "color": "blue", "price": 35000, "src": "http://images.dealer.com/ddc/vehicles/2017/Ford/Edge/SUV/color/Blue%20Jeans%20Metallic-N1-8,29,41-640-en_US.jpg" },
+	{ "type": "SUV", "model": "Escape", "year": 2016, "color": "white", "price": 27000, "src": "http://pictures.dealer.com/c/chastangfordfd/1862/d988bd34324178d5e4e6853842965f32x.jpg" },
+	{ "type": "Truck", "model": "F-150", "year": 2015, "color": "black", "price": 25000, "src": "http://pictures.dealer.com/b/boballenfordfd/0272/e5bfce38e104395b56e24fee7343a8f1x.jpg" },
+	{ "type": "Hybrid", "model": "Fusion Hybrid", "year": 2017, "color": "black", "price": 40000, "src": "http://st.automobilemag.com/uploads/sites/11/2015/08/2015-Ford-Fusion-SE-front-three-quarter.jpg" }
+];
+var settings = {
+	white: true,
+	black: true,
+	blue: true,
+	red: true
+};
+
+init();
+
+
+function init() {
+	checkColors();
+	var price = document.getElementById("myRange").value;
+	var type = document.getElementById("myType").value;
+	document.getElementById("currentPrice").innerHTML = price;
+	document.getElementById("product").innerHTML = draw_products(price, type);
+}
+
+function draw_products(price, type) {
+	var content = "";
+	for (var i = 0; i < cars.length; i++) {
+		if ((cars[i].price <= price && cars[i].type == type || cars[i].price <= price && type == "All") && checkCarColor(cars[i].color)) {
+			content += draw_card(cars[i]);
+		}
+	}
+	return content;
+};
+
+function draw_card(product) {
+	return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>';
+}
+
+function checkColors() {
+	settings.white = document.getElementById("white-color").checked;
+	settings.black = document.getElementById("black-color").checked;
+	settings.blue = document.getElementById("blue-color").checked;
+	settings.red = document.getElementById("red-color").checked;
+}
+
+function checkCarColor(carColor) {
+	return settings[carColor];
+}
