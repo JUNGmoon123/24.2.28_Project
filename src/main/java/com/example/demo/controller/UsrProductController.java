@@ -192,4 +192,79 @@ public class UsrProductController {
 		return "usr/product/Whitewine";
 	}
 	
+	@RequestMapping("/usr/product/Craftbeer")	
+	public String showCraftbeertList(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "productName,body") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "") String searchKeyword) {
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		Board board = boardService.getBoardById(boardId);
+
+		int articlesCount = productService.getProductsCount(boardId, searchKeywordTypeCode, searchKeyword);
+
+		if (board == null) {
+			return rq.historyBackOnView("없는 게시판이야");
+		}
+
+		// 한페이지에 글 10개씩이야
+		// 글 20개 -> 2 page
+		// 글 24개 -> 3 page
+		int itemsInAPage = 10;
+
+		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+
+		List<Product> products = productService.getForPrintProducts(boardId, itemsInAPage, page, searchKeywordTypeCode,
+				searchKeyword);
+		System.err.println(board);
+		model.addAttribute("board", board);
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
+		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("articlesCount", articlesCount);
+		model.addAttribute("products", products);
+
+		return "usr/product/Craftbeer";
+	}
+	
+	@RequestMapping("/usr/product/Darkbeer")	
+	public String showDarkbeertList(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "productName,body") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "") String searchKeyword) {
+
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		Board board = boardService.getBoardById(boardId);
+
+		int articlesCount = productService.getProductsCount(boardId, searchKeywordTypeCode, searchKeyword);
+
+		if (board == null) {
+			return rq.historyBackOnView("없는 게시판이야");
+		}
+
+		// 한페이지에 글 10개씩이야
+		// 글 20개 -> 2 page
+		// 글 24개 -> 3 page
+		int itemsInAPage = 10;
+
+		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+
+		List<Product> products = productService.getForPrintProducts(boardId, itemsInAPage, page, searchKeywordTypeCode,
+				searchKeyword);
+		System.err.println(board);
+		model.addAttribute("board", board);
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
+		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("articlesCount", articlesCount);
+		model.addAttribute("products", products);
+
+		return "usr/product/Darkbeer";
+	}
 }

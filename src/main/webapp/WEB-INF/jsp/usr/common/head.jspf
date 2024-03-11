@@ -35,7 +35,7 @@
 							<a href="/" class="flex flex-ai-c height-100p">홈</a>
 						</li>
 						<li>
-							<a href="#" class="flex flex-ai-c height-100p">와인</a>
+							<a href="../product/Redwine?boardId=7&page=1" class="flex flex-ai-c height-100p">와인</a>
 							<ul>
 								<li>
 									<a href="../product/Redwine?boardId=7&page=1">레드와인</a>
@@ -49,27 +49,24 @@
 							</ul>
 						</li>
 						<li>
-							<a href="../article/productlist?boardId=8&page=1" class="flex flex-ai-c height-100p">맥주</a>
+							<a href="../product/Craftbeer?boardId=10&page=1" class="flex flex-ai-c height-100p">맥주</a>
 							<ul>
 								<li>
-									<a href="../article/productlist?boardId=8&page=1">브랜드</a>
+									<a href="../product/Darkbeer?boardId=11&page=1">흑맥주</a>
 								</li>
 								<li>
-									<a href="../article/productlist?boardId=8&page=1">흑맥주</a>
-								</li>
-								<li>
-									<a href="../article/productlist?boardId=8&page=1">수제맥주</a>
+									<a href="../product/Craftbeer?boardId=10&page=1">수제맥주</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="../article/productlist?boardId=9&page=1" class="flex flex-ai-c height-100p">전통주</a>
+							<a href="../product/Craftbeer?boardId=12&page=1 class="flex flex-ai-c height-100p">전통주</a>
 							<ul>
 								<li>
-									<a href="../article/productlist?boardId=9&page=1">탁주</a>
+									<a href="../product/Craftbeer?boardId=12&page=1">탁주</a>
 								</li>
 								<li>
-									<a href="../article/productlist?boardId=9&page=1">청주</a>
+									<a href="../product/Craftbeer?boardId=13&page=1">청주</a>
 								</li>
 							</ul>
 						</li>

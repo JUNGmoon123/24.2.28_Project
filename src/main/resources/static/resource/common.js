@@ -82,7 +82,7 @@ Mobile_TopBar__init();
 
 
 //움직이는화면실행
-function init() {
+function main_init() {
 	// 슬라이더 요소와 버튼 요소, 슬라이드 항목들을 가져옵니다.
 	const slider = document.querySelector(".slider");
 	const nextBtn = slider.querySelector(".nav .next"); // 다음 버튼
@@ -241,7 +241,7 @@ function init() {
 }
 
 // DOMContentLoaded 이벤트가 발생하면 init 함수 실행
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", main_init);
 
 //위의 자동슬라이드부분 설명.
 //startAutoSlide() 함수를 통해 자동으로 슬라이드가 전환됩니다. 이 함수는 페이지 로드 시 자동으로 호출되며 4초마다 다음 슬라이드로 이동합니다.
@@ -433,53 +433,65 @@ function changeUrl(index) {
 
 
 //sparkling 설정 
-var cars = [
-	{ "type": "Sedan", "model": "Focus", "year": 2016, "color": "red", "price": 16000, "src": "http://www.ford.com/cmslibs/content/dam/vdm_ford/live/en_us/ford/nameplate/focus/2016/collections/AdPlanner/16_frd_fcs_ext_4dr_se_3qtr_rcrd.png/_jcr_content/renditions/cq5dam.web.1280.1280.png" },
-	{ "type": "Sedan", "model": "Fusion", "year": 2015, "color": "white", "price": 30000, "src": "http://o.aolcdn.com/commerce/autodata/images/CAC70FOC201B021001.jpg" },
-	{ "type": "SUV", "model": "Edge", "year": 2017, "color": "blue", "price": 35000, "src": "http://images.dealer.com/ddc/vehicles/2017/Ford/Edge/SUV/color/Blue%20Jeans%20Metallic-N1-8,29,41-640-en_US.jpg" },
-	{ "type": "SUV", "model": "Escape", "year": 2016, "color": "white", "price": 27000, "src": "http://pictures.dealer.com/c/chastangfordfd/1862/d988bd34324178d5e4e6853842965f32x.jpg" },
-	{ "type": "Truck", "model": "F-150", "year": 2015, "color": "black", "price": 25000, "src": "http://pictures.dealer.com/b/boballenfordfd/0272/e5bfce38e104395b56e24fee7343a8f1x.jpg" },
-	{ "type": "Hybrid", "model": "Fusion Hybrid", "year": 2017, "color": "black", "price": 40000, "src": "http://st.automobilemag.com/uploads/sites/11/2015/08/2015-Ford-Fusion-SE-front-three-quarter.jpg" }
+// sparkling 배열: 제품 데이터를 포함하는 배열
+var sparkling = [
+	{ "type": "sparkling", "model": "sparkling", "year": 2016, "color": "white", "price": 16000, "src": "https://오아크.com/web/product/medium/202211/42ae59aaa0b992e6b4de509c1e89f34c.jpg" },
+	{ "type": "sparkling", "model": "sparkling", "year": 2015, "color": "red", "price": 80000, "src": "https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg" },
+	{ "type": "sparkling", "model": "sparkling", "year": 2022, "color": "white", "price": 50000, "src": "https://오아크.com/web/product/medium/202211/bf679203e1c07b565179d7ed927587cb.jpg" },
+	{ "type": "sparkling", "model": "sparkling", "year": 2023, "color": "red", "price": 90000, "src": "https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg" },
+	{ "type": "craft", "model": "craft", "year": 2021, "color": "craft", "price": 5000, "src": "https://ojsfile.ohmynews.com/STD_IMG_FILE/2021/0310/IE002771543_STD.jpg" },
+	{ "type": "craft", "model": "craft", "year": 2022, "color": "craft", "price": 8000, "src": "https://blog.kakaocdn.net/dn/GPutK/btrHBBcHlfG/DdflRd2VHqDB2YslahdWoK/img.jpg" },
+	{ "type": "dark", "model": "dark", "year": 2020, "color": "dark", "price": 10000, "src": "https://gomean.co.kr/wp-content/uploads/2023/07/gm-dark-beer-main.jpg" }
 ];
+
+// settings 객체: 색상 설정을 포함하는 객체
 var settings = {
 	white: true,
-	black: true,
-	blue: true,
+	craft: true,
+	dark: true,
 	red: true
 };
 
-init();
-
-
-function init() {
-	checkColors();
-	var price = document.getElementById("myRange").value;
-	var type = document.getElementById("myType").value;
-	document.getElementById("currentPrice").innerHTML = price;
-	document.getElementById("product").innerHTML = draw_products(price, type);
-}
-
-function draw_products(price, type) {
-	var content = "";
-	for (var i = 0; i < cars.length; i++) {
-		if ((cars[i].price <= price && cars[i].type == type || cars[i].price <= price && type == "All") && checkCarColor(cars[i].color)) {
-			content += draw_card(cars[i]);
-		}
-	}
-	return content;
+// 수정된 부분: 초기 설정 시 제품을 표시하는 함수
+window.onload = function() {
+    product_init();
 };
 
-function draw_card(product) {
-	return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>';
+// 초기화 함수
+function product_init() {
+	checkColors(); // 색상 설정 확인
+	var price = document.getElementById("myRange").value; // 가격 설정
+	var type = document.getElementById("myType").value; // 타입 설정
+	document.getElementById("currentPrice").innerHTML = price; // 현재 가격 표시
+	document.getElementById("product").innerHTML = draw_products(price, type); // 제품 표시
 }
 
+
+// 가격과 타입을 기준으로 제품을 표시하는 함수
+function draw_products(price, type) {
+	var content = "";
+	for (var i = 0; i < sparkling.length; i++) {
+		if ((sparkling[i].price <= price && sparkling[i].type == type || sparkling[i].price <= price && type == "All") && checkColor(sparkling[i].color)) {
+			content += draw_card(sparkling[i]); // 해당하는 제품 카드를 생성하여 content에 추가
+		}
+	}
+	return content; // content 반환
+};
+
+// 제품 카드를 생성하는 함수
+function draw_card(product) {
+	return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
+}
+
+// 색상 설정을 확인하여 settings 객체 업데이트하는 함수
 function checkColors() {
 	settings.white = document.getElementById("white-color").checked;
-	settings.black = document.getElementById("black-color").checked;
-	settings.blue = document.getElementById("blue-color").checked;
 	settings.red = document.getElementById("red-color").checked;
+	settings.craft = document.getElementById("craft-color").checked;
+	settings.dark = document.getElementById("dark-color").checked;
 }
 
-function checkCarColor(carColor) {
-	return settings[carColor];
+// 제품의 색상이 설정된 색상 중 하나인지 확인하는 함수
+function checkColor(Color) {
+	return settings[Color]; // 해당 색상이 settings 객체에 있는지 확인하고 그 결과 반환
 }
