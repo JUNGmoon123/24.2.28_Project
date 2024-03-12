@@ -57,18 +57,16 @@
 				<tbody>
 					<c:forEach var="Brewery" items="${brewerys }">
 						<tr class="hover">
-
-							<td>${brewery.id }</td>
-							<td>${brewery.barName }</td>
-							<td>${brewery.barAddr }</td>
-							<td>${brewery.barNumber }</td>
-							<td>${brewery.barWeb }</td>
+							<td>${Brewery.id }</td>
+							<td>${Brewery.barName }</td>
+							<td>${Brewery.barAddr }</td>
+							<td>${Brewery.barNumber }</td>
+							<td>${Brewery.barWeb }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 		</div>
-
 	</section>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script>
 	<script>
@@ -100,14 +98,11 @@
 		var lat;
 		var lon;
 		// 		주차장
-		async
-		function getData2() {
+		async function getData2() {
 			const API_KEY = 'ef50bc8210ed6065bd9b724884224a1c';
 			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
-			const response = await
-			fetch(url);
-			const data = await
-			response.json();
+			const response = await fetch(url);
+			const data = await response.json();
 
 			console.log("data", data);
 			console.log(data.response);

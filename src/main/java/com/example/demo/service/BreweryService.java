@@ -18,13 +18,13 @@ public class BreweryService {
 		this.breweryRepository = breweryRepository;
 	}
 	
-	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
-		return breweryRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+	public int getArticlesCount(int id, String searchKeywordTypeCode, String searchKeyword) {
+		return breweryRepository.getArticlesCount(id, searchKeywordTypeCode, searchKeyword);
 	}
 	
-	public List<Brewery> getForPrintBrewerys(int boardId, int itemsInAPage, int page,
+	public List<Brewery> getForPrintBrewerys(int id, int itemsInAPage, int page,
 			String searchKeywordTypeCode, String searchKeyword) {
-		return breweryRepository.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode, searchKeyword);
+		return breweryRepository.getForPrintBrewerys(id, itemsInAPage, page, searchKeywordTypeCode, searchKeyword);
 	}
 
 }

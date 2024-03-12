@@ -20,47 +20,36 @@ import jakarta.servlet.http.HttpServletRequest;
 public class UsrBreweryController {
 	@Autowired
 	private Rq rq;
-	
+
 	@Autowired
 	private BreweryService breweryService;
-	
+
 	@Autowired
 	private BoardService boardService;
 
 	@RequestMapping("/usr/home/APIgps")
-	public String APIgps() {
-
-		return "/usr/home/APIgps";
-	}
-
-	@RequestMapping("/usr/home/APIgps")
-	public String showList(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int id,
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "barName") String searchKeywordTypeCode,
 			@RequestParam(defaultValue = "") String searchKeyword) {
 
-		Rq rq = (Rq) req.getAttribute("rq");
+		// showList() 메서드의 내용을 여기로 이동
 
-		Board board = boardService.getBoardById(boardId);
+		Board board = boardService.getBoardById(id);
 
-		int articlesCount = breweryService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+		int articlesCount = breweryService.getArticlesCount(id, searchKeywordTypeCode, searchKeyword);
 
 		if (board == null) {
 			return rq.historyBackOnView("없는 게시판이야");
 		}
 
-		// 한페이지에 글 10개씩이야
-		// 글 20개 -> 2 page
-		// 글 24개 -> 3 page
 		int itemsInAPage = 10;
-
 		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-
-		List<Brewery> brewerys = breweryService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
+		List<Brewery> brewerys = breweryService.getForPrintBrewerys(id, itemsInAPage, page, searchKeywordTypeCode,
 				searchKeyword);
 
 		model.addAttribute("board", board);
-		model.addAttribute("boardId", boardId);
+		model.addAttribute("id", id);
 		model.addAttribute("page", page);
 		model.addAttribute("pagesCount", pagesCount);
 		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);

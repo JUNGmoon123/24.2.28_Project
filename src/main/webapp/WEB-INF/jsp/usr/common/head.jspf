@@ -60,7 +60,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="../product/Craftbeer?boardId=12&page=1 class="flex flex-ai-c height-100p">전통주</a>
+							<a href="../product/Craftbeer?boardId=12&page=1" class="flex flex-ai-c height-100p">전통주</a>
 							<ul>
 								<li>
 									<a href="../product/Craftbeer?boardId=12&page=1">탁주</a>
@@ -74,10 +74,10 @@
 							<a href="../home/APIgps" class="flex flex-ai-c height-100p">와이너리</a>
 							<ul>
 								<li>
-									<a href="../article/list?boardId=1&page=1">양조장찾기</a>
+									<a href="../home/APIgps">양조장찾기</a>
 								</li>
 								<li>
-									<a href="../article/list?boardId=2&page=1">나의 여행일지</a>
+									<a href="../home/APIgps">나의 여행일지</a>
 								</li>
 							</ul>
 						</li>
