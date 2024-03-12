@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="API TEST4"></c:set>
+<c:set var="pageTitle" value="GPS"></c:set>
 
 <%@ include file="../common/head.jspf"%>
 
@@ -13,16 +13,63 @@
 </head>
 <body>
 
-	<div id="map" style="width: 100%; height: 350px;"></div>
+	<div class="map_API" id="map"></div>
 	<!-- 지도 위에 표시될 마커 카테고리 -->
+	<div class="map_btn">
 
-	<p>
 		<button class="btn btn-outline" type="button" onclick="setCenter()">지도 중심좌표 이동시키기</button>
 		<button class="btn btn-outline" type="button" onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
 		<button class="btn btn-outline" type="button" onclick="hideMarkers()">마커 감추기</button>
 		<button class="btn btn-outline" type="button" onclick="showMarkers()">마커 보이기</button>
-	</p>
+	</div>
+	<div class="map_btn2">
+		<input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" />
+		지적편집도 정보 보기
+		<input type="checkbox" id="chkTerrain" onclick="setOverlayMapTypeId()" />
+		지형정보 보기
+		<input type="checkbox" id="chkTraffic" onclick="setOverlayMapTypeId()" />
+		교통정보 보기
+		<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" />
+		자전거도로 정보 보기
 
+	</div>
+
+	<section class="gps_list">
+		<div>영역설정</div>
+		<div>
+			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6Btyz574Zht4rEUPxMNB0zg9x8r4mJ21dg&usqp=CAU" alt="" />
+			<table class="table-box-1 table" border="1">
+				<colgroup>
+					<col style="width: 10%" />
+					<col style="width: 20%" />
+					<col style="width: 60%" />
+					<col style="width: 10%" />
+				</colgroup>
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th>양조장이름</th>
+						<th>양조장주소</th>
+						<th>전화번호</th>
+						<th>홈페이지주소</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="Brewery" items="${brewerys }">
+						<tr class="hover">
+
+							<td>${brewery.id }</td>
+							<td>${brewery.barName }</td>
+							<td>${brewery.barAddr }</td>
+							<td>${brewery.barNumber }</td>
+							<td>${brewery.barWeb }</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+
+	</section>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script>
 	<script>
 		var MARKER_WIDTH = 33, // 기본, 클릭 마커의 너비
@@ -53,11 +100,14 @@
 		var lat;
 		var lon;
 		// 		주차장
-		async function getData2() {
+		async
+		function getData2() {
 			const API_KEY = 'ef50bc8210ed6065bd9b724884224a1c';
 			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
-			const response = await fetch(url);
-			const data = await response.json();
+			const response = await
+			fetch(url);
+			const data = await
+			response.json();
 
 			console.log("data", data);
 			console.log(data.response);
@@ -148,12 +198,6 @@
 
 		// 마커 하나를 지도위에 표시합니다 
 		addMarker(new kakao.maps.LatLng(33.450701, 126.570667));
-
-		// 마커를 생성하고 지도위에 표시하는 함수입니다
-		// 		function addMarker(position) {
-		// 		    밑에 addMarker쪽에 합쳐서 추가함, 중복된거때문에 기능이 안될때가 많음
-		// 		    잘 찾아봐야한다.
-		// 		}
 
 		// 지도에 클릭 이벤트를 등록합니다
 		// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다

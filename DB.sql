@@ -150,20 +150,44 @@ updateDate = NOW(),
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
-`code` = 'FREE4',
-`name` = '와인';
+`code` = 'REDWINE',
+`name` = '레드와인';
 
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
-`code` = 'FREE5',
-`name` = '맥주';
+`code` = 'WHITEWINE',
+`name` = '화이트와인';
 
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
-`code` = 'FREE6',
-`name` = '전통주';
+`code` = 'SPARKLINGWINE',
+`name` = '스파클링와인';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'CRAFTBEER',
+`name` = '수제맥주';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'DARKBEER',
+`name` = '흑맥주';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'TAKJU',
+`name` = '탁주';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'CHEONGJU',
+`name` = '청주';
 
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
@@ -377,7 +401,7 @@ CREATE TABLE product(
     `body`TEXT NOT NULL,
     abv CHAR(20) NOT NULL,
     price CHAR(50) NOT NULL
-)
+);
 
 ALTER TABLE product ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -442,8 +466,21 @@ productName = '모엣 샹동 샴페인',
 abv = '18도',
 price = '63000';
 
+CREATE TABLE brewery(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    barName CHAR(50) NOT NULL,
+    barAddr CHAR(50) NOT NULL,
+    barNumber CHAR(50) NOT NULL,
+    barWeb CHAR(50) NOT NULL,
+    barCome CHAR(50) NOT NULL,
+    barPoint INT(10) NOT NULL
+);
+
 
 ###############################################
+DROP TABLE brewery;
+
+SELECT * FROM brewery;
 
 SELECT * FROM article;
 

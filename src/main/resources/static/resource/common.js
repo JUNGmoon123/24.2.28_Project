@@ -495,3 +495,5 @@ function checkColors() {
 function checkColor(Color) {
 	return settings[Color]; // 해당 색상이 settings 객체에 있는지 확인하고 그 결과 반환
 }
+
+
