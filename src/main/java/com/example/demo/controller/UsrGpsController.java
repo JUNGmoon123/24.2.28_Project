@@ -1,9 +1,13 @@
-//package com.example.demo.controller;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//@Controller
-//public class UsrGpsController {
-//	@RequestMapping("")
-//}
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class UsrGpsController {
+	@RequestMapping("/usr/home/APIgps")
+	public String APIgps() {
+		
+		return "/usr/home/APIgps";
+	}
+}

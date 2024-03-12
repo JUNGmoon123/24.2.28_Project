@@ -24,8 +24,8 @@
 		var lon;
 // 		주차장
 		async function getData2() {
-			const API_KEY = '발급받은 API 키';
-			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=json';
+			const API_KEY = 'ZQ%2BxIGD58N5UvuUXzJtGBoszPcFwmlnoSF%2Bs%2Bkski23QWapgj9WTE6vlrvNgjyeRGUk94TKqYRAIKw7GHAE80g%3D%3D';
+			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=API_KEY';
 			const response = await fetch(url);
 			const data = await response.json();
 			
