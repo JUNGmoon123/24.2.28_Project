@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.service.BeerService;
 import com.example.demo.service.BoardService;
+import com.example.demo.vo.Beer;
 import com.example.demo.vo.Board;
-import com.example.demo.vo.Brewery2;
 import com.example.demo.vo.Rq;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,7 +31,7 @@ public class UsrBeerController {
 		@RequestMapping("/usr/product/beer")
 		public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
 				@RequestParam(defaultValue = "1") int page,
-				@RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
+				@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
 				@RequestParam(defaultValue = "") String searchKeyword) {
 
 			Rq rq = (Rq) req.getAttribute("rq");
@@ -48,7 +48,7 @@ public class UsrBeerController {
 			int itemsInAPage = 10;
 			int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
 
-			List<Beer> beers = beerService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
+			List<Beer> beers = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
 					searchKeyword);
 
 			model.addAttribute("board", board);
@@ -61,5 +61,5 @@ public class UsrBeerController {
 			model.addAttribute("beers", beers);
 
 			return "usr/product/beer";
-		
+		}		
 }

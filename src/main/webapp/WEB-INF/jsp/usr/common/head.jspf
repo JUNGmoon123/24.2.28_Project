@@ -49,7 +49,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="../product/Craftbeer?boardId=10&page=1" class="flex flex-ai-c height-100p">맥주</a>
+							<a href="../product/beer?boardId=16&page=1" class="flex flex-ai-c height-100p">맥주</a>
 							<ul>
 								<li>
 									<a href="../product/Darkbeer?boardId=11&page=1">흑맥주</a>

@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Beer {
    private int id ;
+   private int boardId;
    private String type;
    private String model;
    private int year;
