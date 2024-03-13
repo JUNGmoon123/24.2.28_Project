@@ -18,13 +18,22 @@ public class BreweryService {
 		this.breweryRepository = breweryRepository;
 	}
 	
-	public int getArticlesCount(int id, String searchKeywordTypeCode, String searchKeyword) {
-		return breweryRepository.getArticlesCount(id, searchKeywordTypeCode, searchKeyword);
+	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
+		return breweryRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 	}
 	
-	public List<Brewery> getForPrintBrewerys(int id, int itemsInAPage, int page,
+	public List<Brewery> getForPrintBrewerys(int boardId, int itemsInAPage, int page,
 			String searchKeywordTypeCode, String searchKeyword) {
-		return breweryRepository.getForPrintBrewerys(id, itemsInAPage, page, searchKeywordTypeCode, searchKeyword);
+		
+//		SELECT * FROM article WHERE boardId = 1 ORDER BY id DESC LIMIT 0, 10; 1page
+//		SELECT * FROM article WHERE boardId = 1 ORDER BY id DESC LIMIT 10, 10; 2page
+
+		int limitFrom = (page - 1) * itemsInAPage;
+		int limitTake = itemsInAPage;
+
+		
+		return breweryRepository.getForPrintBrewerys(boardId, limitFrom, limitTake, searchKeywordTypeCode,
+				searchKeyword);
 	}
 
 }

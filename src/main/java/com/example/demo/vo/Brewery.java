@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Brewery {
     private int id; 
+	private int memberId;
+	private int boardId;
     private String barName; 
     private String barAddr; 
     private String barNumber; 

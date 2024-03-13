@@ -16,8 +16,8 @@ public interface BreweryRepository {
 			SELECT COUNT(*) AS cnt
 			FROM brewery AS B
 			WHERE 1
-			<if test="id != 0">
-				AND id = #{id}
+			<if test="boardId != 0">
+				AND boardId = #{boardId}
 			</if>
 			<if test="searchKeyword != ''">
 				<choose>
@@ -36,19 +36,19 @@ public interface BreweryRepository {
 			ORDER BY id DESC
 			</script>
 			""")
-	public int getArticlesCount(int id, String searchKeywordTypeCode, String searchKeyword);
+	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword);
 
 	@Select("""
 			<script>
 			SELECT B.*, IFNULL(COUNT(R.id),0) AS extra__repliesCnt
 			FROM brewery AS B
 			INNER JOIN `member` AS M
-			ON P.memberId = M.id
+			ON B.memberId = M.id
 			LEFT JOIN `reply` AS R
-			ON P.id = R.relId
+			ON B.id = R.relId
 			WHERE 1
-			<if test="id != 0">
-				AND P.id = #{id}
+			<if test="boardId != 0">
+				AND B.boardId = #{boardId}
 			</if>
 			<if test="searchKeyword != ''">
 				<choose>
@@ -71,7 +71,7 @@ public interface BreweryRepository {
 			</if>
 			</script>
 			""")
-	public List<Brewery> getForPrintBrewerys(int id, int limitFrom, int limitTake, String searchKeywordTypeCode,
+	public List<Brewery> getForPrintBrewerys(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
 	
 }

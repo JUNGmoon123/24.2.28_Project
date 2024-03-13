@@ -28,16 +28,17 @@ public class UsrBreweryController {
 	private BoardService boardService;
 
 	@RequestMapping("/usr/home/APIgps")
-	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int id,
+	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "barName") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
 			@RequestParam(defaultValue = "") String searchKeyword) {
 
+		Rq rq = (Rq) req.getAttribute("rq");
 		// showList() 메서드의 내용을 여기로 이동
 
-		Board board = boardService.getBoardById(id);
+		Board board = boardService.getBoardById(boardId);
 
-		int articlesCount = breweryService.getArticlesCount(id, searchKeywordTypeCode, searchKeyword);
+		int articlesCount = breweryService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 
 		if (board == null) {
 			return rq.historyBackOnView("없는 게시판이야");
@@ -45,11 +46,12 @@ public class UsrBreweryController {
 
 		int itemsInAPage = 10;
 		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-		List<Brewery> brewerys = breweryService.getForPrintBrewerys(id, itemsInAPage, page, searchKeywordTypeCode,
+
+		List<Brewery> brewerys = breweryService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
 				searchKeyword);
 
 		model.addAttribute("board", board);
-		model.addAttribute("id", id);
+		model.addAttribute("boardId", boardId);
 		model.addAttribute("page", page);
 		model.addAttribute("pagesCount", pagesCount);
 		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);

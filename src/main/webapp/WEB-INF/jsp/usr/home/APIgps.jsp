@@ -36,38 +36,64 @@
 
 	<section class="gps_list">
 		<div>영역설정</div>
-		<div>
-			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6Btyz574Zht4rEUPxMNB0zg9x8r4mJ21dg&usqp=CAU" alt="" />
-			<table class="table-box-1 table" border="1">
-				<colgroup>
-					<col style="width: 10%" />
-					<col style="width: 20%" />
-					<col style="width: 60%" />
-					<col style="width: 10%" />
-				</colgroup>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>양조장이름</th>
-						<th>양조장주소</th>
-						<th>전화번호</th>
-						<th>홈페이지주소</th>
+		<div class="badge badge-outline">${articlesCount }개</div>
+
+		<table class="table-box-1 table" border="1">
+			<colgroup>
+				<col style="width: 10%" />
+				<col style="width: 20%" />
+				<col style="width: 40%" />
+				<col style="width: 10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>이름</th>
+					<th>주소</th>
+					<th>번호</th>
+					<th>홈페이지</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="brewery" items="${brewerys }">
+					<tr class="hover">
+
+						<td>${brewery.id }</td>
+						<td>${brewery.barName }</td>
+						<td>${brewery.barAddr }</td>
+						<td>${brewery.barNumber }</td>
+						<td>${brewery.barWeb }</td>
 					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="Brewery" items="${brewerys }">
-						<tr class="hover">
-							<td>${Brewery.id }</td>
-							<td>${Brewery.barName }</td>
-							<td>${Brewery.barAddr }</td>
-							<td>${Brewery.barNumber }</td>
-							<td>${Brewery.barWeb }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
+				</c:forEach>
+			</tbody>
+		</table>
+		<!-- 	동적 페이징 -->
+	<div class="pagination flex justify-center mt-3">
+		<c:set var="paginationLen" value="3" />
+		<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
+		<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+
+		<c:set var="baseUri" value="?boardId=${boardId }" />
+		<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+		<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+
+		<c:if test="${startPage > 1 }">
+			<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+			<button class="btn btn-sm btn-disabled">...</button>
+		</c:if>
+
+		<c:forEach begin="${startPage }" end="${endPage }" var="i">
+			<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+		</c:forEach>
+
+		<c:if test="${endPage < pagesCount }">
+			<button class="btn btn-sm btn-disabled">...</button>
+			<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+		</c:if>
+
+	</div>
 	</section>
+<!-- 			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQf6Btyz574Zht4rEUPxMNB0zg9x8r4mJ21dg&usqp=CAU" alt="" /> -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script>
 	<script>
 		var MARKER_WIDTH = 33, // 기본, 클릭 마커의 너비
