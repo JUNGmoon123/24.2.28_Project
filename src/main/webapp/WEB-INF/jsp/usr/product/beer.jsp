@@ -78,75 +78,88 @@
 <%-- //             </c:forEach> --%>
 <!-- //         ]; -->
 <body>
-    <div id="product" class="product_list">
-        <!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
-    </div>
+	<div id="product" class="product_list">
+		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
+	</div>
 	<script>
-        var beers = [
-            // Java에서 가져온 데이터를 기반으로 JavaScript 배열로 변환합니다.
-            <c:forEach var="beer" items="${beerList}" varStatus="loop">
-                { 
-                    "type": "${beer.btype}", 
-                    "model": "${beer.model}", 
-                    "year": ${beer.byear}, 
-                    "color": "${beer.color}", 
-                    "price": "${beer.price}", 
-                    "src": "${beer.src}" 
-                }<c:if test="${!loop.last}">,</c:if>
-            </c:forEach>
-        ];
-        console.log(beers); // beers 배열 출력
-        //settings 객체: 색상 설정을 포함하는 객체
-        var settings = {
-            white: true,
-            craft: true,
-            dark: true,
-            red: true
-        };
+    // 맥주 데이터 배열을 초기화합니다.
+    var beers = [
+        // Java에서 가져온 데이터를 기반으로 JavaScript 배열로 변환합니다.
+        <c:forEach var="beer" items="${beerList}" varStatus="loop">
+            { 
+                "type": "${beer.btype}", 
+                "model": "${beer.model}", 
+                "year": ${beer.byear}, 
+                "color": "${beer.color}", 
+                "price": "${beer.price}", 
+                "src": "${beer.src}" 
+            }<c:if test="${!loop.last}">,</c:if>
+        </c:forEach>
+    ];
 
-        // 제품 표시 초기화 함수
-        window.onload = function() {
-            product_init();
-        };
+    // 배열 확인을 위해 콘솔에 출력합니다.
+    console.log(beers); // beers 배열 출력
 
-        // 초기화 함수
-        function product_init() {
-            checkColors(); // 색상 설정 확인
-            var price = document.getElementById("myRange").value; // 가격 설정
-            var type = document.getElementById("myType").value; // 타입 설정
-            document.getElementById("currentPrice").innerHTML = price; // 현재 가격 표시
-            document.getElementById("product").innerHTML = draw_products(price, type); // 제품 표시
-        }
+    //settings 객체를 초기화합니다. 색상 설정을 포함합니다.
+    var settings = {
+        white: true,
+        craft: true,
+        dark: true,
+        red: true
+    };
 
-        // 가격과 타입을 기준으로 제품을 HTML로 표시하는 함수
-        function draw_products(price, type) {
-            var content = "";
-            for (var i = 0; i < beers.length; i++) {
-                var beer = beers[i];
-                if ((beer.price <= price && beer.type == type || beer.price <= price && type == "All") && checkColor(beer.color)) {
-                    content += draw_card(beer); // 해당하는 제품 카드를 생성하여 content에 추가
-                }
+    // 제품 표시 초기화 함수
+    window.onload = function() {
+        product_init();
+    };
+
+    // 초기화 함수
+    function product_init() {
+        // 색상 설정을 확인합니다.
+        checkColors(); 
+        // 가격 설정을 가져옵니다.
+        var price = document.getElementById("myRange").value; 
+        // 타입 설정을 가져옵니다.
+        var type = document.getElementById("myType").value; 
+        // 현재 가격을 HTML에 표시합니다.
+        document.getElementById("currentPrice").innerHTML = price; 
+        // 제품을 HTML로 표시합니다.
+        document.getElementById("product").innerHTML = draw_products(price, type); 
+    }
+
+    // 가격과 타입을 기준으로 제품을 HTML로 표시하는 함수
+    function draw_products(price, type) {
+        var content = ""; // 표시할 HTML 내용을 초기화합니다.
+        // 맥주 데이터 배열을 순회합니다.
+        for (var i = 0; i < beers.length; i++) {
+            var beer = beers[i]; // 현재 맥주 정보를 가져옵니다.
+            // 설정된 가격, 타입, 색상에 따라 표시할 제품인지 확인합니다.
+            if ((beer.price <= price && beer.type == type || beer.price <= price && type == "All") && checkColor(beer.color)) {
+                content += draw_card(beer); // 해당하는 제품 카드를 생성하여 content에 추가합니다.
             }
-            return content; // content 반환
         }
+        return content; // 생성된 HTML을 반환합니다.
+    }
 
-        // 제품 카드를 생성하는 함수
-        function draw_card(product) {
-            return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
-        }
+    // 제품 카드를 생성하는 함수
+    // 이쪽에서 제품정보를 HTML쪽으로 보내서 만들어짐,  id=product 인 영역에 return값으로 제품을 표기한다.
+    function draw_card(product) {
+        return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
+    }
 
-        // 색상 설정을 확인하여 settings 객체 업데이트하는 함수
-        function checkColors() {
-            settings.white = document.getElementById("white-color").checked;
-            settings.red = document.getElementById("red-color").checked;
-            settings.craft = document.getElementById("craft-color").checked;
-            settings.dark = document.getElementById("dark-color").checked;
-        }
+    // 색상 설정을 확인하여 settings 객체 업데이트하는 함수
+    function checkColors() {
+        // 각 색상 설정을 가져와서 settings 객체에 업데이트합니다.
+        settings.white = document.getElementById("white-color").checked;
+        settings.red = document.getElementById("red-color").checked;
+        settings.craft = document.getElementById("craft-color").checked;
+        settings.dark = document.getElementById("dark-color").checked;
+    }
 
-        // 제품의 색상이 설정된 색상 중 하나인지 확인하는 함수
-        function checkColor(color) {
-            return settings[color]; // 해당 색상이 settings 객체에 있는지 확인하고 그 결과 반환
-        }
+    // 제품의 색상이 설정된 색상 중 하나인지 확인하는 함수
+    function checkColor(color) {
+        return settings[color]; // 해당 색상이 settings 객체에 있는지 확인하고 그 결과를 반환합니다.
+    }
     </script>
 </body>
 </html>

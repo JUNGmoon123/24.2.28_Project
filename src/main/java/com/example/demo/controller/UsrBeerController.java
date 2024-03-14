@@ -9,15 +9,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.repository.BeerRepository;
 import com.example.demo.service.BeerService;
 import com.example.demo.service.BoardService;
 import com.example.demo.vo.Beer;
+import com.example.demo.vo.Board;
 import com.example.demo.vo.Rq;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsrBeerController {
@@ -38,15 +40,52 @@ public class UsrBeerController {
 		this.beerRepository = beerRepository;
 	}
 
-	@GetMapping("/usr/product/beer")
-	public String showMap(Model model) throws JsonProcessingException {
-		List<Beer> beerList = beerRepository.selectList();
-        ObjectMapper mapper = new ObjectMapper();
-        String beersJson = mapper.writeValueAsString(beerList);
-        model.addAttribute("beersJson", beersJson);
+//	@GetMapping("/usr/product/beer")
+//	public String showMap(Model model) throws JsonProcessingException {
+//		List<Beer> beerList = beerRepository.selectList();
+//        ObjectMapper mapper = new ObjectMapper();
+//        String beersJson = mapper.writeValueAsString(beerList);
+//        model.addAttribute("beersJson", beersJson);
+//		model.addAttribute("beerList", beerList);
+//		return "usr/product/beer";
+//	}
+	
+	@RequestMapping("/usr/product/beer")
+	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+			@RequestParam(defaultValue = "1") int page,
+			@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
+			@RequestParam(defaultValue = "") String searchKeyword) {
+
+		Rq rq = (Rq) req.getAttribute("rq");
+		// showList() 메서드의 내용을 여기로 이동
+
+		Board board = boardService.getBoardById(boardId);
+
+		int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+
+		if (board == null) {
+			return rq.historyBackOnView("없는 게시판이야");
+		}
+
+		int itemsInAPage = 10;
+		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+
+		List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
+				searchKeyword);
+
+		model.addAttribute("board", board);
+		model.addAttribute("boardId", boardId);
+		model.addAttribute("page", page);
+		model.addAttribute("pagesCount", pagesCount);
+		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("articlesCount", articlesCount);
 		model.addAttribute("beerList", beerList);
+
 		return "usr/product/beer";
 	}
+
+	
 	
 	private List<Beer> BeerList(String filePath) {
 		List<Beer> beerList = new ArrayList<>();
@@ -74,39 +113,5 @@ public class UsrBeerController {
 		}
 		return beerList;
 	}
-//	@RequestMapping("/usr/product/beer")
-//	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-//			@RequestParam(defaultValue = "1") int page,
-//			@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
-//			@RequestParam(defaultValue = "") String searchKeyword) {
-//
-//		Rq rq = (Rq) req.getAttribute("rq");
-//		// showList() 메서드의 내용을 여기로 이동
-//
-//		Board board = boardService.getBoardById(boardId);
-//
-//		int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-//
-//		if (board == null) {
-//			return rq.historyBackOnView("없는 게시판이야");
-//		}
-//
-//		int itemsInAPage = 10;
-//		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-//
-//		List<Beer> beers = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
-//				searchKeyword);
-//
-//		model.addAttribute("board", board);
-//		model.addAttribute("boardId", boardId);
-//		model.addAttribute("page", page);
-//		model.addAttribute("pagesCount", pagesCount);
-//		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
-//		model.addAttribute("searchKeyword", searchKeyword);
-//		model.addAttribute("articlesCount", articlesCount);
-//		model.addAttribute("beers", beers);
-//
-//		return "usr/product/beer";
-//	}
 
 }
