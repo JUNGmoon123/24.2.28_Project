@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class Beer {
    private int id ;
    private int boardId;
-   private String type;
+   private String btype;
    private String model;
-   private int year;
+   private int byear;
    private String color;
    private String price;
    private String src;

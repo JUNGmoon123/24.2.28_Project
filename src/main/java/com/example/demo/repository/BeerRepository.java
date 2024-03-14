@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.demo.vo.Beer;
+import com.example.demo.vo.CSV;
 
 @Mapper
 public interface BeerRepository {
@@ -69,5 +70,11 @@ public interface BeerRepository {
 			""")
 	public List<Beer> getForPrintBeers(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
+
+	@Select("""
+			SELECT * 
+			FROM beers
+			""")
+	public List<Beer> selectList();
 
 }
