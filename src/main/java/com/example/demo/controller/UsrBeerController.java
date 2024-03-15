@@ -49,44 +49,82 @@ public class UsrBeerController {
 //		model.addAttribute("beerList", beerList);
 //		return "usr/product/beer";
 //	}
-	
+
 	@RequestMapping("/usr/product/beer")
-	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-			@RequestParam(defaultValue = "1") int page,
-			@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
-			@RequestParam(defaultValue = "") String searchKeyword) {
+	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+	        @RequestParam(defaultValue = "1") int page,
+	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
+	        @RequestParam(defaultValue = "") String searchKeyword) {
 
-		Rq rq = (Rq) req.getAttribute("rq");
-		// showList() 메서드의 내용을 여기로 이동
+	    Rq rq = (Rq) req.getAttribute("rq");
 
-		Board board = boardService.getBoardById(boardId);
+	    Board board = boardService.getBoardById(boardId);
 
-		int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 
-		if (board == null) {
-			return rq.historyBackOnView("없는 게시판이야");
-		}
+	    if (board == null) {
+	        return rq.historyBackOnView("없는 게시판이에요");
+	    }
 
-		int itemsInAPage = 10;
-		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+	    int itemsInAPage = 17;
+	    int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+	    if (page > pagesCount) {
+	        page = pagesCount;
+	    }
 
-		List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
-				searchKeyword);
+	    List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
+	            searchKeyword);
 
-		model.addAttribute("board", board);
-		model.addAttribute("boardId", boardId);
-		model.addAttribute("page", page);
-		model.addAttribute("pagesCount", pagesCount);
-		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
-		model.addAttribute("searchKeyword", searchKeyword);
-		model.addAttribute("articlesCount", articlesCount);
-		model.addAttribute("beerList", beerList);
+	    model.addAttribute("board", board);
+	    model.addAttribute("boardId", boardId);
+	    model.addAttribute("page", page);
+	    model.addAttribute("pagesCount", pagesCount);
+	    model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+	    model.addAttribute("searchKeyword", searchKeyword);
+	    model.addAttribute("articlesCount", articlesCount);
+	    model.addAttribute("beerList", beerList);
 
-		return "usr/product/beer";
+	    return "usr/product/beer";
 	}
+	
+	
+//	@RequestMapping("/usr/product/beer")
+//	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+//			@RequestParam(defaultValue = "1") int page,
+//			@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
+//			@RequestParam(defaultValue = "") String searchKeyword) {
+//
+//		Rq rq = (Rq) req.getAttribute("rq");
+//		// showList() 메서드의 내용을 여기로 이동
+//
+//		Board board = boardService.getBoardById(boardId);
+//
+//		int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+//
+//		if (board == null) {
+//			return rq.historyBackOnView("없는 게시판이야");
+//		}
+//
+//		int itemsInAPage = 17; // 이 클래스에서는 술 이미지가 몇개나올지 결정됨.
+//		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+//		if (page > pagesCount) {
+//			page = pagesCount;
+//		}
+//		List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
+//				searchKeyword);
+//
+//		model.addAttribute("board", board);
+//		model.addAttribute("boardId", boardId);
+//		model.addAttribute("page", page);
+//		model.addAttribute("pagesCount", pagesCount);
+//		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+//		model.addAttribute("searchKeyword", searchKeyword);
+//		model.addAttribute("articlesCount", articlesCount);
+//		model.addAttribute("beerList", beerList);
+//
+//		return "usr/product/beer";
+//	}
 
-	
-	
 	private List<Beer> BeerList(String filePath) {
 		List<Beer> beerList = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

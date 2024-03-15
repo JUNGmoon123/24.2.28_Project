@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.vo.CSV;
+import com.example.demo.vo.CSV2;
 
 @Mapper
 public interface CSVRepository {
@@ -19,4 +20,15 @@ public interface CSVRepository {
             "</script>"
     })
     void insertCSVList(List<CSV> csvList);
+
+    
+    @Insert({
+        "<script>",
+        "INSERT INTO beers (btype, model, byear, color, price, src) VALUES ",
+        "<foreach collection='csvList' item='item' index='index' separator=','>",
+        "(#{item.btype}, #{item.model}, #{item.byear}, #{item.color}, #{item.price}, #{item.src})",
+        "</foreach>",
+        "</script>"
+    })
+	void insertCSVList2(List<CSV2> csvList);
 }
