@@ -74,6 +74,7 @@ public interface BeerRepository {
 	@Select("""
 			SELECT * 
 			FROM beers
+			ORDER BY id ASC
 			""")
 	public List<Beer> selectList();
 
