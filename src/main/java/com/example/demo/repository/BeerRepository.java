@@ -62,7 +62,7 @@ public interface BeerRepository {
 				</choose>
 			</if>
 			GROUP BY B.id
-			ORDER BY B.id DESC
+			ORDER BY B.id ASC
 			<if test="limitFrom >= 0 ">
 				LIMIT #{limitFrom}, #{limitTake}
 			</if>
@@ -71,11 +71,11 @@ public interface BeerRepository {
 	public List<Beer> getForPrintBeers(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
 
-	@Select("""
-			SELECT * 
-			FROM beers
-			ORDER BY id ASC
-			""")
-	public List<Beer> selectList();
+//	@Select("""
+//			SELECT * 
+//			FROM beers
+//			ORDER BY id ASC
+//			""")
+//	public List<Beer> selectList();
 
 }

@@ -189,6 +189,17 @@ updateDate = NOW(),
 `code` = 'CHEONGJU',
 `name` = '청주';
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'BREWERY',
+`name` = '와이너리';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'BEER',
+`name` = '술상품';
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -471,14 +482,42 @@ CREATE TABLE brewery(
     barName CHAR(50) NOT NULL,
     barAddr CHAR(50) NOT NULL,
     barNumber CHAR(50) NOT NULL,
-    barWeb CHAR(50) NOT NULL,
-    barCome CHAR(50) NOT NULL,
-    barPoint INT(10) NOT NULL
+    barWeb CHAR(50) NOT NULL
+    
 );
 
+ALTER TABLE brewery ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `id`;
+ALTER TABLE brewery ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
+
+UPDATE brewery
+SET boardId = 14
+WHERE id BETWEEN 1 AND 50;
+
+UPDATE brewery
+SET memberId = 2
+WHERE id BETWEEN 1 AND 50;
+
+CREATE TABLE beers(
+    id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    btype CHAR(50),
+    model CHAR(50), 
+    byear CHAR(50), 
+    color CHAR(50), 
+    price CHAR(50), 
+    src VARCHAR(255) 
+);
+
+ALTER TABLE beers ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `id`;
+
+UPDATE beers
+SET boardId = 15
+WHERE id BETWEEN 1 AND 252;
 
 ###############################################
 DROP TABLE brewery;
+DROP TABLE beers;
+
+SELECT * FROM beers;
 
 SELECT * FROM brewery;
 
@@ -631,4 +670,3 @@ GROUP BY RP.relTypeCode,RP.relId
 DROP DATABASE IF EXISTS `project`;
 CREATE DATABASE `project`;
 USE `project`;
-

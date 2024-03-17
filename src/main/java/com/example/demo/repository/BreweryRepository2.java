@@ -14,7 +14,7 @@ public interface BreweryRepository2 {
 	@Select("""
 			<script>
 			SELECT COUNT(*) AS cnt
-			FROM CSV AS C
+			FROM brewery AS C
 			WHERE 1
 			<if test="boardId != 0">
 				AND boardId = #{boardId}
@@ -41,7 +41,7 @@ public interface BreweryRepository2 {
 	@Select("""
 			<script>
 			SELECT C.*, IFNULL(COUNT(R.id),0) AS extra__repliesCnt
-			FROM CSV AS C
+			FROM brewery AS C
 			INNER JOIN `member` AS M
 			ON C.memberId = M.id
 			LEFT JOIN `reply` AS R
