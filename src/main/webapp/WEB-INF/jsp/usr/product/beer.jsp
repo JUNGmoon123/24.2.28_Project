@@ -28,7 +28,7 @@
 					<p class="subtitle">
 						By Price: <span class="bold-text" id="currentPrice"></span>
 					</p>
-					<input id="myRange" type="range" min="3000" max="70000" value="10000" onchange="product_init()">
+					<input id="myRange" type="range" min="3000" max="70000" value="70000" onchange="product_init()">
 					<p class="subtitle">Select</p>
 					<div class="checkboxes clearfix">
 						<div>
@@ -171,10 +171,29 @@
 	}
 
 	// 제품 카드 생성 함수
+// 	function draw_card(product) {
+// 	    return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
+// 	}
+	// 제품 카드 생성 함수
 	function draw_card(product) {
-	    return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
-	}
+	    var productId = product.id; // 제품 ID 가져오기
+	    var link = "https://www.soolmarket.com/product-details.html?id=" + productId; // 상세 페이지 링크 생성
 
+	    // 제품 카드 HTML 반환
+	    return '<div class="product-card"><a href="' + link + '" class="product-link"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></a></div>';
+	}
+	// 제품 카드 클릭 이벤트 처리
+	document.addEventListener("click", function(event) {
+	    var target = event.target;
+	    if (target.classList.contains("product-card")) {
+	        // 클릭된 요소가 제품 카드인 경우 처리
+	        var model = target.querySelector(".model").textContent; // 제품 모델 가져오기
+	        var year = target.querySelector(".year .bold-text").textContent; // 제품 연도 가져오기
+	        var link = "https://www.soolmarket.com"; // 링크 생성
+	        window.location.href = link; // 링크로 이동
+	    }
+	});
+	
 	// 색상 설정 확인 및 업데이트 함수
 	function checkColors() {
 	    // 각 색상 설정을 가져와서 settings 객체에 업데이트
