@@ -139,6 +139,7 @@
 	};
 
 	// 초기화 함수
+	//이부분이 없으면 술 상품 사이드 메뉴 By price데이터를 받오지 못한다.
 	function product_init() {
 	    checkColors(); // 색상 설정 확인
 	    var priceInput = document.getElementById("myRange");
@@ -149,6 +150,8 @@
 	}
 
 	// 이벤트 핸들러 등록을 통해 초기값 설정
+	//이부분을 추가했더니 초기값이 제대로 들어가기 시작함.
+	//DOM이벤트가 스타일시트, 이미지 및 하위 프레임 로드가 완료되었지만 외부 리소스의 로딩이 완료되지 않았을 때 발생하는 문제를 해결
 	document.addEventListener("DOMContentLoaded", function() {
 	    var priceInput = document.getElementById("myRange");
 	    var price = priceInput.value; // 가격 설정
