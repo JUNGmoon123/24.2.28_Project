@@ -13,7 +13,7 @@ public interface CSVRepository {
 
     @Insert({
             "<script>",
-            "INSERT INTO CSV (barName, barAddr, barNumber, barWeb) VALUES ",
+            "INSERT INTO brewery (barName, barAddr, barNumber, barWeb) VALUES ",
             "<foreach collection='csvList' item='item' index='index' separator=','>",
             "(#{item.barName}, #{item.barAddr}, #{item.barNumber}, #{item.barWeb})",
             "</foreach>",

@@ -66,7 +66,7 @@ public class UsrBeerController {
 	        return rq.historyBackOnView("없는 게시판이에요");
 	    }
 
-	    int itemsInAPage = 17;
+	    int itemsInAPage = 16;
 	    int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
 	    if (page > pagesCount) {
 	        page = pagesCount;
