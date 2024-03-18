@@ -2,88 +2,72 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="API TEST4"></c:set>
 
-<%@ include file="../common/head.jspf"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>지도 이동시키기</title>
-
+    <meta charset="utf-8">
+    <title>지도 정보 얻어오기</title>
+    
 </head>
 <body>
-	<div id="map" style="width: 100%; height: 350px;"></div>
-	<p>
-		<button onclick="setCenter()">지도 중심좌표 이동시키기</button>
-		<button onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
-	</p>
+<p style="margin-top:-12px">
+    <em class="link">
+        <a href="/web/documentation/#MapTypeId" target="_blank">지도 타입을 보시려면 여기를 클릭하세요!</a>
+    </em>
+</p>
+<div id="map" style="width:100%;height:350px;"></div>
+<p>개발자도구를 통해 직접 확인해 보세요.</p>
+    
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=	ef50bc8210ed6065bd9b724884224a1c"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
 
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=be8f45543904c09799bb532a4c2490e6"></script>
-	<script>
-		var lat;
-		var lon;
-// 		주차장
-		async function getData2() {
-			const API_KEY = 'ZQ%2BxIGD58N5UvuUXzJtGBoszPcFwmlnoSF%2Bs%2Bkski23QWapgj9WTE6vlrvNgjyeRGUk94TKqYRAIKw7GHAE80g%3D%3D';
-			const url = 'https://www.yuseong.go.kr/ys_parking/ysparkingList/ORP/getJSONData.do?_wadl&type=API_KEY';
-			const response = await fetch(url);
-			const data = await response.json();
-			
-			console.log("data", data);
-			console.log(data.response);
-			console.log(data.response.body);
-			console.log(data.response.header);
-			console.log(data.response.body.items);
-			console.log(data.response.body.items[0]);
-			console.log(data.response.body.items[0].item.addr);
-			console.log(data.response.body.items[0].item.latitude);
-			console.log(data.response.body.items[0].item.longitude);
-			
-			lat = data.response.body.items[0].item.latitude;
-			lon = data.response.body.items[0].item.longitude;
-		}
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-		getData2();
+// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new kakao.maps.MapTypeControl();
 
-// 		카카오지도
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
+// 지도 타입 컨트롤을 지도에 표시합니다
+map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-		function setCenter() {
-			// 이동할 위도 경도 위치를 생성합니다 
-			var moveLatLon = new kakao.maps.LatLng(33.452613, 126.570888);
-
-			// 지도 중심을 이동 시킵니다
-			map.setCenter(moveLatLon);
-		}
-
-		function panTo() {
-			// 이동할 위도 경도 위치를 생성합니다 
-			var moveLatLon = new kakao.maps.LatLng(lat, lon);
-
-			// 지도 중심을 부드럽게 이동시킵니다
-			// 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
-			map.panTo(moveLatLon);
-		}
-		
-		// 마커가 표시될 위치입니다 
-		var markerPosition  = new kakao.maps.LatLng(lat, lon); 
-
-		// 마커를 생성합니다
-		var marker = new kakao.maps.Marker({
-		    position: markerPosition
-		});
-
-		// 마커가 지도 위에 표시되도록 설정합니다
-		marker.setMap(map);
-	</script>
+function getInfo() {
+    // 지도의 현재 중심좌표를 얻어옵니다 
+    var center = map.getCenter(); 
+    
+    // 지도의 현재 레벨을 얻어옵니다
+    var level = map.getLevel();
+    
+    // 지도타입을 얻어옵니다
+    var mapTypeId = map.getMapTypeId(); 
+    
+    // 지도의 현재 영역을 얻어옵니다 
+    var bounds = map.getBounds();
+    
+    // 영역의 남서쪽 좌표를 얻어옵니다 
+    var swLatLng = bounds.getSouthWest(); 
+    
+    // 영역의 북동쪽 좌표를 얻어옵니다 
+    var neLatLng = bounds.getNorthEast(); 
+    
+    // 영역정보를 문자열로 얻어옵니다. ((남,서), (북,동)) 형식입니다
+    var boundsStr = bounds.toString();
+    
+    
+    var message = '지도 중심좌표는 위도 ' + center.getLat() + ', <br>';
+    message += '경도 ' + center.getLng() + ' 이고 <br>';
+    message += '지도 레벨은 ' + level + ' 입니다 <br> <br>';
+    message += '지도 타입은 ' + mapTypeId + ' 이고 <br> ';
+    message += '지도의 남서쪽 좌표는 ' + swLatLng.getLat() + ', ' + swLatLng.getLng() + ' 이고 <br>';
+    message += '북동쪽 좌표는 ' + neLatLng.getLat() + ', ' + neLatLng.getLng() + ' 입니다';
+    
+    // 개발자도구를 통해 직접 message 내용을 확인해 보세요.
+    // ex) console.log(message);
+}
+</script>
 </body>
 </html>
-
-<%@ include file="../common/foot.jspf"%>

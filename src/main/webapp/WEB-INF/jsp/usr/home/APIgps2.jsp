@@ -17,10 +17,10 @@
 	<!-- 지도 위에 표시될 마커 카테고리 -->
 	<div class="map_btn">
 
-		<button class="btn btn-outline" type="button" onclick="setCenter()">지도 중심좌표 이동시키기</button>
-		<button class="btn btn-outline" type="button" onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
-		<button class="btn btn-outline" type="button" onclick="hideMarkers()">마커 감추기</button>
-		<button class="btn btn-outline" type="button" onclick="showMarkers()">마커 보이기</button>
+		<button class="btn2 btn-outline" type="button" onclick="setCenter()">지도 중심좌표 이동시키기</button>
+		<button class="btn2 btn-outline" type="button" onclick="panTo()">지도 중심좌표 대전으로 이동시키기</button>
+		<button class="btn2 btn-outline" type="button" onclick="hideMarkers()">마커 감추기</button>
+		<button class="btn2 btn-outline" type="button" onclick="showMarkers()">마커 보이기</button>
 	</div>
 	<div class="map_btn2">
 		<input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" />
@@ -31,7 +31,6 @@
 		교통정보 보기
 		<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" />
 		자전거도로 정보 보기
-
 	</div>
 
 	<section class="gps_list">

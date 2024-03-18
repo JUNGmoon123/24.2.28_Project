@@ -34,22 +34,23 @@
 						<th>E-mail</th>
 						<td>
 							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
-								placeholder="비밀번호를 입력해주세요" name="" />
+								placeholder="E-mail을 입력해주세요" name="" />
 						</td>
 					</tr>
 					<tr>
 						<th></th>
 						<td>
-							<input class="btn btn-outline btn-info" type="submit" value="로그인" />
+							<input class="btn btn-outline btn-info w-full max-w-xs" type="submit" value="로그인" />
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="login_back btns flex ">
+			<div class="login_back btns flex justify-center mt-4">
 				<button class="btn btn-outline" style="color: black" type="button" onclick="history.back();">뒤로가기</button>
 			</div>
 		</form>
 	</div>
+</section>
 
 	<div class="dust-paarticle">
 
