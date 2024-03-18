@@ -76,8 +76,7 @@
 	<div id="product" class="product_list">
 		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
 	</div>
-	<!-- 	<!-- 동적 페이징 -->
-	-->
+	<!-- 동적 페이징 -->
 	<div class="pagination flex justify-center mt-3">
 		<c:set var="paginationLen" value="3" />
 		<c:set var="startPage" value="${page - paginationLen >= 1 ? page - paginationLen : 1}" />
@@ -177,27 +176,14 @@
 // 	function draw_card(product) {
 // 	    return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
 // 	}
-<<<<<<< HEAD
 
 		// 제품 카드 클릭 이벤트 처리
-=======
-	// 제품 카드 생성 함수
-	function draw_card(product) {
-	    var productId = product.id; // 제품 ID 가져오기
-	    var link = "https://www.soolmarket.com/product-details.html?id=" + productId; // 상세 페이지 링크 생성
-
-	    // 제품 카드 HTML 반환
-	    return '<div class="product-card"><a href="' + link + '" class="product-link"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></a></div>';
-	}
-	// 제품 카드 클릭 이벤트 처리
->>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
 	document.addEventListener("click", function(event) {
 	    var target = event.target;
 	    if (target.classList.contains("product-card")) {
 	        // 클릭된 요소가 제품 카드인 경우 처리
 	        var model = target.querySelector(".model").textContent; // 제품 모델 가져오기
 	        var year = target.querySelector(".year .bold-text").textContent; // 제품 연도 가져오기
-<<<<<<< HEAD
 	        var link = "https://www.soolmarket.com/"; // 링크 생성
 	        window.location.href = link; // 링크로 이동
 	    }
@@ -211,12 +197,6 @@
 	    return '<div class="product-card"><a href="' + link + '" class="product-link"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></a></div>';
 	}
 
-=======
-	        var link = "https://www.soolmarket.com"; // 링크 생성
-	        window.location.href = link; // 링크로 이동
-	    }
-	});
->>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
 	
 	// 색상 설정 확인 및 업데이트 함수
 	function checkColors() {

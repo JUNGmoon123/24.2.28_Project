@@ -70,8 +70,7 @@ public interface BeerRepository {
 			""")
 	public List<Beer> getForPrintBeers(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
-<<<<<<< HEAD
-=======
+
 
 //	@Select("""
 //			SELECT * 
@@ -80,5 +79,5 @@ public interface BeerRepository {
 //			""")
 //	public List<Beer> selectList();
 
->>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
+
 }
