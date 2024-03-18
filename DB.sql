@@ -165,6 +165,17 @@ updateDate = NOW(),
 `code` = 'BREWERY2',
 `name` = '양조장2';
 
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'BREWERY',
+`name` = '와이너리';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'BEER',
+`name` = '술상품';
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -448,6 +459,7 @@ CREATE TABLE brewery(
     barAddr CHAR(50) NOT NULL,
     barNumber CHAR(50) NOT NULL,
     barWeb CHAR(50) NOT NULL
+<<<<<<< HEAD
 );
 
 ALTER TABLE brewery ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER id;
@@ -456,10 +468,21 @@ ALTER TABLE brewery ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER id;
 
 UPDATE brewery
 SET boardId = 7
+=======
+    
+);
+
+ALTER TABLE brewery ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `id`;
+ALTER TABLE brewery ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
+
+UPDATE brewery
+SET boardId = 14
+>>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
 WHERE id BETWEEN 1 AND 50;
 
 UPDATE brewery
 SET memberId = 2
+<<<<<<< HEAD
 WHERE id BETWEEN 1 AND 24;
 
 UPDATE brewery
@@ -467,6 +490,9 @@ SET memberId = 3
 WHERE id BETWEEN 25 AND 50;
 
 
+=======
+WHERE id BETWEEN 1 AND 50;
+>>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
 
 CREATE TABLE beers(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -477,6 +503,7 @@ CREATE TABLE beers(
     price CHAR(50), 
     src VARCHAR(255) 
 );
+<<<<<<< HEAD
 #model은 이름, btype은 선택기준 의미 
 INSERT INTO beers (btype, model, byear, color, price, src) VALUES
 ('white', 'white와인', '2016', 'white', '16000', 'https://오아크.com/web/product/medium/202211/42ae59aaa0b992e6b4de509c1e89f34c.jpg'),
@@ -533,6 +560,20 @@ DROP TABLE beers;
 SELECT * 
 FROM beers
 ORDER BY id;
+=======
+
+ALTER TABLE beers ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `id`;
+
+UPDATE beers
+SET boardId = 15
+WHERE id BETWEEN 1 AND 252;
+
+###############################################
+DROP TABLE brewery;
+DROP TABLE beers;
+
+SELECT * FROM beers;
+>>>>>>> a6be98d8fd1889e944fc823976c3c793c2065a2d
 
 SELECT * FROM brewery;
 
@@ -697,4 +738,3 @@ GROUP BY RP.relTypeCode,RP.relId
 DROP DATABASE IF EXISTS `project`;
 CREATE DATABASE `project`;
 USE `project`;
-

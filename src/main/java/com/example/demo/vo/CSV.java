@@ -14,6 +14,5 @@ public class CSV {
 	    private String barAddr; 
 	    private String barNumber; 
 	    private String barWeb; 
-//	    private String barCome; 
-//	    private int barPoint; 
+	    
 }
