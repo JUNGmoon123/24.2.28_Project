@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 <html>
 <section class="content mt-8 text-xl px-4">
-	<div>흑맥주</div>
+	<div>술 메뉴</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="container_side_bar col-md-4">
 				<div class="filter-column side_bar">
-					<h3 class="title">와인 선택</h3>
+					<h3 class="title">술 선택</h3>
 					<p class="subtitle">
 						By type: <select id="myType" onchange="product_init()">
 							<option value="All">All</option>

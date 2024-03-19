@@ -15,6 +15,12 @@ public class Brewery2 {
     private String barAddr; 
     private String barNumber; 
     private String barWeb; 
-    private String barCome; 
+    private String barCome;
+    
+    //위도 경도
+    private int latitude;
+    private int longitude;
+    
+    
     private int barPoint; 
 }
