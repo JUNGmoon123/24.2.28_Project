@@ -13,6 +13,9 @@ public class CSV {
 	    private String barName; 
 	    private String barAddr; 
 	    private String barNumber; 
-	    private String barWeb; 
+	    private String barWeb;
+	    //위도 경도
+	    private String latitude;
+	    private String longitude;
 	    
 }
