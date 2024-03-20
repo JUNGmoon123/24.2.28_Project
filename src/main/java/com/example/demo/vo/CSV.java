@@ -15,7 +15,7 @@ public class CSV {
 	    private String barNumber; 
 	    private String barWeb;
 	    //위도 경도
-	    private String latitude;
-	    private String longitude;
+	    private String barlatitude;
+	    private String barlongitude;
 	    
 }
