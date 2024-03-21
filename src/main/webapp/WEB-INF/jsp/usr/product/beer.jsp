@@ -110,6 +110,7 @@
 	    // Java에서 가져온 데이터를 JavaScript 배열로 변환
 	    <c:forEach var="beer" items="${beerList}" varStatus="loop">
 	        { 
+	        	"id": ${beer.id},
 	            "type": "${beer.btype}", 
 	            "model": "${beer.model}", 
 	            "year": "${beer.byear}", 
@@ -190,9 +191,9 @@
 	});
 	// 제품 카드 생성 함수
 	function draw_card(product) {
-	    var productId = product.id; // 제품 ID 가져오기
+// 	    var productId = product.id; // 제품 ID 가져오기
 // 	    var link = "https://www.soolmarket.com/product-details.html?id=" + productId; // 상세 페이지 링크 생성
-	    var link = "https://www.soolmarket.com/"; // 상세 페이지 링크 생성
+	    var link = "../product/beerdetail?id="+product.id; // 상세 페이지 링크 생성
 	    // 제품 카드 HTML 반환
 	    return '<div class="product-card"><a href="' + link + '" class="product-link"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></a></div>';
 	}

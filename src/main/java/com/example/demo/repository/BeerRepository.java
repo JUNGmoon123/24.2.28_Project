@@ -71,6 +71,15 @@ public interface BeerRepository {
 	public List<Beer> getForPrintBeers(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
 
+	
+	@Select("""
+			SELECT *
+			FROM beers
+			WHERE id = #{id}
+			""")
+	public  Beer getForPrintBeer(int id);
+		
+
 
 //	@Select("""
 //			SELECT * 

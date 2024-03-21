@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.repository.BeerRepository;
 import com.example.demo.service.BeerService;
 import com.example.demo.service.BoardService;
+import com.example.demo.vo.Article;
 import com.example.demo.vo.Beer;
 import com.example.demo.vo.Board;
+import com.example.demo.vo.Reply;
+import com.example.demo.vo.ResultData;
 import com.example.demo.vo.Rq;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -86,70 +89,42 @@ public class UsrBeerController {
 
 	    return "usr/product/beer";
 	}
-	
-	
-//	@RequestMapping("/usr/product/beer")
-//	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-//			@RequestParam(defaultValue = "1") int page,
-//			@RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
-//			@RequestParam(defaultValue = "") String searchKeyword) {
+// CSV로 DB에 저장한 파일을 가져오기위해 사용했으나, model이 제대로 작동함에따라 사용x
+//	private List<Beer> BeerList(String filePath) {
+//		List<Beer> beerList = new ArrayList<>();
+//		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+//			String line;
+//			// 첫 줄은 헤더일 수 있으므로 스킵
+//			// br.readLine();
+//			while ((line = br.readLine()) != null) {
+//				String[] data = line.split(",");
+//				System.err.println("데이터 길이: " + data.length); // 데이터 배열의 길이 출력
+//				Beer beer = new Beer();
+//				beer.setId(Integer.parseInt(data[0]));
+//				beer.setBoardId(Integer.parseInt(data[1]));
+//				beer.setBtype(data[2]);
+//				beer.setModel(data[3]);
+//				beer.setByear(Integer.parseInt(data[4]));
+//				beer.setColor(data[5]);
+//				beer.setPrice(data[6]);
+//				beer.setSrc(data[7]);
 //
-//		Rq rq = (Rq) req.getAttribute("rq");
-//		// showList() 메서드의 내용을 여기로 이동
-//
-//		Board board = boardService.getBoardById(boardId);
-//
-//		int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-//
-//		if (board == null) {
-//			return rq.historyBackOnView("없는 게시판이야");
+//				beerList.add(beer);
+//			}
+//		} catch (IOException e) {
+//			e.printStackTrace();
 //		}
-//
-//		int itemsInAPage = 17; // 이 클래스에서는 술 이미지가 몇개나올지 결정됨.
-//		int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-//		if (page > pagesCount) {
-//			page = pagesCount;
-//		}
-//		List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
-//				searchKeyword);
-//
-//		model.addAttribute("board", board);
-//		model.addAttribute("boardId", boardId);
-//		model.addAttribute("page", page);
-//		model.addAttribute("pagesCount", pagesCount);
-//		model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
-//		model.addAttribute("searchKeyword", searchKeyword);
-//		model.addAttribute("articlesCount", articlesCount);
-//		model.addAttribute("beerList", beerList);
-//
-//		return "usr/product/beer";
+//		return beerList;
 //	}
+	
+	
+	@RequestMapping("/usr/product/beerdetail")
+	public String beerDetail(HttpServletRequest req, Model model, int id) {
 
-	private List<Beer> BeerList(String filePath) {
-		List<Beer> beerList = new ArrayList<>();
-		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-			String line;
-			// 첫 줄은 헤더일 수 있으므로 스킵
-			// br.readLine();
-			while ((line = br.readLine()) != null) {
-				String[] data = line.split(",");
-				System.err.println("데이터 길이: " + data.length); // 데이터 배열의 길이 출력
-				Beer beer = new Beer();
-				beer.setId(Integer.parseInt(data[0]));
-				beer.setBoardId(Integer.parseInt(data[1]));
-				beer.setBtype(data[2]);
-				beer.setModel(data[3]);
-				beer.setByear(Integer.parseInt(data[4]));
-				beer.setColor(data[5]);
-				beer.setPrice(data[6]);
-				beer.setSrc(data[7]);
 
-				beerList.add(beer);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return beerList;
+		Beer beer = beerService.getForPrintBeer(id);
+
+		model.addAttribute("beer", beer);
+		return "usr/product/beerdetail";
 	}
-
 }

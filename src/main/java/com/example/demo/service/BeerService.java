@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.BeerRepository;
+import com.example.demo.vo.Article;
 import com.example.demo.vo.Beer;
 
 @Service
@@ -31,6 +32,12 @@ public class BeerService {
 		
 		return beerRepository.getForPrintBeers(boardId, limitFrom, limitTake, searchKeywordTypeCode,
 				searchKeyword);
+	}
+
+	public Beer getForPrintBeer(int id) {
+
+		Beer beer = beerRepository.getForPrintBeer(id);
+		return beer;
 	}
 
 }
