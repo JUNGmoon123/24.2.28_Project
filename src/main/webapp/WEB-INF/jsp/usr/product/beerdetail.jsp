@@ -12,17 +12,18 @@
 .table_main {
 	width: 75%;
 	height: 600px;
-	border: 2px solid green;
+/* 	border: 2px solid green; */
 	display: flex;
 	justify-content: center; /* 수평 가운데 정렬 */
 	align-items: center; /* 수직 가운데 정렬 */
 	margin: 0 auto; /* 가운데 정렬을 위해 추가된 마진 */
+	margin-left: 18%;
 }
 
 .left_half_main {
 	width: 40%;
 	height: 100%;
-	border: 2px solid green;
+	border: 1px solid black;
 }
 
 .right_half_main {
@@ -35,9 +36,11 @@
 }
 
 .table_box1 {
-	width: 100%;
+	width: 70%;
 	height: 100px;
-	border: 2px solid gold;
+	margin-top: 20px;
+	margin-left: 30px;
+	/* 	border: 2px solid gold; */
 }
 
 .table_box1_text {
@@ -49,7 +52,8 @@
 	text-align: center;
 	font-size: 40px;
 	font-family: 'Ownglyph_meetme-Rg';
-	border: 2px solid red;
+	border-top: 1px solid black;
+	/* 	border: 2px solid red; */
 }
 </style>
 
@@ -67,17 +71,30 @@
 				<div>
 					<div class="table_box1">
 						<div class="table_box1_text">
-							<h1>[${beer.model }]</h1>
+							<h1>[${beer.model}]</h1>
 						</div>
 					</div>
-					<div>
-						<div>${beer.byear }</div>
+					<div class="table_box1">
+						<div class="table_box1_text">
+							<div>${beer.byear }</div>
+						</div>
 					</div>
-					<div>
-						<div>${beer.color }</div>
+					<div class="table_box1">
+						<div class="table_box1_text">
+							<div>종류 : ${beer.color }</div>
+						</div>
 					</div>
-					<div>
-						<div>${beer.price }</div>
+					<div class="table_box1">
+						<div class="table_box1_text">
+							<div>${beer.price }원</div>
+						</div>
+					</div>
+					<div class="table_box1">
+						<div class="table_box1_text">
+							<button>
+								<a href="https://www.lotteon.com/search/render/render.ecn?render=nqapi&platform=m&collection_id=301&u9=navigate&u8=LM40004031&login=Y#">구매링크바로가기</a>
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>
