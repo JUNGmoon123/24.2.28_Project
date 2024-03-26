@@ -42,8 +42,8 @@ public class CSVService {
                     csv.setBarAddr(csvRow[1]);
                     csv.setBarNumber(csvRow[2]);
                     csv.setBarWeb(csvRow[3]);
-                    csv.setBarlatitude(csvRow[5]);
-                    csv.setBarlongitude(csvRow[6]);
+                    csv.setBarlatitude(csvRow[4]);
+                    csv.setBarlongitude(csvRow[5]);
 //                    csv.setBarCome(csvRow[5]);
 //                    csv.setBarPoint(Integer.parseInt(csvRow[6]));
                     csvList.add(csv);

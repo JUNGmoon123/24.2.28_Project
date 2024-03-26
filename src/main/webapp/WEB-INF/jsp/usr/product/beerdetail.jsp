@@ -12,8 +12,9 @@
 .table_main {
 	width: 75%;
 	height: 600px;
-/* 	border: 2px solid green; */
+	/* 	border: 2px solid green; */
 	display: flex;
+	position: relative;
 	justify-content: center; /* 수평 가운데 정렬 */
 	align-items: center; /* 수직 가운데 정렬 */
 	margin: 0 auto; /* 가운데 정렬을 위해 추가된 마진 */
@@ -54,6 +55,26 @@
 	font-family: 'Ownglyph_meetme-Rg';
 	border-top: 1px solid black;
 	/* 	border: 2px solid red; */
+}
+
+.beer_text_infobox {
+	position: absolute;
+	top: 650px;
+	width: 80%; /* 이전에 설정된 너비보다 작게 조정 */
+	
+	margin-top : 5px;
+	left: 0.5%;
+	background-color: #f2f2f2; /* 배경색 */
+	padding: 10px; /* 안쪽 여백 */
+	border-radius: 5px; /* 테두리 모서리를 둥글게 */
+	border: 1px solid #ccc; /* 테두리 스타일 */
+	float: left; /* 왼쪽으로 이동 */
+}
+
+.text_info p {
+	font-size: 16px; /* 글꼴 크기 */
+	line-height: 1.5; /* 줄 간격 */
+	color: #333; /* 글꼴 색상 */
 }
 </style>
 
@@ -99,6 +120,13 @@
 				</div>
 			</div>
 		</div>
+			<div class="beer_text_infobox">
+				<div class="text_info">
+					<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique
+						repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio
+						sapiente minima cumque numquam!</div>
+				</div>
+			</div>
 	</div>
 </section>
 

@@ -16,4 +16,5 @@ public class Beer {
    private String color;
    private String price;
    private String src;
+   private String binfo;
 }
