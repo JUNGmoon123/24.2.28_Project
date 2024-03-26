@@ -9,8 +9,7 @@
 <meta charset="utf-8">
 <title>지도</title>
 <style>
-<
-style>.map_wrap, .map_wrap * {
+.map_wrap, .map_wrap * {
 	margin: 0;
 	padding: 0;
 	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
@@ -245,35 +244,10 @@ style>.map_wrap, .map_wrap * {
 				class="input-sm input input-bordered w-48 max-w-xs" />
 			<button class="btn btn-ghost btn-sm" type="submit">검색</button>
 		</form>
-		<table class="table-box-1 table" border="1">
-			<colgroup>
-				<col style="width: 10%" />
-				<col style="width: 20%" />
-				<col style="width: 40%" />
-				<col style="width: 10%" />
-			</colgroup>
-			<thead>
-				<tr>
-					<th>번호</th>
-					<th>이름</th>
-					<th>주소</th>
-					<th>번호</th>
-					<th>홈페이지</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="brewery2" items="${brewerys2 }">
-					<tr class="hover">
 
-						<td>${brewery2.id }</td>
-						<td>${brewery2.barName }</td>
-						<td>${brewery2.barAddr }</td>
-						<td>${brewery2.barNumber }</td>
-						<td>${brewery2.barWeb }</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<div id="placesList">
+			<!-- DB테이블가져오기 -->
+		</div>
 		<!-- 	동적 페이징 -->
 		<div class="pagination2 flex justify-center mt-3">
 			<c:set var="paginationLen" value="3" />
@@ -300,6 +274,52 @@ style>.map_wrap, .map_wrap * {
 
 		</div>
 	</section>
+	<title>AJAX로 데이터 가져오기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+$(document).ready(function(){
+    // 페이지 로드시 AJAX 요청을 보냅니다.
+    $.ajax({
+        url: 'http://localhost:8082/usr/home/APIgps2?boardId=7&page=1', // 데이터를 제공하는 서버의 엔드포인트 URL로 바꿔주세요
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            displayPlaces(data); // 성공적으로 데이터를 받았을 때 테이블을 생성하는 함수 호출
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX 요청 실패:', status, error); // AJAX 요청 실패 시 에러 메시지 출력
+        }
+    });
+
+    // 받은 데이터를 기반으로 테이블을 생성하는 함수
+    function displayPlaces(data) {
+        var placesList = $('#placesList');
+        var table = $('<table border="1"></table>');
+
+        // 테이블 헤더 추가
+        var thead = $('<thead><tr><th>번호</th><th>이름</th><th>주소</th><th>번호</th><th>홈페이지</th></tr></thead>');
+        table.append(thead);
+
+        // 받은 데이터를 반복하여 테이블 행 추가
+        var tbody = $('<tbody></tbody>');
+        $.each(data, function(index, place) {
+            var row = $('<tr></tr>');
+            row.append($('<td>' + place.id + '</td>'));
+            row.append($('<td>' + place.barName + '</td>'));
+            row.append($('<td>' + place.barAddr + '</td>'));
+            row.append($('<td>' + place.barNumber + '</td>'));
+            row.append($('<td>' + place.barWeb + '</td>'));
+            tbody.append(row);
+        });
+        table.append(tbody);
+
+        placesList.append(table);
+    }
+});
+</script>
+    
+    
+    
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script>
 	<script>
 		var lat;
