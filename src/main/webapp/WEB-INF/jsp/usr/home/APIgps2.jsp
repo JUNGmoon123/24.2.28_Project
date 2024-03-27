@@ -277,45 +277,50 @@
 	<title>AJAX로 데이터 가져오기</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-$(document).ready(function(){
-    // 페이지 로드시 AJAX 요청을 보냅니다.
-    $.ajax({
-        url: 'http://localhost:8082/usr/home/APIgps2?boardId=7&page=1', // 데이터를 제공하는 서버의 엔드포인트 URL로 바꿔주세요
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            displayPlaces(data); // 성공적으로 데이터를 받았을 때 테이블을 생성하는 함수 호출
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX 요청 실패:', status, error); // AJAX 요청 실패 시 에러 메시지 출력
+
+    
+    
+    $(document).ready(function(){
+        // 페이지 로드시 AJAX 요청을 보냅니다.
+        $.ajax({
+            url: '/usr/home/JsonAPIgps', // 데이터를 제공하는 서버의 엔드포인트 URL로 수정
+            type: 'GET',
+            dataType: 'json', // 받아올 데이터 타입을 JSON으로 지정
+            success: function(data) {
+                displayPlaces(data); // 성공적으로 데이터를 받았을 때 테이블을 생성하는 함수 호출
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX 요청 실패:', status, error); // AJAX 요청 실패 시 에러 메시지 출력
+            }
+        });
+
+        // 받은 데이터를 기반으로 테이블을 생성하는 함수
+        function displayPlaces(data) {
+            var placesList = $('#placesList');
+            var table = $('<table border="1"></table>');
+
+            // 테이블 헤더 추가
+            var thead = $('<thead><tr><th>번호</th><th>이름</th><th>주소</th><th>번호</th><th>홈페이지</th><th>위도</th><th>경도</th></tr></thead>');
+            table.append(thead);
+
+            // 받은 데이터를 반복하여 테이블 행 추가
+            var tbody = $('<tbody></tbody>');
+            $.each(data, function(index, place) {
+                var row = $('<tr></tr>');
+                row.append($('<td>' + place.id + '</td>'));
+                row.append($('<td>' + place.barName + '</td>'));
+                row.append($('<td>' + place.barAddr + '</td>'));
+                row.append($('<td>' + place.barNumber + '</td>'));
+                row.append($('<td>' + place.barWeb + '</td>'));
+                row.append($('<td>' + place.latitude + '</td>')); // 위도 열 추가
+                row.append($('<td>' + place.longitude + '</td>')); // 경도 열 추가
+                tbody.append(row);
+            });
+            table.append(tbody);
+
+            placesList.append(table);
         }
     });
-
-    // 받은 데이터를 기반으로 테이블을 생성하는 함수
-    function displayPlaces(data) {
-        var placesList = $('#placesList');
-        var table = $('<table border="1"></table>');
-
-        // 테이블 헤더 추가
-        var thead = $('<thead><tr><th>번호</th><th>이름</th><th>주소</th><th>번호</th><th>홈페이지</th></tr></thead>');
-        table.append(thead);
-
-        // 받은 데이터를 반복하여 테이블 행 추가
-        var tbody = $('<tbody></tbody>');
-        $.each(data, function(index, place) {
-            var row = $('<tr></tr>');
-            row.append($('<td>' + place.id + '</td>'));
-            row.append($('<td>' + place.barName + '</td>'));
-            row.append($('<td>' + place.barAddr + '</td>'));
-            row.append($('<td>' + place.barNumber + '</td>'));
-            row.append($('<td>' + place.barWeb + '</td>'));
-            tbody.append(row);
-        });
-        table.append(tbody);
-
-        placesList.append(table);
-    }
-});
 </script>
     
     
