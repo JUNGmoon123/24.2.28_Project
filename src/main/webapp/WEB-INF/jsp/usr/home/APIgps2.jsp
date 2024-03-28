@@ -19,12 +19,14 @@
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active {
 	color: #000;
 	text-decoration: none;
+	
 }
 
 .map_wrap {
 	position: relative;
 	width: 100%;
 	height: 500px;
+	border: 2px solid green;
 }
 
 #menu_wrap {
@@ -40,6 +42,7 @@
 	z-index: 1;
 	font-size: 12px;
 	border-radius: 10px;
+	border: 2px solid green;
 }
 
 .bg_white {
@@ -117,6 +120,7 @@
 	background:
 		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
 		no-repeat;
+	
 }
 
 #placesList .item .marker_1 {
@@ -177,11 +181,13 @@
 
 #placesList .item .marker_15 {
 	background-position: 0 -654px;
+
 }
 
 #pagination {
 	margin: 10px auto;
 	text-align: center;
+
 }
 
 #pagination a {
@@ -198,24 +204,23 @@
 
 <body>
 	<div class="map_wrap">
-		<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-		<div id="menu_wrap" class="bg_white">
-			<div class="option">
-				<div>
-					<form onsubmit="searchPlaces(); return false;">
-						키워드 :
-						<input type="text" value="이태원 맛집" id="keyword" size="15">
-						<button type="submit">검색하기</button>
-					</form>
-				</div>
-			</div>
-			<hr>
-			<ul id="placesList"></ul>
-			<div id="pagination"></div>
-		</div>
-	</div>
-	<div class="map_API" id="map"></div>
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
+</div>
+<!-- 	<div class="map_API" id="map"></div> -->
 	<!-- 지도 위에 표시될 마커 카테고리 -->
 	<div class="map_btn2">
 		<input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" />
@@ -227,105 +232,8 @@
 		<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" />
 		자전거도로 정보 보기
 	</div>
-
-	<section class="gps_list">
-		<div>영역설정</div>
-		<div class="badge badge-outline">${articlesCount }개</div>
-		<div class="flex-grow"></div>
-		<form action="">
-			<input type="hidden" name="boardId" value="${param.boardId }" />
-			<select data-value="${param.searchKeywordTypeCode }" class="select select-bordered select-sm w-full max-w-xs"
-				name="searchKeywordTypeCode">
-				<option value=barName>barName</option>
-				<option value="barAddr">barAddr</option>
-				<option value="barName,barAddr">barName+barAddr</option>
-			</select>
-			<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
-				class="input-sm input input-bordered w-48 max-w-xs" />
-			<button class="btn btn-ghost btn-sm" type="submit">검색</button>
-		</form>
-
-		<div id="placesList">
-			<!-- DB테이블가져오기 -->
-		</div>
-		<!-- 	동적 페이징 -->
-		<div class="pagination2 flex justify-center mt-3">
-			<c:set var="paginationLen" value="3" />
-			<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
-			<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
-
-			<c:set var="baseUri" value="?boardId=${boardId }" />
-			<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
-			<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
-
-			<c:if test="${startPage > 1 }">
-				<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
-				<button class="btn btn-sm btn-disabled">...</button>
-			</c:if>
-
-			<c:forEach begin="${startPage }" end="${endPage }" var="i">
-				<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
-			</c:forEach>
-
-			<c:if test="${endPage < pagesCount }">
-				<button class="btn btn-sm btn-disabled">...</button>
-				<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
-			</c:if>
-
-		</div>
-	</section>
-	<title>AJAX로 데이터 가져오기</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-
-    
-    
-    $(document).ready(function(){
-        // 페이지 로드시 AJAX 요청을 보냅니다.
-        $.ajax({
-            url: '/usr/home/JsonAPIgps', // 데이터를 제공하는 서버의 엔드포인트 URL로 수정
-            type: 'GET',
-            dataType: 'json', // 받아올 데이터 타입을 JSON으로 지정
-            success: function(data) {
-                displayPlaces(data); // 성공적으로 데이터를 받았을 때 테이블을 생성하는 함수 호출
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX 요청 실패:', status, error); // AJAX 요청 실패 시 에러 메시지 출력
-            }
-        });
-
-        // 받은 데이터를 기반으로 테이블을 생성하는 함수
-        function displayPlaces(data) {
-            var placesList = $('#placesList');
-            var table = $('<table border="1"></table>');
-
-            // 테이블 헤더 추가
-            var thead = $('<thead><tr><th>번호</th><th>이름</th><th>주소</th><th>번호</th><th>홈페이지</th><th>위도</th><th>경도</th></tr></thead>');
-            table.append(thead);
-
-            // 받은 데이터를 반복하여 테이블 행 추가
-            var tbody = $('<tbody></tbody>');
-            $.each(data, function(index, place) {
-                var row = $('<tr></tr>');
-                row.append($('<td>' + place.id + '</td>'));
-                row.append($('<td>' + place.barName + '</td>'));
-                row.append($('<td>' + place.barAddr + '</td>'));
-                row.append($('<td>' + place.barNumber + '</td>'));
-                row.append($('<td>' + place.barWeb + '</td>'));
-                row.append($('<td>' + place.latitude + '</td>')); // 위도 열 추가
-                row.append($('<td>' + place.longitude + '</td>')); // 경도 열 추가
-                tbody.append(row);
-            });
-            table.append(tbody);
-
-            placesList.append(table);
-        }
-    });
-</script>
-    
-    
-    
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script>
+<!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script> -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 	<script>
 		var lat;
 		var lon;
@@ -350,6 +258,7 @@
 			lon = data.response.body.items[0].item.longitude;
 		}
 		getData2();
+		
 		var markers = [];
 		// 		카카오지도
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -361,52 +270,7 @@
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-		// 지도 타입 정보를 가지고 있을 객체입니다
-		// map.addOverlayMapTypeId 함수로 추가된 지도 타입은
-		// 가장 나중에 추가된 지도 타입이 가장 앞에 표시됩니다
-		// 이 예제에서는 지도 타입을 추가할 때 지적편집도, 지형정보, 교통정보, 자전거도로 정보 순으로 추가하므로
-		// 자전거 도로 정보가 가장 앞에 표시됩니다
-		var mapTypes = {
-			terrain : kakao.maps.MapTypeId.TERRAIN,
-			traffic : kakao.maps.MapTypeId.TRAFFIC,
-			bicycle : kakao.maps.MapTypeId.BICYCLE,
-			useDistrict : kakao.maps.MapTypeId.USE_DISTRICT
-		};
-
-		// 체크 박스를 선택하면 호출되는 함수입니다
-		function setOverlayMapTypeId() {
-			var chkTerrain = document.getElementById('chkTerrain'), chkTraffic = document
-					.getElementById('chkTraffic'), chkBicycle = document
-					.getElementById('chkBicycle'), chkUseDistrict = document
-					.getElementById('chkUseDistrict');
-
-			// 지도 타입을 제거합니다
-			for ( var type in mapTypes) {
-				map.removeOverlayMapTypeId(mapTypes[type]);
-			}
-
-			// 지적편집도정보 체크박스가 체크되어있으면 지도에 지적편집도정보 지도타입을 추가합니다
-			if (chkUseDistrict.checked) {
-				map.addOverlayMapTypeId(mapTypes.useDistrict);
-			}
-
-			// 지형정보 체크박스가 체크되어있으면 지도에 지형정보 지도타입을 추가합니다
-			if (chkTerrain.checked) {
-				map.addOverlayMapTypeId(mapTypes.terrain);
-			}
-
-			// 교통정보 체크박스가 체크되어있으면 지도에 교통정보 지도타입을 추가합니다
-			if (chkTraffic.checked) {
-				map.addOverlayMapTypeId(mapTypes.traffic);
-			}
-
-			// 자전거도로정보 체크박스가 체크되어있으면 지도에 자전거도로정보 지도타입을 추가합니다
-			if (chkBicycle.checked) {
-				map.addOverlayMapTypeId(mapTypes.bicycle);
-			}
-
-		}
-
+		
 		// 장소 검색 객체를 생성합니다
 		var ps = new kakao.maps.services.Places();
 
@@ -609,7 +473,125 @@
 				el.removeChild(el.lastChild);
 			}
 		}
+		// 지도 타입 정보를 가지고 있을 객체입니다
+		// map.addOverlayMapTypeId 함수로 추가된 지도 타입은
+		// 가장 나중에 추가된 지도 타입이 가장 앞에 표시됩니다
+		// 이 예제에서는 지도 타입을 추가할 때 지적편집도, 지형정보, 교통정보, 자전거도로 정보 순으로 추가하므로
+		// 자전거 도로 정보가 가장 앞에 표시됩니다
+		var mapTypes = {
+			terrain : kakao.maps.MapTypeId.TERRAIN,
+			traffic : kakao.maps.MapTypeId.TRAFFIC,
+			bicycle : kakao.maps.MapTypeId.BICYCLE,
+			useDistrict : kakao.maps.MapTypeId.USE_DISTRICT
+		};
+
+		// 체크 박스를 선택하면 호출되는 함수입니다
+		function setOverlayMapTypeId() {
+			var chkTerrain = document.getElementById('chkTerrain'), chkTraffic = document
+					.getElementById('chkTraffic'), chkBicycle = document
+					.getElementById('chkBicycle'), chkUseDistrict = document
+					.getElementById('chkUseDistrict');
+
+			// 지도 타입을 제거합니다
+			for ( var type in mapTypes) {
+				map.removeOverlayMapTypeId(mapTypes[type]);
+			}
+
+			// 지적편집도정보 체크박스가 체크되어있으면 지도에 지적편집도정보 지도타입을 추가합니다
+			if (chkUseDistrict.checked) {
+				map.addOverlayMapTypeId(mapTypes.useDistrict);
+			}
+
+			// 지형정보 체크박스가 체크되어있으면 지도에 지형정보 지도타입을 추가합니다
+			if (chkTerrain.checked) {
+				map.addOverlayMapTypeId(mapTypes.terrain);
+			}
+
+			// 교통정보 체크박스가 체크되어있으면 지도에 교통정보 지도타입을 추가합니다
+			if (chkTraffic.checked) {
+				map.addOverlayMapTypeId(mapTypes.traffic);
+			}
+
+			// 자전거도로정보 체크박스가 체크되어있으면 지도에 자전거도로정보 지도타입을 추가합니다
+			if (chkBicycle.checked) {
+				map.addOverlayMapTypeId(mapTypes.bicycle);
+			}
+
+		}
+
 	</script>
+	
+	<section class="gps_list">
+		<div>영역설정</div>
+		<div class="badge badge-outline">${articlesCount }개</div>
+		<div class="flex-grow"></div>
+		<form action="">
+			<input type="hidden" name="boardId" value="${param.boardId }" />
+			<select data-value="${param.searchKeywordTypeCode }" class="select select-bordered select-sm w-full max-w-xs"
+				name="searchKeywordTypeCode">
+				<option value=barName>barName</option>
+				<option value="barAddr">barAddr</option>
+				<option value="barName,barAddr">barName+barAddr</option>
+			</select>
+			<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
+				class="input-sm input input-bordered w-48 max-w-xs" />
+			<button class="btn btn-ghost btn-sm" type="submit">검색</button>
+		</form>
+		<table class="table-box-1 table" border="1">
+			<colgroup>
+				<col style="width: 10%" />
+				<col style="width: 20%" />
+				<col style="width: 40%" />
+				<col style="width: 10%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>이름</th>
+					<th>주소</th>
+					<th>번호</th>
+					<th>홈페이지</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="brewery2" items="${brewerys2 }">
+					<tr class="hover">
+
+						<td>${brewery2.id }</td>
+						<td>${brewery2.barName }</td>
+						<td>${brewery2.barAddr }</td>
+						<td>${brewery2.barNumber }</td>
+						<td>${brewery2.barWeb }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+<!-- 동적 페이징  -->
+		<div class="pagination2 flex justify-center mt-3">
+			<c:set var="paginationLen" value="3" />
+			<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
+			<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+
+			<c:set var="baseUri" value="?boardId=${boardId }" />
+			<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+			<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+
+			<c:if test="${startPage > 1 }">
+				<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+				<button class="btn btn-sm btn-disabled">...</button>
+			</c:if>
+			<c:forEach begin="${startPage }" end="${endPage }" var="i">
+				<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+			</c:forEach>
+
+			<c:if test="${endPage < pagesCount }">
+				<button class="btn btn-sm btn-disabled">...</button>
+				<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+			</c:if>
+		</div>
+	</section>
+	
+
 </body>
 </html>
 

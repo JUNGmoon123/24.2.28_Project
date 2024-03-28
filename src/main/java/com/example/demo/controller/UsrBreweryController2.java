@@ -66,7 +66,7 @@ public class UsrBreweryController2 {
 		return "usr/home/APIgps2";
 	}
 	
-	  @RequestMapping("/usr/home/JsonAPIgps")
+	  @RequestMapping("/usr/home/doAPIgps2")
 	    @ResponseBody // JSON 형식으로 반환할 것임을 명시
 	    public Map<String, Object> JsonAPIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
 	                                       @RequestParam(defaultValue = "1") int page,
