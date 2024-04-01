@@ -19,7 +19,6 @@
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active {
 	color: #000;
 	text-decoration: none;
-	
 }
 
 .map_wrap {
@@ -28,7 +27,10 @@
 	height: 500px;
 	border: 2px solid green;
 }
-
+/* 검색하기 버튼을 맵 아래로 위치시키기 */
+#map {
+    margin-bottom: 50px; /* 맵 아래에 공간을 만듭니다. */
+}
 #menu_wrap {
 	position: absolute;
 	top: 0;
@@ -120,7 +122,6 @@
 	background:
 		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
 		no-repeat;
-	
 }
 
 #placesList .item .marker_1 {
@@ -181,13 +182,11 @@
 
 #placesList .item .marker_15 {
 	background-position: 0 -654px;
-
 }
 
 #pagination {
 	margin: 10px auto;
 	text-align: center;
-
 }
 
 #pagination a {
@@ -200,27 +199,56 @@
 	cursor: default;
 	color: #777;
 }
+
+/* 양조장리스트설정 */
+.gps_list {
+	position: relative; /* 원래의 위치 방식으로 변경 */
+	width: 100%;
+	height: 600px; /* 높이를 자동으로 조정 */
+	margin-top: 100px;
+	border: 1px solid green;
+	overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+}
+
+.table-box-1 tbody tr {
+	display: table-row; /* 테이블 행으로 표시 */
+	margin-bottom: 10px;
+}
+
+.table-box-1 tbody td {
+	display: table-cell; /* 테이블 셀로 표시 */
+}
+
+    .title {font-weight:bold;display:block;}
+    .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+    #centerAddr {display:block;margin-top:2px;font-weight: normal;}
+    .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+
 </style>
 
 <body>
 	<div class="map_wrap">
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
-        <div class="option">
-            <div>
-                <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
-                </form>
-            </div>
+<div id="menu_wrap" class="bg_white" >
+    <div class="option">
+        <div>
+            <form onsubmit="searchPlaces(); return false;">
+                <!-- 키워드 입력란을 감싸는 영역 -->
+               
+                    키워드 : <input type="text" value="" id="keyword" size="15">
+                    <!-- 검색하기 버튼 -->
+                    <button type="submit">검색하기</button>
+             
+            </form>
         </div>
-        <hr>
-        <ul id="placesList"></ul>
-        <div id="pagination"></div>
     </div>
+    <hr>
+    <ul id="placesList"></ul>
+    <div id="pagination"></div>
 </div>
-<!-- 	<div class="map_API" id="map"></div> -->
+	</div>
+	<!-- 	<div class="map_API" id="map"></div> -->
 	<!-- 지도 위에 표시될 마커 카테고리 -->
 	<div class="map_btn2">
 		<input type="checkbox" id="chkUseDistrict" onclick="setOverlayMapTypeId()" />
@@ -232,8 +260,9 @@
 		<input type="checkbox" id="chkBicycle" onclick="setOverlayMapTypeId()" />
 		자전거도로 정보 보기
 	</div>
-<!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script> -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
+	<!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script> -->
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 	<script>
 		var lat;
 		var lon;
@@ -258,7 +287,7 @@
 			lon = data.response.body.items[0].item.longitude;
 		}
 		getData2();
-		
+
 		var markers = [];
 		// 		카카오지도
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -269,6 +298,9 @@
 		};
 
 		var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+	
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
 
 		
 		// 장소 검색 객체를 생성합니다
@@ -281,21 +313,27 @@
 
 		// 키워드로 장소를 검색합니다
 		searchPlaces();
+		
 
 		// 키워드 검색을 요청하는 함수입니다
 		function searchPlaces() {
 
-			var keyword = document.getElementById('keyword').value;
-
-			if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			var keyword = document.getElementById('keyword').value.trim();// trim()을 사용하여 양쪽의 공백을 제거합니다.
+			
+			// 			if (!keyword.replace(/^\s+|\s+$/g, '')) {
+			// 				alert('키워드를 입력해주세요!');
+			// 				return false;
+			// 			}
+			//이제 입력하지 않고 검색창이 빈공간상태에서도 alert은 뜨지않는다.
+			if (keyword.replace === (/^\s+|\s+$/g, '')) {
 				alert('키워드를 입력해주세요!');
+				keyword.focus();
 				return false;
 			}
-
 			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
 			ps.keywordSearch(keyword, placesSearchCB);
 		}
-
+		
 		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 		function placesSearchCB(data, status, pagination) {
 			if (status === kakao.maps.services.Status.OK) {
@@ -319,11 +357,25 @@
 
 			}
 		}
+		
+		//HTML쪽에서 barName을 클릭시 검색이 바로되도록 하기.
+		function searchPlaceByName(name) {
+		    if (name.trim() !== "") {
+		        ps.keywordSearch(name, placesSearchCB);
+		    }
+		}
+		
+	    // 클릭한 레코드의 이름을 검색창에 설정하는 함수, 게시판클릭해서 맵에서 찾을시 검색어가 남아있도록 해줌.
+	    function setKeywordFromRecordName(name) {
+	        document.getElementById('keyword').value = name;
+	    }
 
 		// 검색 결과 목록과 마커를 표출하는 함수입니다
 		function displayPlaces(places) {
 
-			var listEl = document.getElementById('placesList'), menuEl = document.getElementById('menu_wrap'), fragment = document.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
+			var listEl = document.getElementById('placesList'), menuEl = document
+					.getElementById('menu_wrap'), fragment = document
+					.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
 
 			// 검색 결과 목록에 추가된 항목들을 제거합니다
 			removeAllChildNods(listEl);
@@ -334,7 +386,9 @@
 			for (var i = 0; i < places.length; i++) {
 
 				// 마커를 생성하고 지도에 표시합니다
-				var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+				var placePosition = new kakao.maps.LatLng(places[i].y,
+						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
+						i, places[i]); // 검색 결과 항목 Element를 생성합니다
 
 				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 				// LatLngBounds 객체에 좌표를 추가합니다
@@ -409,7 +463,8 @@
 				spriteOrigin : new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
 				offset : new kakao.maps.Point(13, 37)
 			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imgOptions), marker = new kakao.maps.Marker({
+			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
+					imgOptions), marker = new kakao.maps.Marker({
 				position : position, // 마커의 위치
 				image : markerImage
 			});
@@ -430,8 +485,8 @@
 
 		// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
 		function displayPagination(pagination) {
-			var paginationEl = document.getElementById('pagination'), 
-			fragment = document.createDocumentFragment(), i;
+			var paginationEl = document.getElementById('pagination'), fragment = document
+					.createDocumentFragment(), i;
 
 			// 기존에 추가된 페이지번호를 삭제합니다
 			while (paginationEl.hasChildNodes()) {
@@ -461,12 +516,15 @@
 		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 		// 인포윈도우에 장소명을 표시합니다
 		function displayInfowindow(marker, title) {
-			var content = '<div style="padding:5px;z-index:1;">' + title+ '</div>';
+			var content = '<div style="padding:5px;z-index:1;">' + title
+					+ '</div>';
 
 			infowindow.setContent(content);
 			infowindow.open(map, marker);
 		}
+		
 
+		
 		// 검색결과 목록의 자식 Element를 제거하는 함수입니다
 		function removeAllChildNods(el) {
 			while (el.hasChildNodes()) {
@@ -518,9 +576,69 @@
 			}
 
 		}
+		
+		var marker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+	    infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
+	// 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
+	searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+	    
+	// 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+	    searchDetailAddrFromCoords(mouseEvent.latLng, function(result, status) {
+	        if (status === kakao.maps.services.Status.OK) {
+	            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+	            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+	            
+	            var content = '<div class="bAddr">' +
+	                            '<span class="title">주소정보</span>' + 
+	                            detailAddr + 
+	                        '</div>';
+
+	            // 마커를 클릭한 위치에 표시합니다 
+	            marker.setPosition(mouseEvent.latLng);
+	            marker.setMap(map);
+
+	            // 인포윈도우에 클릭한 위치에 대한 상세 주소정보를 표시합니다
+	            infowindow.setContent(content);
+	            infowindow.open(map, marker);
+	        }   
+	    });
+	});
+
+	// 중심 좌표나 확대 수준이 변경됐을 때 지도 중심 좌표에 대한 주소 정보를 표시하도록 이벤트를 등록합니다
+	kakao.maps.event.addListener(map, 'idle', function() {
+	    searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+	});
+
+	function searchAddrFromCoords(coords, callback) {
+	    // 좌표로  주소 정보를 요청합니다
+	    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+	}
+
+	function searchDetailAddrFromCoords(coords, callback) {
+	    // 좌표로  상세 주소 정보를 요청합니다
+	    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+	}
+
+	// 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
+	function displayCenterInfo(result, status) {
+	    if (status === kakao.maps.services.Status.OK) {
+	        var infoDiv = document.getElementById('centerAddr');
+
+	        for(var i = 0; i < result.length; i++) {
+	            //  region_type 값은 'H' 이므로
+	            if (result[i].region_type === 'H') {
+	                infoDiv.innerHTML = result[i].address_name;
+	                break;
+	            }
+	        }
+	    }    
+	}  
+	    
+	    
 	</script>
-	
+
 	<section class="gps_list">
 		<div>영역설정</div>
 		<div class="badge badge-outline">${articlesCount }개</div>
@@ -555,18 +673,17 @@
 			</thead>
 			<tbody>
 				<c:forEach var="brewery2" items="${brewerys2 }">
-					<tr class="hover">
-
-						<td>${brewery2.id }</td>
-						<td>${brewery2.barName }</td>
-						<td>${brewery2.barAddr }</td>
-						<td>${brewery2.barNumber }</td>
-						<td>${brewery2.barWeb }</td>
-					</tr>
+					<tr class="hover" onclick="setKeywordFromRecordName('${brewery2.barName}'); searchPlaces(); displayInfowindow(marker, '${brewery2.barName}', '${brewery2.barWeb}')">
+                <td>${brewery2.id }</td>
+                <td>${brewery2.barName }</td>
+                <td>${brewery2.barAddr }</td>
+                <td>${brewery2.barNumber }</td>
+                <td> <a href="${brewery2.barWeb }">홈페이지 바로가기</a></td>
+            </tr>
 				</c:forEach>
 			</tbody>
 		</table>
-<!-- 동적 페이징  -->
+		<!-- 동적 페이징  -->
 		<div class="pagination2 flex justify-center mt-3">
 			<c:set var="paginationLen" value="3" />
 			<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
@@ -590,7 +707,7 @@
 			</c:if>
 		</div>
 	</section>
-	
+
 
 </body>
 </html>
