@@ -539,21 +539,18 @@
 // 		}
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 커스텀 오버레이에 표시할 컨텐츠를 생성하고 보여줍니다
-function displayInfowindow(marker, data) {
+function displayInfowindow(marker, title, website) {
+	
     var content = '<div class="wrap">' + 
         '    <div class="info">' + 
         '        <div class="title">' + 
-        data.title + 
+
         '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' + 
         '        </div>' + 
         '        <div class="body">' + 
-        '            <div class="img">' +
-        '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">' +
-        '           </div>' + 
-        '            <div class="desc">' + 
-        '                <div class="ellipsis">' + data.address + '</div>' + 
-        '                <div class="jibun ellipsis">' + data.jibun + '</div>' + 
-        '                <div><a href="' + data.website + '" target="_blank" class="link">홈페이지</a></div>' + 
+        '            <div class="desc">' +  
+        '				<div>' + title+' </div>' + 
+        '                <div><a href="' + website + '" target="_blank" class="link">홈페이지</a></div>' + 
         '            </div>' + 
         '        </div>' + 
         '    </div>' +    
@@ -564,8 +561,9 @@ function displayInfowindow(marker, data) {
         map: map,
         position: marker.getPosition()       
     });
-
+    return overlay; // overlay를 반환
 }
+
     // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
     function closeOverlay() {
         overlay.setMap(null);     
