@@ -40,11 +40,11 @@
 						</li>
 						<li>
 							<a href="../home/APIgps2?boardId=7&page=1" class="flex flex-ai-c height-100p">와이너리</a>
-							<ul>
-								<li>
-									<a href="../home/APIgps?boardId=7&page=1">양조장찾기</a>
-								</li>
-							</ul>
+<!-- 							<ul> -->
+<!-- 								<li> -->
+<!-- 									<a href="../home/APIgps?boardId=7&page=1">양조장찾기</a> -->
+<!-- 								</li> -->
+<!-- 							</ul> -->
 						</li>
 						<li>
 							<a href="../article/list?boardId=1&page=1" class="flex flex-ai-c height-100p">커뮤니티</a>

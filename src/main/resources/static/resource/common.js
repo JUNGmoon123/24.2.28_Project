@@ -9,18 +9,24 @@ $('select[data-value]').each(function(index, el) {
 });
 // 헤더의 높이를 계산하여 본문의 여백을 설정합니다.
 function setHeaderMargin() {
-	var headerHeight = document.querySelector('.header').offsetHeight;
-	document.querySelector('.content').style.marginTop = headerHeight + 'px';
+    var header = document.querySelector('.header');
+    if (!header) return; // 헤더 요소가 없으면 함수 종료
+
+    var headerHeight = header.offsetHeight;
+    var content = document.querySelector('.content');
+    if (!content) return; // 본문 요소가 없으면 함수 종료
+
+    content.style.marginTop = headerHeight + 'px';
 }
 
 // 페이지 로드 시 초기 설정을 수행합니다.
 window.onload = function() {
-	setHeaderMargin();
+    setHeaderMargin();
 };
 
 // 윈도우 크기가 변경될 때마다 헤더의 높이를 다시 계산하여 본문의 여백을 설정합니다.
 window.onresize = function() {
-	setHeaderMargin();
+    setHeaderMargin();
 };
 function TopBar__init() {
 	$(".top_bar .menu_box_1 > ul > li").mouseover(function() {
@@ -79,15 +85,19 @@ function TopBar__init() {
 
 TopBar__init();
 Mobile_TopBar__init();
-
+// DOMContentLoaded 이벤트가 발생하면 init 함수 실행
+document.addEventListener("DOMContentLoaded", function() {
+    main_init();
+});
 
 //움직이는화면실행
 function main_init() {
- //슬라이더 요소와 버튼 요소, 슬라이드 항목들을 가져옵니다.
-	const slider = document.querySelector(".slider");
-	const nextBtn = slider.querySelector(".nav .next"); // 다음 버튼
-	const prevBtn = slider.querySelector(".nav .prev"); // 이전 버튼
-	const items = slider.querySelectorAll(".item"); // 슬라이드 항목들
+    // 슬라이더 요소와 버튼 요소, 슬라이드 항목들을 가져옵니다.
+    const slider = document.querySelector(".slider");
+    if (!slider) return; // slider가 없으면 함수 종료
+    const nextBtn = slider.querySelector(".nav .next"); // 다음 버튼
+    const prevBtn = slider.querySelector(".nav .prev"); // 이전 버튼
+    const items = slider.querySelectorAll(".item"); // 슬라이드 항목들
 
 	// 초기 슬라이드 인덱스 및 자동 넘김 상태 변수 설정
 	let current = 0;

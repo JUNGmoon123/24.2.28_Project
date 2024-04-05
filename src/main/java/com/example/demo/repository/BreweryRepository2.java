@@ -65,7 +65,7 @@ public interface BreweryRepository2 {
 				</choose>
 			</if>
 			GROUP BY C.id
-			ORDER BY C.id DESC
+			ORDER BY C.id 
 			<if test="limitFrom >= 0 ">
 				LIMIT #{limitFrom}, #{limitTake}
 			</if>

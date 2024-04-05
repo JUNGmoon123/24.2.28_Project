@@ -2,7 +2,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="pageTitle" value="술상품"></c:set>
 <%@ include file="../common/head.jspf"%>
-
+<style>
+.page-btn {
+    position: relative; /* 상대적 위치 설정 */
+    left: 50px; /* 왼쪽으로 50px 이동 */
+    top: -80px; /* 위로 20px 이동 */
+}
+</style>
 
 <!DOCTYPE html>
 <html>
@@ -77,6 +83,7 @@
 		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
 	</div>
 	<!-- 동적 페이징 -->
+	<div class = "page-btn">
 	<div class="pagination flex justify-center mt-3">
 		<c:set var="paginationLen" value="3" />
 		<c:set var="startPage" value="${page - paginationLen >= 1 ? page - paginationLen : 1}" />
@@ -99,6 +106,7 @@
 			<button class="btn btn-sm btn-disabled">...</button>
 			<a class="btn btn-sm" href="${baseUri}&page=${pagesCount}">${pagesCount}</a>
 		</c:if>
+	</div>
 	</div>
 </body>
 </html>

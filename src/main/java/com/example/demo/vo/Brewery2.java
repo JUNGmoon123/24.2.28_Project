@@ -18,9 +18,7 @@ public class Brewery2 {
     private String barCome;
     
     //위도 경도
-    private int latitude;
-    private int longitude;
-    
-    
-    private int barPoint; 
+    private String barlatitude;
+    private String barlongitude;
+
 }
