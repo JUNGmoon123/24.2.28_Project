@@ -125,7 +125,7 @@ body2 {
 }
 
 /* 블로그 카드 내 날짜 아이콘 스타일 */
-.blog-card .details .date:before {
+.blog-card .details .homepage:before {
 	font-family: FontAwesome;
 	margin-right: 10px;
 	content: "\f133";
@@ -286,87 +286,16 @@ body2 {
 <div class="body3">
 	<div class="main_brewery">
 		<div class="body2">
-			<div class="blog-card">
-				<div class="meta">
-					<div class="photo"
-						style="background-image: url(http://www.sommeliertimes.com/news/photo/201710/6589_13212_2623.jpg)"></div>
-					<ul class="details">
-						<li class="author">
-							<a href="#">John Doe</a>
-						</li>
-						<li class="date">Aug. 24, 2015</li>
-						<li class="tags">
-							<ul>
-								<li>
-									<a href="#">Learn</a>
-								</li>
-								<li>
-									<a href="#">Code</a>
-								</li>
-								<li>
-									<a href="#">HTML</a>
-								</li>
-								<li>
-									<a href="#">CSS</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<div class="description">
-					<h1>Learning to Code</h1>
-					<h2>Opening a door to the future</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
-						praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-					<p class="read-more">
-						<a href="#">Read More</a>
-					</p>
-				</div>
-			</div>
-			<div class="blog-card alt">
-				<div class="meta">
-					<div class="photo"
-						style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"></div>
-					<ul class="details">
-						<li class="author">
-							<a href="#">Jane Doe</a>
-						</li>
-						<li class="date">July. 15, 2015</li>
-						<li class="tags">
-							<ul>
-								<li>
-									<a href="#">Learn</a>
-								</li>
-								<li>
-									<a href="#">Code</a>
-								</li>
-								<li>
-									<a href="#">JavaScript</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<div class="description">
-					<h1>Mastering the Language</h1>
-					<h2>Java is not the same as JavaScript</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
-						praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-					<p class="read-more">
-						<a href="#">Read More</a>
-					</p>
-				</div>
-			</div>
 			<c:forEach var="brewery2" items="${brewerys2 }">
 				<div class="blog-card alt">
 					<div class="meta">
 						<div class="photo"
-							style="background-image: url(https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg)"></div>
+							style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
 						<ul class="details">
 							<li class="author">
-								<a href="#">Jane Doe</a>
+								<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
 							</li>
-							<li class="date">July. 15, 2015</li>
+							<li class="homepage" ><a href="${brewery2.barWeb}"></a>July. 15, 2015</li>
 							<li class="tags">
 								<ul>
 									<li>
@@ -385,7 +314,7 @@ body2 {
 					<div class="description">
 						<td style="display: none;">${brewery2.id }</td>
 						<h1>${brewery2.barName }</h1>
-						<h2>Java is not the same as JavaScript</h2>
+						<h2>연락처 ${brewery2.barNumber }</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
 							praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
 						<p class="read-more">

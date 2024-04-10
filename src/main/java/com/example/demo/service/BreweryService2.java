@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.repository.BreweryRepository2;
+import com.example.demo.vo.Beer;
 import com.example.demo.vo.Brewery2;
 
 @Service
@@ -34,6 +35,11 @@ public class BreweryService2 {
 		
 		return breweryRepository.getForPrintBrewerys(boardId, limitFrom, limitTake, searchKeywordTypeCode,
 				searchKeyword);
+	}
+
+	public Brewery2 getForPrintBrewery(int id) {
+		Brewery2 brewery = breweryRepository.getForPrintBrewery(id);
+		return brewery;
 	}
 
 }

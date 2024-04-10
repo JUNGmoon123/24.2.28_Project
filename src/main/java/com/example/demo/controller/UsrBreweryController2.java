@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.BoardService;
 import com.example.demo.service.BreweryService2;
+import com.example.demo.vo.Beer;
 import com.example.demo.vo.Board;
 import com.example.demo.vo.Brewery2;
 import com.example.demo.vo.Rq;
@@ -30,7 +31,7 @@ public class UsrBreweryController2 {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping("/usr/home/APIgps2")
+	@RequestMapping("/usr/brewery/brewerylist")
 	public String APIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
 			@RequestParam(defaultValue = "1") int page,
 			@RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
@@ -63,44 +64,54 @@ public class UsrBreweryController2 {
 		model.addAttribute("articlesCount", articlesCount);
 		model.addAttribute("brewerys2", brewerys2);
 
-		return "usr/home/APIgps2";
+		return "usr/brewery/brewerylist";
 	}
 	
-	  @RequestMapping("/usr/home/doAPIgps2")
-	    @ResponseBody // JSON 형식으로 반환할 것임을 명시
-	    public Map<String, Object> JsonAPIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-	                                       @RequestParam(defaultValue = "1") int page,
-	                                       @RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
-	                                       @RequestParam(defaultValue = "") String searchKeyword) {
+//	  @RequestMapping("/usr/brewery/brewerylist")
+//	    @ResponseBody // JSON 형식으로 반환할 것임을 명시
+//	    public Map<String, Object> JsonAPIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
+//	                                       @RequestParam(defaultValue = "1") int page,
+//	                                       @RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
+//	                                       @RequestParam(defaultValue = "") String searchKeyword) {
+//
+//	        Rq rq = (Rq) req.getAttribute("rq");
+//
+//	        Board board = boardService.getBoardById(boardId);
+//
+//	        int articlesCount = breweryService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+//
+//	        if (board == null) {
+//	            // 에러 처리 등
+//	            return null;
+//	        }
+//
+//	        int itemsInAPage = 10;
+//	        int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
+//
+//	        List<Brewery2> brewerys2 = breweryService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
+//	                searchKeyword);
+//
+//	        // JSON 형식으로 변환할 Map 생성
+//	        Map<String, Object> responseData = new HashMap<>();
+//	        responseData.put("board", board);
+//	        responseData.put("boardId", boardId);
+//	        responseData.put("page", page);
+//	        responseData.put("pagesCount", pagesCount);
+//	        responseData.put("searchKeywordTypeCode", searchKeywordTypeCode);
+//	        responseData.put("searchKeyword", searchKeyword);
+//	        responseData.put("articlesCount", articlesCount);
+//	        responseData.put("brewerys2", brewerys2);
+//
+//	        return responseData;
+//	    }
+	  
+		@RequestMapping("/usr/brewery/brewerydetail")
+		public String brewerydetail(HttpServletRequest req, Model model, int id) {
 
-	        Rq rq = (Rq) req.getAttribute("rq");
 
-	        Board board = boardService.getBoardById(boardId);
+			Brewery2 brewery = breweryService.getForPrintBrewery(id);
 
-	        int articlesCount = breweryService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-
-	        if (board == null) {
-	            // 에러 처리 등
-	            return null;
-	        }
-
-	        int itemsInAPage = 10;
-	        int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-
-	        List<Brewery2> brewerys2 = breweryService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
-	                searchKeyword);
-
-	        // JSON 형식으로 변환할 Map 생성
-	        Map<String, Object> responseData = new HashMap<>();
-	        responseData.put("board", board);
-	        responseData.put("boardId", boardId);
-	        responseData.put("page", page);
-	        responseData.put("pagesCount", pagesCount);
-	        responseData.put("searchKeywordTypeCode", searchKeywordTypeCode);
-	        responseData.put("searchKeyword", searchKeyword);
-	        responseData.put("articlesCount", articlesCount);
-	        responseData.put("brewerys2", brewerys2);
-
-	        return responseData;
-	    }
+			model.addAttribute("brewery", brewery);
+			return "usr/brewery/brewerydetail";
+		}
 }

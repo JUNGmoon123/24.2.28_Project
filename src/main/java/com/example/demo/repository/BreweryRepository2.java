@@ -74,4 +74,11 @@ public interface BreweryRepository2 {
 	public List<Brewery2> getForPrintBrewerys(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
 			String searchKeyword);
 	
+	@Select("""
+			SELECT *
+			FROM brewery
+			WHERE id = #{id}
+			""")
+	public Brewery2 getForPrintBrewery(int id);
+	
 }
