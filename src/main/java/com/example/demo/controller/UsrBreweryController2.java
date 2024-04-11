@@ -111,7 +111,7 @@ public class UsrBreweryController2 {
 
 			Brewery2 brewery = breweryService.getForPrintBrewery(id);
 
-			model.addAttribute("brewery", brewery);
+			model.addAttribute("brewery2", brewery);
 			return "usr/brewery/brewerydetail";
 		}
 }
