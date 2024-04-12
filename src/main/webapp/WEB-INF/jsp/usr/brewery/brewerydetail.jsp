@@ -56,7 +56,10 @@
 .info .title {
 	padding: 5px 0 0 10px;
 	height: 30px;
-	background: #eee;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 	font-size: 13px;
 	font-weight: bold;
@@ -138,6 +141,10 @@
 <!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script> -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 <script>
+var barName = "${brewery2.barName}";
+var barAddr = "${brewery2.barAddr}";
+var barWeb = "${brewery2.barWeb}";
+// var barsrc //이미지는 아직 미정
 var barlatitude = parseFloat("${brewery2.barlatitude}");
 var barlongitude = parseFloat("${brewery2.barlongitude}");
 	// mapOption의 center를 숨겨진 요소에서 가져온 위도와 경도로 설정합니다.
@@ -161,7 +168,7 @@ var barlongitude = parseFloat("${brewery2.barlongitude}");
 	var content = '<div class="wrap">'
 			+ '    <div class="info">'
 			+ '        <div class="title">'
-			+ '            카카오 스페이스닷원'
+			+ barName
 			+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
 			+ '        </div>'
 			+ '        <div class="body">'
@@ -169,9 +176,9 @@ var barlongitude = parseFloat("${brewery2.barlongitude}");
 			+ '                <img src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/thumnail.png" width="73" height="70">'
 			+ '           </div>'
 			+ '            <div class="desc">'
-			+ '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>'
-			+ '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>'
-			+ '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>'
+			+ '                <div class="ellipsis">'+barAddr+'</div>'
+			+ '                <div class="jibun ellipsis">추가할 내용이 있음?</div>'
+			+ '                <div><a href="' + barWeb + '" target="_blank" class="link">홈페이지</a></div>'
 			+ '            </div>' + '        </div>' + '    </div>' + '</div>';
 
 	// 마커 위에 커스텀오버레이를 표시합니다
@@ -220,7 +227,7 @@ var barlongitude = parseFloat("${brewery2.barlongitude}");
 					<td>
 						<a href="#">${brewery2.barName }</a>
 					</td>
-					<td>${brewery2.barAddr }</td>
+					<td >${brewery2.barAddr }</td>
 					<td>${brewery2.barNumber }</td>
 					<td>
 						<a href="${brewery2.barWeb}">홈페이지 바로가기</a>

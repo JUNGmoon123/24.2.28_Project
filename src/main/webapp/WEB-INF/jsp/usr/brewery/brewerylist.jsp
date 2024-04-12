@@ -47,8 +47,8 @@ body2 {
 	border-radius: 5px;
 	overflow: hidden;
 	z-index: 0;
-	border: 2px solid green;
 	width: 100%;
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* 명암 추가 */
 }
 
 /* 블로그 카드 내 하이퍼링크 스타일 */
@@ -161,26 +161,14 @@ body2 {
 	font-family: Poppins, sans-serif;
 }
 
-/* 블로그 카드 내 주요 제목 스타일 */
-/* .blog-card .description h1 { */
-/* 	line-height: 1; */
-/* 	margin: 0; */
-/* 	font-size: 1.7rem; */
-/* } */
+
 .blog-card h1 {
 	line-height: 1;
 	margin: 0;
 	font-size: 1.7rem;
 }
 
-/* 블로그 카드 내 보조 제목 스타일 */
-/* .blog-card .description h2 { */
-/* 	font-size: 1rem; */
-/* 	font-weight: 300; */
-/* 	text-transform: uppercase; */
-/* 	color: var(--color-grey-dark); */
-/* 	margin-top: 5px; */
-/* } */
+
 .blog-card h2 {
 	font-size: 1rem;
 	font-weight: 300;
@@ -281,21 +269,88 @@ body2 {
 		padding-left: 25px;
 	}
 }
+/* 검색창 스타일옵션 */
+.search_box{
+}
+.search_box_1{
+	margin-left: 45%;
+}
+.search_option{
+	 max-width: 10rem;
+}
 </style>
 <div class="badge badge-outline">${articlesCount }개</div>
+		<div class="flex-grow"></div>
+		<form class="search_box" action="">
+			<div class="search_box_1">
+			<input type="hidden" name="boardId" value="${param.boardId }" />
+
+			<select data-value="${param.searchKeywordTypeCode }" class=" search_option select select-bordered select-sm w-full" name="searchKeywordTypeCode">
+				<option value="barName,barAddr">전체</option>
+				<option value=barName>양조장이름</option>
+				<option value="barAddr">주소</option>
+			</select>
+			<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
+				class="input-sm input input-bordered w-48 max-w-xs" />
+			<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
+
+			</div>
+		</form>
 <div class="body3">
 	<div class="main_brewery">
 		<div class="body2">
-			<c:forEach var="brewery2" items="${brewerys2 }">
-				<div class="blog-card alt">
+			<c:forEach var="brewery2" items="${brewerys2 }" varStatus="loop">
+				<c:if test="${loop.index % 2 == 0}">
+					<div class="blog-card alt">
+						<div class="meta">
+							<div class="photo"style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
+							<ul class="details">
+								<li class="author">
+									<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
+								</li>
+								<li class="homepage">
+									<a href="${brewery2.barWeb}"></a>
+									July. 15, 2015
+								</li>
+								<li class="tags">
+									<ul>
+										<li>
+											<a href="#">Learn</a>
+										</li>
+										<li>
+											<a href="#">Code</a>
+										</li>
+										<li>
+											<a href="#">JavaScript</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="description">
+							<td style="display: none;">${brewery2.id }</td>
+							<h1>${brewery2.barName }</h1>
+							<h2>연락처 ${brewery2.barNumber }</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+								praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+							<p class="read-more">
+								<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
+							</p>
+						</div>
+					</div>
+				</c:if>
+				<c:if test="${loop.index % 2 != 0}">
+				<div class="blog-card">
 					<div class="meta">
-						<div class="photo"
-							style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
+						<div class="photo" style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
 						<ul class="details">
 							<li class="author">
 								<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
 							</li>
-							<li class="homepage" ><a href="${brewery2.barWeb}"></a>July. 15, 2015</li>
+							<li class="homepage">
+								<a href="${brewery2.barWeb}"></a>
+								July. 15, 2015
+							</li>
 							<li class="tags">
 								<ul>
 									<li>
@@ -305,7 +360,10 @@ body2 {
 										<a href="#">Code</a>
 									</li>
 									<li>
-										<a href="#">JavaScript</a>
+										<a href="#">HTML</a>
+									</li>
+									<li>
+										<a href="#">CSS</a>
 									</li>
 								</ul>
 							</li>
@@ -322,30 +380,31 @@ body2 {
 						</p>
 					</div>
 				</div>
+				</c:if>
 			</c:forEach>
-					<!-- 동적 페이징  -->
-		<div class="pagination2 flex justify-center mt-3">
-			<c:set var="paginationLen" value="3" />
-			<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
-			<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+			<!-- 동적 페이징  -->
+			<div class="pagination2 flex justify-center mt-3">
+				<c:set var="paginationLen" value="3" />
+				<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
+				<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
 
-			<c:set var="baseUri" value="?boardId=${boardId }" />
-			<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
-			<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+				<c:set var="baseUri" value="?boardId=${boardId }" />
+				<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+				<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
 
-			<c:if test="${startPage > 1 }">
-				<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
-				<button class="btn btn-sm btn-disabled">...</button>
-			</c:if>
-			<c:forEach begin="${startPage }" end="${endPage }" var="i">
-				<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
-			</c:forEach>
+				<c:if test="${startPage > 1 }">
+					<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+					<button class="btn btn-sm btn-disabled">...</button>
+				</c:if>
+				<c:forEach begin="${startPage }" end="${endPage }" var="i">
+					<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+				</c:forEach>
 
-			<c:if test="${endPage < pagesCount }">
-				<button class="btn btn-sm btn-disabled">...</button>
-				<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
-			</c:if>
-		</div>
+				<c:if test="${endPage < pagesCount }">
+					<button class="btn btn-sm btn-disabled">...</button>
+					<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+				</c:if>
+			</div>
 		</div>
 	</div>
 </div>
