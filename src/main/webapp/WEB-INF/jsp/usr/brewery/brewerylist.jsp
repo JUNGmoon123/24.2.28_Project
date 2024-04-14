@@ -376,7 +376,7 @@ body2 {
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
 							praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
 						<p class="read-more">
-							<a href="../brewery/brewerydetail?id=${brewery2.id}">Read More</a>
+							<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
 						</p>
 					</div>
 				</div>
