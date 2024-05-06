@@ -23,15 +23,10 @@ public class BeerService {
 		return beerRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 	}
 
-	public List<Beer> getForPrintBeers(int boardId, int itemsInAPage, int page, String searchKeywordTypeCode,
-			String searchKeyword) {
-		
-		int limitFrom = (page - 1) * itemsInAPage;
-		int limitTake = itemsInAPage;
+	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword) {
 
 		
-		return beerRepository.getForPrintBeers(boardId, limitFrom, limitTake, searchKeywordTypeCode,
-				searchKeyword);
+		return beerRepository.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
 	}
 
 	public Beer getForPrintBeer(int id) {

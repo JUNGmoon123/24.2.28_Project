@@ -54,8 +54,7 @@ public class UsrBeerController {
 //	}
 
 	@RequestMapping("/usr/product/beer")
-	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-	        @RequestParam(defaultValue = "1") int page,
+	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "8") int boardId,
 	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
 	        @RequestParam(defaultValue = "") String searchKeyword) {
 
@@ -70,18 +69,11 @@ public class UsrBeerController {
 	    }
 
 	    int itemsInAPage = 16;
-	    int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-	    if (page > pagesCount) {
-	        page = pagesCount;
-	    }
 
-	    List<Beer> beerList = beerService.getForPrintBeers(boardId, itemsInAPage, page, searchKeywordTypeCode,
-	            searchKeyword);
+	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
 
 	    model.addAttribute("board", board);
 	    model.addAttribute("boardId", boardId);
-	    model.addAttribute("page", page);
-	    model.addAttribute("pagesCount", pagesCount);
 	    model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
 	    model.addAttribute("searchKeyword", searchKeyword);
 	    model.addAttribute("articlesCount", articlesCount);
