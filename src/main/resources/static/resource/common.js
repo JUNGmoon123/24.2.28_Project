@@ -7,6 +7,7 @@ $('select[data-value]').each(function(index, el) {
 		$el.val(defaultValue);
 	}
 });
+
 // 헤더의 높이를 계산하여 본문의 여백을 설정합니다.
 function setHeaderMargin() {
     var header = document.querySelector('.header');
@@ -28,6 +29,7 @@ window.onload = function() {
 window.onresize = function() {
     setHeaderMargin();
 };
+
 function TopBar__init() {
 	$(".top_bar .menu_box_1 > ul > li").mouseover(function() {
 		var $height = $(this).find("> ul").height();
@@ -43,6 +45,7 @@ function TopBar__init() {
 }
 
 TopBar__init();
+
 $(document).ready(function() {
 	// 드롭다운 메뉴 버튼을 클릭했을 때
 	$('.dropdown-hover .btn').click(function() {
@@ -56,13 +59,12 @@ $(document).ready(function() {
 		$('.dropdown-content').addClass('hidden');
 	});
 });
+
 //list에서 select의 data-value를 가져온다. form action=""에 PSOT/GET을 쓰지않고도 검색시 값을 유지할 수 있다.
 // 예전에 function(form)했던거와 비슷.
 // const $el 변수고 $(el)은 값이 되고  el.attr은 속성값을 가져와소 defaultValue로 전달해준다.
 
-
 //카카오가져오기
-console.clear();
 function Mobile_TopBar__init() {
 	$(".mobile_top_bar .btn_toggle").click(function() {
 		$(this).toggleClass("active");
@@ -85,6 +87,7 @@ function TopBar__init() {
 
 TopBar__init();
 Mobile_TopBar__init();
+
 // DOMContentLoaded 이벤트가 발생하면 init 함수 실행
 document.addEventListener("DOMContentLoaded", function() {
     main_init();
@@ -253,16 +256,6 @@ function main_init() {
 // DOMContentLoaded 이벤트가 발생하면 init 함수 실행
 document.addEventListener("DOMContentLoaded", main_init);
 
-//위의 자동슬라이드부분 설명.
-//startAutoSlide() 함수를 통해 자동으로 슬라이드가 전환됩니다. 이 함수는 페이지 로드 시 자동으로 호출되며 4초마다 다음 슬라이드로 이동합니다.
-//다음과 이전 버튼을 클릭하면 자동 슬라이드가 멈추고 해당 방향으로 슬라이드가 이동합니다.
-//다음 버튼 클릭 시 stopAutoSlide() 함수를 호출하여 자동 슬라이드를 멈추고 next() 함수를 호출하여 다음 슬라이드로 이동합니다.
-//이전 버튼 클릭 시도 마찬가지로 stopAutoSlide() 함수를 호출하여 자동 슬라이드를 멈추고 prev() 함수를 호출하여 이전 슬라이드로 이동합니다.
-//마지막으로, 페이지 로드 시 DOMContentLoaded 이벤트가 발생하면 init() 함수를 호출하여 슬라이더를 초기화합니다.
-
-
-
-
 //메인상단 와인,맥주,전통주 버튼 클릭시 해당 url로 이동
 
 var urls = [
@@ -284,6 +277,5 @@ function changeUrl(index) {
 	exploreBtn.setAttribute('onclick', 'redirectToNextPage(' + index + ')');
 }
 
-//와이너리 자동이미지 슬라이드 부분
-
-
+//애니메이션 오류가 자꾸뜸 Node.js에 사용하는 모듈(?)이라는데
+window.anime = anime;

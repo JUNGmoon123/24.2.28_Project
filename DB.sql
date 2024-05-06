@@ -368,23 +368,23 @@ R.badReactionPoint = RP_SUM.badReactionPoint;
 
 
 # 상품테이블 생성
-create table product(
+CREATE TABLE product(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
     memberId INT(10) UNSIGNED NOT NULL,
     productName CHAR(50) NOT NULL,
     `body`TEXT NOT NULL,
-    abv char(20) NOT NULL,
-    price char(50) not null
+    abv CHAR(20) NOT NULL,
+    price CHAR(50) NOT NULL
 );
 
 ALTER TABLE product ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
 #상품테스트 데이터
-insert into product
-set regDate = now(),
-updateDate = now(),
+INSERT INTO product
+SET regDate = NOW(),
+updateDate = NOW(),
 memberId = 1,
 boardId = 9,
 productName = '여우목',
@@ -442,9 +442,9 @@ productName = '모엣 샹동 샴페인',
 abv = '18도',
 price = '63000';
 
-create table brewery(
+CREATE TABLE brewery(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    barName char(50) NOT NULL,
+    barName CHAR(50) NOT NULL,
     barAddr CHAR(50) NOT NULL,
     barNumber CHAR(50) NOT NULL,
     barWeb CHAR(50) NOT NULL,
@@ -478,7 +478,7 @@ CREATE TABLE beers(
     color CHAR(50), 
     price CHAR(50), 
     src VARCHAR(255),
-    binfo char(50) 
+    binfo CHAR(50) 
 );
 
 #model은 이름, btype은 선택기준 의미 
@@ -528,7 +528,7 @@ WHERE id BETWEEN 25 AND 50;
 
 
 ###############################################
-drop table brewery;
+DROP TABLE brewery;
 DROP TABLE CSV;
 DROP TABLE beers;
 
@@ -536,9 +536,11 @@ DROP TABLE beers;
 
 SELECT * 
 FROM beers
-order by id;
+ORDER BY id;
 
-SELECT * FROM brewery;
+SELECT * 
+FROM brewery
+ORDER BY id;
 
 SELECT * FROM CSV;
 
@@ -552,11 +554,11 @@ SELECT * FROM reactionPoint;
 
 SELECT * FROM `reply`;
 
-select * from product;
+SELECT * FROM product;
 
 SELECT * 
 FROM product
-where boardId = 7;
+WHERE boardId = 7;
 
 SELECT * 
 FROM beers
@@ -701,4 +703,3 @@ GROUP BY RP.relTypeCode,RP.relId
 DROP DATABASE IF EXISTS `project`;
 CREATE DATABASE `project`;
 USE `project`;
-

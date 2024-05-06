@@ -6,23 +6,22 @@
 <title>와이너리detail</title>
 
 <style>
-
 .map_wrap {
-    display: flex; /* Flexbox를 사용하여 자식 요소를 수평으로 배치 */
-    justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
-    align-items: flex-start; /* 수직 방향으로 맞춤 */
-    position: relative;
-    left: 10%;
-    width: 80%;
-    height: 500px;
-    border: 2px solid red;
-    top: 100px;
-    text-align: center;
+	display: flex; /* Flexbox를 사용하여 자식 요소를 수평으로 배치 */
+	justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
+	align-items: flex-start; /* 수직 방향으로 맞춤 */
+	position: relative;
+	left: 10%;
+	width: 80%;
+	height: 500px;
+	border: 2px solid red;
+	top: 100px;
+	text-align: center;
 }
 
 #map {
 	display: inline-block; /* 추가 지도를 가운데로 옮기기 위해서 text-align과 같이 씀 */
-	    overflow: hidden;
+	overflow: hidden;
 }
 
 .wrap {
@@ -137,48 +136,66 @@
 
 /* 와이너리 detail정보제공 css */
 .table_main {
-	width: 100%;
-	height: 500px;
-	border: 2px solid gold;
+	width: 90%;
+	height: 550px;
+	margin-left: 6%; 
 	overflow: hidden; /* 자식 요소의 범위를 벗어나지 못하도록 설정 */
+
 }
 
 .bre_img_box {
-	position: relative;
-	width: 35%; /* 이미지의 너비를 조정합니다 */
-	float: left; /* 오른쪽으로 플로팅하여 그대로 둡니다 */
-	border: 2px solid green;
-	margin-left: 20px; /* 이미지를 원하는 위치로 이동합니다 */
-	height: 500px; /* 부모 요소에 대한 높이를 100%로 설정합니다. */
+    width: 35%; /* 왼쪽 이미지 상자의 너비를 조정합니다 */
+    float: left; /* 왼쪽으로 플로팅합니다 */
+    margin-right: 20px; /* 오른쪽 여백을 설정합니다 */
+    border: 2px solid green; /* 테두리를 설정합니다 */
+    height: 500px; /* 높이를 설정합니다 */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가합니다 */
 }
-
-.bre_img_box img {
-	width: auto; /* 이미지의 너비를 자동으로 조정합니다 */
+.bre_img_box>img{
+	width: auto;
 	height: 100%;
 }
 
-.bre_text_box {
-	position: relative;
-	width: 60%; /* 텍스트 상자의 너비를 조정합니다 */
-	float: right; /* 왼쪽으로 플로팅하여 왼쪽에 위치시킵니다 */
-	border: 2px solid green;
-	margin-right: 20px; /* 오른쪽 여백을 설정합니다 */
-	margin-top: 20px;
+.bre_text_box{
+
+	width: 60%; /* 오른쪽 텍스트 영역의 너비를 조정합니다 */
+    float: right; /* 오른쪽으로 플로팅합니다 */
+    margin-top: 50px;
+    margin-right: 20px; /* 오른쪽 여백을 설정합니다 */
+
+    font-family: FontAwesome;
 }
 
 .bre_text_infobox {
-	position: relative;
-	width: 60%; /* 텍스트 상자의 너비를 조정합니다 */
-	float: right; /* 오른쪽으로 플로팅하여 오른쪽에 위치시킵니다 */
-	margin-right: 20px; /* 오른쪽 여백을 설정합니다 */
-	border: 2px solid red;
+    width: 60%; /* 오른쪽 텍스트 영역의 너비를 조정합니다 */
+    float: right; /* 오른쪽으로 플로팅합니다 */
+     margin-top: 50px;
+    margin-right: 20px; /* 오른쪽 여백을 설정합니다 */
+
+}
+
+.bre_smallimg_box {
+ margin-top: 40px;
+    width: 60%; /* 오른쪽 텍스트 영역과 같은 너비를 가집니다 */
+    float: right; /* 오른쪽으로 플로팅합니다 */
+    clear: right; /* 오른쪽 여백을 설정합니다 */
+}
+
+.bre_smallimg_box .small_image_group {
+    display: flex; /* 이미지들을 가로로 나란히 정렬하기 위해 플렉스 박스로 설정합니다 */
+}
+
+.bre_smallimg_box .small_image_group img {
+    width: 160px; /* 이미지의 너비를 조정합니다 */
+    height: 140px; /* 이미지의 높이를 자동으로 조정합니다 */
+    margin-right: 10px; /* 이미지 사이의 간격을 설정합니다 */
+     box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가합니다 */
 }
 /* 리뷰css */
 .bre_review_box {
- width: 40%; /* 리뷰 박스의 너비를 조정하여 맵과 함께 한 공간에 있도록 설정 */
-    height: 500px;
-    border: 2px solid red;
-
+	width: 40%; /* 리뷰 박스의 너비를 조정하여 맵과 함께 한 공간에 있도록 설정 */
+	height: 500px;
+	border: 2px solid red;
 }
 </style>
 
@@ -204,9 +221,15 @@
 			</div>
 			<div class="bre_text_infobox">
 				<div class="text_info">
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique
-						repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio
-						sapiente minima cumque numquam!</p>
+					<p>산머루농원은 우리 포도, 산머루를 재배하여 와인을 만드는 토종 와이너리이다. 가공시설, 발효실, 지하 오크통 숙성 터널 등을 견학하고, 머루 와인 시음, 산머루와인 담그기, 나만의 와인 만들기, 초콜릿, 쨈, 천연비누 만들기 체험을 해 볼 수 있다. 머루 수확 체험 같은 계절 이벤트도 준비되어 있다.</p>
+				</div>
+			</div>
+			<div class="bre_smallimg_box">
+				<div class="small_image_group">
+					<img src="https://tong.visitkorea.or.kr/cms/resource/89/2005989_image2_1.jpg" alt="" />
+					<img src="https://soollove.com/web/product/big/202312/35d00b4d8bfc7d1d0297c8dfba8f9e1b.jpg" alt="" />
+					<img src="https://img.29cm.co.kr/next-product/2022/08/18/0b73d5490bdd4778b8b20289d445d958_20220818170613.jpg?width=700" alt="" />
+					<img src="https://tong.visitkorea.or.kr/cms/resource/01/1983101_image2_1.jpg" alt="" />
 				</div>
 			</div>
 		</div>
@@ -225,7 +248,7 @@
 <!-- 	<div class="map_API" id="map"></div> -->
 <!-- 지도 위에 표시될 마커 카테고리 -->
 <!-- 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c"></script> -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
+<script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 <script>
 	var barName = "${brewery2.barName}";
 	var barAddr = "${brewery2.barAddr}";

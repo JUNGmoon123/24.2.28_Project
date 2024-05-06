@@ -25,7 +25,7 @@
 		</div>
 		<div class="item is-active">
 			<div class="content">
-				<div class="wrap" onclick="changeUrl(2)">맥 주</div>
+				<div class="wrap" onclick="changeUrl(1)">맥 주</div>
 			</div>
 			<div class="imgs">
 				<div class="grid">
@@ -33,17 +33,15 @@
 						<img src="https://image.dongascience.com/Photo/2018/10/170339c222ebd2b378ef5b4f48b00b35.jpg" alt="">
 					</div>
 					<div class="img img-2">
-						<img src="https://news.imaeil.com/inc/photos/2020/05/21/2020052113283164926_l.jpg" alt="">
+						<img src="https://media.istockphoto.com/id/1550294879/ko/%EC%82%AC%EC%A7%84/%ED%95%B4%EC%A7%88%EB%85%98-%ED%95%B4%EB%A8%B9%EC%97%90%EC%84%9C-%EB%A7%A5%EC%A3%BC%EC%99%80-%ED%95%A8%EA%BB%98-%EA%B1%B4%EB%B0%B0.jpg?s=2048x2048&w=is&k=20&c=QiAwKbavq8_a7-ZQnaSzu5xGwGYctszdYJSYWIfHL-c=" alt="">
 					</div>
 					<div class="img img-3">
 						<img
-							src="https://imgcp.aacdn.jp/img-a/860/auto/global-aaj-front/article/2018/10/5bd9322f2c326_5bd9322575292_735902060.png"
-							alt="">
+							src="https://imgcp.aacdn.jp/img-a/860/auto/global-aaj-front/article/2018/10/5bd9322f2c326_5bd9322575292_735902060.png"alt="">
 					</div>
 					<div class="img img-4">
 						<img
-							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX_wJ9mTPzse-90PNpMTYXmDW0JUzwfBdAZt0O7dO--2PtXIbGdD30ZKiVFBZg8Kg6Qks&usqp=CAU"
-							alt="">
+							src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX_wJ9mTPzse-90PNpMTYXmDW0JUzwfBdAZt0O7dO--2PtXIbGdD30ZKiVFBZg8Kg6Qks&usqp=CAU"alt="">
 					</div>
 				</div>
 			</div>
@@ -55,27 +53,23 @@
 			<div class="imgs">
 				<div class="grid">
 					<div class="img img-1">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC31IQd94R0CA7AeLaEOHZcx3BoFCLxDg1gg&usqp=CAU"
-							alt="">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC31IQd94R0CA7AeLaEOHZcx3BoFCLxDg1gg&usqp=CAU"alt="">
 					</div>
 					<div class="img img-2">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPIqo-gLgvG1iZcBMWKQKkRcH864wz8VeesQ&usqp=CAU"
-							alt="">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPIqo-gLgvG1iZcBMWKQKkRcH864wz8VeesQ&usqp=CAU"alt="">
 					</div>
 					<div class="img img-3">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpC1Rae_-iLhIJ7TToJK-gff6IPLomwM8N-A&usqp=CAU"
-							alt="">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpC1Rae_-iLhIJ7TToJK-gff6IPLomwM8N-A&usqp=CAU"alt="">
 					</div>
 					<div class="img img-4">
-						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQxbffxVy3V1UomfeIPAjmP57HFiKBoF4xg&usqp=CAU"
-							alt="">
+						<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUQxbffxVy3V1UomfeIPAjmP57HFiKBoF4xg&usqp=CAU"alt="">
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="item">
 			<div class="content">
-				<div class="wrap" onclick="changeUrl(3)">전 통 주</div>
+				<div class="wrap" onclick="changeUrl(1)">전 통 주</div>
 			</div>
 			<div class="imgs">
 				<div class="grid">
