@@ -128,7 +128,7 @@ header>div>ul>li:hover>ul {
 	/* 	background-color: pink; */
 	width: 200px; /* 변경된 너비 */
 	margin: auto;
-	left: 20px; /* 이 값은 필요에 따라 조정하세요 */
+	left: 100px; /* 이 값은 필요에 따라 조정하세요 */
 }
 
 .con2 li a {
@@ -267,6 +267,10 @@ body {
 /* 메뉴박스1 */
 .menu_box_1 {
 	margin: auto;
+}
+
+.top_bar > .con > .menu_box_1 > ul > li {
+    margin-right: 20px; /* 각 메뉴 아이템 간의 오른쪽 여백을 20px로 설정합니다. */
 }
 
 .main_background {
@@ -856,96 +860,7 @@ html, body {
 	left: 50%;
 	transform: translateX(40%);
 }
-/* 로그인쪽먼지효과 */
-.dust-paarticle {
-	position: relative;
-	width: 100%;
-	top: 10px;
-}
 
-#dust-paarticle path {
-	transform-box: fill-box;
-	transform-origin: center;
-}
-/* SVG 이미지에 대한 CSS 애니메이션 효과 */
-
-/* 전체 SVG 요소를 감싸는 클래스 */
-.dust-paarticle {
-    position: relative;
-    width: 100%;
-    top: 10px;
-}
-
-/* SVG 내부 요소의 스타일 지정 */
-.dust-paarticle path {
-    transform-box: fill-box;
-    transform-origin: center;
-}
-
-/* 경로에 대한 스타일 지정 */
-.dust-paarticle path {
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-}
-
-/* Stroke 색상 및 투명도 조정 */
-.dust-paarticle path:nth-child(1) {
-    stroke: #F4CD39;
-    opacity: 1;
-}
-
-.dust-paarticle path:nth-child(2),
-.dust-paarticle path:nth-child(3) {
-    stroke: #F4CD39;
-    opacity: 0.46;
-}
-
-.dust-paarticle path:nth-child(4) {
-    stroke: #FDB130;
-}
-
-.dust-paarticle path:nth-child(5) {
-    stroke: #E03F8D;
-}
-
-.dust-paarticle path:nth-child(6),
-.dust-paarticle path:nth-child(7) {
-    stroke: #1DB7C2;
-}
-
-.dust-paarticle path:nth-child(8) {
-    stroke: #FDB130;
-}
-
-.dust-paarticle path:nth-child(9) {
-    stroke: #1DB7C2;
-}
-
-.dust-paarticle path:nth-child(10) {
-    stroke: #FDB130;
-}
-
-.dust-paarticle path:nth-child(11) {
-    stroke: #9E3FB7;
-}
-
-/* 추가적인 Stroke 색상 및 투명도 조정 */
-.dust-paarticle path:nth-child(12),
-.dust-paarticle path:nth-child(13) {
-    stroke: white;
-    opacity: 0.6;
-}
-
-.dust-paarticle path:nth-child(14) {
-    stroke: #9E3FB7;
-    opacity: 0.4;
-}
-
-/* 애니메이션 요소 추가 */
-.dust-paarticle path {
-    transition: opacity 0.3s, stroke 0.3s;
-}
 /* myPage 메뉴, 바 */
 .myPage_main {
 	display: flex;
@@ -1063,230 +978,7 @@ html, body {
 	transition: opacity 0.5s, visibility 0.5s;
 }
 
-/* 상품설정 */
-/* 사이드바 */
-.side_bar {
-	background-color: #ffffff; /* 흰색 배경색 */
-	/* 	color: black; 텍스트 색상을 검은색으로 설정 */
-	height: 100%; /* 높이 100% 설정 */
-	width: 300px; /* 너비 300px 설정 */
-	position: fixed; /* 화면에 고정된 위치로 설정 */
-	top: 0; /* 상단에 위치하도록 설정 */
-	left: -300px; /* 왼쪽으로 숨겨진 상태로 초기 설정 */
-	border-radius: 10px; /* 모서리를 둥글게 설정 */
-	/* 클릭 가능한 영역을 넓히기 위해 패딩을 추가합니다. */
-	padding: 10px 20px; /* 위아래 10px, 좌우 20px */
-	/* 기타 스타일을 적용할 수 있습니다. */
-	transition: left 0.3s, background-color 0.3s;
-	/* 좌측 이동 및 배경색 전환에 대한 transition 효과 설정 */
-}
 
-/* 사이드바 호버 시 */
-.side_bar:hover {
-	color: #000000; /* 텍스트 색상을 검은색으로 변경 */
-	color: black; /* 텍스트 색상 변경 */
-	left: 0; /* 사이드바를 왼쪽으로 이동하여 보이도록 함 */
-}
-
-/* 사이드바 아이콘 */
-.side_bar .status_icon {
-	text-align: right; /* 우측 정렬 */
-	padding: 8px; /* 안쪽 여백 설정 */
-}
-
-/* 사이드바 아이콘 - 기본 상태 */
-.side_bar .status_icon>div:last-child {
-	display: none; /* 두 번째 아이콘은 기본적으로 표시하지 않음 */
-}
-
-/* 사이드바 호버 시 아이콘 변화 */
-.side_bar:hover .status_icon>div:last-child {
-	display: block; /* 호버 시 두 번째 아이콘 표시 */
-}
-
-.side_bar:hover .status_icon>div:first-child {
-	display: none; /* 호버 시 첫 번째 아이콘 숨김 */
-}
-
-/* .filter-column */
-.filter-column {
-	position: fixed; /* 화면에 고정된 위치로 설정 */
-	left: -20px; /* 좌측 여백 0으로 설정 */
-	top: 210px;
-	bottom: 10px; /* 하단 여백 20px 설정 */
-	width: 0; /* 초기에는 가로 길이가 0으로 설정하여 숨김 */
-	padding: 30px; /* 내부 여백 설정 */
-	height: 600px;
-	border-radius: 10px; /* 모서리를 둥글게 설정 */
-	    border-right: 2px solid rgba(0, 0, 0, 0.2); /* 우측 테두리 색상 */
-    border-top: 2px solid rgba(0, 0, 0, 0.2); /* 상단 테두리 색상 */
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2); /* 하단 테두리 색상 */
-/* 	border: 1px solid green; 테두리 설정 */
-	overflow: hidden; /* 내부 요소가 넘치는 경우 숨김 처리 */
-	transition: left 0.8s, background-color 0.5s;
-	/* 트랜지션 효과 설정 */
-}
-
-/* .filter-column 내부 요소 숨김 처리 */
-.filter-column * {
-	visibility: hidden;
-}
-
-/* .filter-column 호버 시 스타일 변경 및 내부 요소 표시 */
-.filter-column:hover {
-	width: auto; /* 텍스트들이 한 번에 나타나도록 가로 길이를 자동으로 설정 */
-}
-
-/* .filter-column 호버 시 내부 요소 표시 */
-.filter-column:hover * {
-	visibility: visible; /* 호버 시 내부 요소 표시 */
-}
-
-/* 상품 목록 보드 */
-.product-main {
-	margin-left: 400px; /* 사이드 바 필터 컬럼의 너비에 맞추어 여백 설정 */
-	padding: 10px;
-	border: 1px solid gold;
-	min-height: 100vh; /* 뷰포트의 높이를 채우도록 설정 */
-}
-
-/* 상품 카드 */
-.product-card {
-	width: 20%; /* 너비 설정 */
-	margin-right: 3%; /* 오른쪽 여백 설정 */
-	text-align: center; /* 가운데 정렬 */
-	min-height: 400px; /* 최소 높이 설정 */
-	padding: 20px; /* 안쪽 여백 설정 */
-	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
-	margin-bottom: 10px; /* 아래 여백 설정 */
-/* 	border: 1px solid green; 테두리 설정 */
-	vertical-align: top; /* 상단 정렬 */
-}
-
-/* 체크박스 컨테이너 */
-.checkboxes {
-	width: 100%; /* 너비 100% 설정 */
-}
-
-.checkbox {
-	width: 100px; /* 원하는 너비로 설정하세요. */
-	height: 50px; /* 원하는 높이로 설정하세요. */
-}
-
-.checkboxes .label {
-	display: flex; /* 플렉스 박스로 설정하여 내부 요소들을 가로로 배치합니다. */
-	align-items: center; /* 수직 중앙 정렬을 수행합니다. */
-}
-
-/* 제목 */
-.title {
-	width: 60%; /* 너비 100% 설정 */
-	font-weight: bold; /* 폰트 굵기 설정 */
-	margin-bottom: 30px; /* 아래 여백 설정 */
-	border: 1px solid green; /* 테두리 설정 */
-}
-
-/* 부제목 */
-.subtitle {
-	width: 60%; /* 너비 100% 설정 */
-	font-size: 18px; /* 폰트 크기 설정 */
-	margin: 10px 10px 15px 0; /* 여백 설정 */
-	border: 1px solid green; /* 테두리 설정 */
-}
-
-/* 메인 상품 목록 */
-.product_main {
-	position: relative; /* 상대 위치 설정 */
-	top: -400px; /* 위로 이동 */
-}
-
-/* 상품 목록 보드 */
-.product-board {
-	height: 500px; /* 높이 설정 */
-	padding: 10px; /* 안쪽 여백 설정 */
-	border: 1px solid gold; /* 테두리 설정 */
-}
-
-/* 상품 카드 */
-.product-card {
-	width: 20%; /* 너비 설정 */
-	margin-right: 3%; /* 오른쪽 여백 설정 */
-	text-align: center; /* 가운데 정렬 */
-	min-height: 400px; /* 최소 높이 설정 */
-	padding: 20px 20px; /* 안쪽 여백 설정 */
-	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
-	float: left; /* 왼쪽으로 띄우기 */
-	margin-bottom: 10px; /* 아래 여백 설정 */
-	border: 1px solid green; /* 테두리 설정 */
-}
-
-/*상품리스트 이미지 */
-.product-card img {
-	width: 150px; /* 원하는 너비(px)로 설정 */
-	height: 200px; /* 원하는 높이(px)로 설정 */
-	display: block; /* 이미지를 블록 요소로 설정하여 수평 중앙 정렬 가능 */
-	margin: 20px auto; /* 자동 마진을 통해 수평 가운데 정렬 */
-}
-
-/* 모델 */
-.model {
-	display: block; /* 블록 요소로 설정 */
-	font-weight: bold; /* 폰트 굵기 설정 */
-	width: 80%; /* 너비 설정 */
-	margin-left: 30px;
-	padding-bottom: 20px; /* 아래 여백 설정 */
-	margin-bottom: 20px; /* 아래 여백 설정 */
-	font-size: 15px; /* 폰트 크기 설정 */
-	color: #163b77; /* 글자 색상 설정 */
-	border-bottom: 2px solid #d1e2ff; /* 아래쪽 테두리 설정 */
-}
-
-/* 이미지 */
-.image {
-	width: 700%; /* 너비 설정 */
-	border-bottom: 2px solid #d1e2ff; /* 아래쪽 테두리 설정 */
-	padding: 10px; /* 안쪽 여백 설정 */
-	margin-bottom: 25px; /* 아래 여백 설정 */
-}
-
-/* 상품 정보 */
-.product-card p {
-	font-size: 16px; /* 폰트 크기 설정 */
-	font-weight: regular; /* 폰트 굵기 설정 */
-}
-
-/* 굵은 텍스트 */
-.bold-text {
-	font-weight: bold; /* 폰트 굵기 설정 */
-}
-
-/* 연도 */
-.year {
-	font-size: 18px; /* 폰트 크기 설정 */
-}
-
-/* 하위 요소 스타일 */
-.subtitle label {
-	display: inline-block;
-	width: auto;
-	height: auto;
-}
-
-.subtitle input[type="checkbox"] {
-	display: inline-block;
-	margin-right: 5px;
-}
-
-/* 레인지 입력 */
-input[type=range] {
-	margin-bottom: 40px; /* 아래 여백 설정 */
-}
-
-/* 라벨 */
-label {
-	width: 80%;
-	font-size: 15px; /* 폰트 크기 설정 */
-}
 
 /* APIgps설정 */
 /* 지도 컨테이너 스타일 */

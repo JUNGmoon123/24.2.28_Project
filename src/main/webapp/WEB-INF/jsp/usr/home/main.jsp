@@ -4,19 +4,11 @@
 <%@ include file="../common/head.jspf"%>
 
 <div class="main_background">
-	<!-- 	<div class="background-box3"> -->
-	<!-- 		<div class="box"> -->
-	<!-- 			<ul> -->
-	<!-- 				<li>뭔가 설명이 들어가면 좋을거같은데...</li> -->
-	<!-- 			</ul> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
 	<div class="slider">
 		<div class="credits">
-			<p>Anime.js implementation of the Diagonal Thumbnail Slideshow Animation</p>
-			<a href="#" target="_blank">여기도 뭔가 써 넣자.</a>
 		</div>
 		<div class="nav">
+<!-- 		양옆이동하기 버튼부분임 -->
 			<div class="next"></div>
 			<div class="prev"></div>
 			<div class="explore-btn" onclick="">
@@ -99,7 +91,7 @@
 				<div class="grid">
 					<div class="img img-1">
 						<img
-							src="https://post-phinf.pstatic.net/MjAyMjA2MjJfNzIg/MDAxNjU1ODgxNDYyNDQz.xTfX1Cjs0Zj8h0C2iwjj8A599Fyz5FagUCQC3VgVvy0g.I2IYMEBpqsYNLLK2kUD8_JHZrUphVObsT1oT9gPhEgIg.PNG/20220621-%EC%BA%90%EC%A3%BC%EC%96%BC-%EC%BD%98%ED%85%90%EC%B8%A0_02.png?type=w800_q75"
+							src="https://media.istockphoto.com/id/484559482/ko/%EC%82%AC%EC%A7%84/%ED%8F%AC%EB%A5%B4%ED%88%AC%EC%B9%BC-%EC%95%95%EC%82%B4%ED%96%88%EB%8B%A4-%ED%8C%BB%EB%A7%90-%EC%99%80%EC%9D%B4%EB%84%88%EB%A6%AC-%EB%B0%B0%EA%B2%BD%EA%B8%B0%EC%88%A0.jpg?s=2048x2048&w=is&k=20&c=OBJ8usDmksmTq75zvyoI5EKh5aI6ZglJQsbQMd7MAkg="
 							alt="">
 					</div>
 					<div class="img img-2">

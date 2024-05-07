@@ -63,13 +63,9 @@ public interface BeerRepository {
 			</if>
 			GROUP BY B.id
 			ORDER BY B.id ASC
-			<if test="limitFrom >= 0 ">
-				LIMIT #{limitFrom}, #{limitTake}
-			</if>
 			</script>
 			""")
-	public List<Beer> getForPrintBeers(int boardId, int limitFrom, int limitTake, String searchKeywordTypeCode,
-			String searchKeyword);
+	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword);
 
 	
 	@Select("""

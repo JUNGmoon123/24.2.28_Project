@@ -3,6 +3,220 @@
 <c:set var="pageTitle" value="술상품"></c:set>
 <%@ include file="../common/head.jspf"%>
 <style>
+
+/* 상품설정 */
+/* 사이드바 */
+.side_bar {
+	background-color: #ffffff; /* 흰색 배경색 */
+	/* color: black; 텍스트 색상을 검은색으로 설정 */
+	height: 100%; /* 높이 100% 설정 */
+	width: 300px; /* 너비 300px 설정 */
+	position: fixed; /* 화면에 고정된 위치로 설정 */
+	top: 0; /* 상단에 위치하도록 설정 */
+	left: 0; /* 왼쪽으로 숨겨진 상태로 초기 설정 */
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	/* 클릭 가능한 영역을 넓히기 위해 패딩을 추가합니다. */
+	padding: 10px 20px; /* 위아래 10px, 좌우 20px */
+	/* 기타 스타일을 적용할 수 있습니다. */
+	transition: left 0.3s, background-color 0.3s;
+	/* 좌측 이동 및 배경색 전환에 대한 transition 효과 설정 */
+}
+
+/* 사이드바 호버 시 */
+.side_bar:hover {
+	color: #000000; /* 텍스트 색상을 검은색으로 변경 */
+	color: black; /* 텍스트 색상 변경 */
+	left: 0; /* 사이드바를 왼쪽으로 이동하여 보이도록 함 */
+}
+
+/* 사이드바 아이콘 */
+.side_bar .status_icon {
+	text-align: right; /* 우측 정렬 */
+	padding: 8px; /* 안쪽 여백 설정 */
+}
+
+/* 사이드바 아이콘 - 기본 상태 */
+.side_bar .status_icon>div:first-child {
+	display: block; /* 첫 번째 아이콘은 기본적으로 표시함 */
+}
+
+/* 사이드바 호버 시 아이콘 변화 */
+.side_bar:hover .status_icon>div:first-child {
+	display: none; /* 호버 시 첫 번째 아이콘 숨김 */
+}
+
+.side_bar:hover .status_icon>div:last-child {
+	display: block; /* 호버 시 두 번째 아이콘 표시 */
+}
+
+/* 왼쪽상품선택메뉴바.filter-column */
+.filter-column {
+	position: fixed; /* 화면에 고정된 위치로 설정 */
+	left: -20px; /* 좌측 여백 0으로 설정 */
+	top: 210px;
+	bottom: 10px; /* 하단 여백 20px 설정 */
+	width: auto; /* 가로 길이를 자동으로 설정하여 보이게 함 */
+	padding: 30px; /* 내부 여백 설정 */
+	height: 600px;
+	border-radius: 10px; /* 모서리를 둥글게 설정 */
+	border-right: 2px solid rgba(0, 0, 0, 0.2); /* 우측 테두리 색상 */
+	border-top: 2px solid rgba(0, 0, 0, 0.2); /* 상단 테두리 색상 */
+	border-bottom: 2px solid rgba(0, 0, 0, 0.2); /* 하단 테두리 색상 */
+	overflow: hidden; /* 내부 요소가 넘치는 경우 숨김 처리 */
+	transition: left 0.8s, background-color 0.5s; /* 트랜지션 효과 설정 */
+	visibility: visible; /* 처음부터 보이도록 함 */
+}
+
+/* .filter-column 내부 요소 */
+.filter-column * {
+	visibility: visible; /* 내부 요소도 처음부터 보이도록 함 */
+}
+/* 상품 목록 보드 */
+.product-main {
+	margin-left: 400px; /* 사이드 바 필터 컬럼의 너비에 맞추어 여백 설정 */
+	padding: 10px;
+	border: 1px solid gold;
+	min-height: 100vh; /* 뷰포트의 높이를 채우도록 설정 */
+}
+
+/* 상품 카드 */
+.product-card {
+	width: 20%; /* 너비 설정 */
+	margin-right: 3%; /* 오른쪽 여백 설정 */
+	text-align: center; /* 가운데 정렬 */
+	min-height: 400px; /* 최소 높이 설정 */
+	padding: 20px; /* 안쪽 여백 설정 */
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+	margin-bottom: 10px; /* 아래 여백 설정 */
+/* 	border: 1px solid green; 테두리 설정 */
+	vertical-align: top; /* 상단 정렬 */
+}
+
+/* 체크박스 컨테이너 */
+.checkboxes {
+	width: 100%; /* 너비 100% 설정 */
+}
+
+.checkbox {
+	width: 100px; /* 원하는 너비로 설정하세요. */
+	height: 50px; /* 원하는 높이로 설정하세요. */
+}
+
+.checkboxes .label {
+	display: flex; /* 플렉스 박스로 설정하여 내부 요소들을 가로로 배치합니다. */
+	align-items: center; /* 수직 중앙 정렬을 수행합니다. */
+}
+
+/* 제목 */
+.title {
+	width: 68%; /* 너비 100% 설정 */
+	font-weight: bold; /* 폰트 굵기 설정 */
+	margin-bottom: 30px; /* 아래 여백 설정 */
+	border: 1px solid green; /* 테두리 설정 */
+}
+
+/* 부제목 */
+.subtitle {
+	width: 60%; /* 너비 100% 설정 */
+	font-size: 18px; /* 폰트 크기 설정 */
+	margin: 10px 10px 15px 0; /* 여백 설정 */
+	border: 1px solid green; /* 테두리 설정 */
+}
+
+/* 메인 상품 목록 */
+.product_main {
+	position: relative; /* 상대 위치 설정 */
+	top: -400px; /* 위로 이동 */
+}
+
+/* 상품 목록 보드 */
+.product-board {
+	height: 500px; /* 높이 설정 */
+	padding: 10px; /* 안쪽 여백 설정 */
+	border: 1px solid gold; /* 테두리 설정 */
+}
+
+/* 상품 카드 */
+.product-card {
+	width: 20%; /* 너비 설정 */
+	margin-right: 3%; /* 오른쪽 여백 설정 */
+	text-align: center; /* 가운데 정렬 */
+	min-height: 400px; /* 최소 높이 설정 */
+	padding: 20px 20px; /* 안쪽 여백 설정 */
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
+	float: left; /* 왼쪽으로 띄우기 */
+	margin-bottom: 10px; /* 아래 여백 설정 */
+	border: 1px solid green; /* 테두리 설정 */
+}
+
+/*상품리스트 이미지 */
+.product-card img {
+	width: 150px; /* 원하는 너비(px)로 설정 */
+	height: 200px; /* 원하는 높이(px)로 설정 */
+	display: block; /* 이미지를 블록 요소로 설정하여 수평 중앙 정렬 가능 */
+	margin: 20px auto; /* 자동 마진을 통해 수평 가운데 정렬 */
+}
+
+/* 모델 */
+.model {
+	display: block; /* 블록 요소로 설정 */
+	font-weight: bold; /* 폰트 굵기 설정 */
+	width: 80%; /* 너비 설정 */
+	margin-left: 30px;
+	padding-bottom: 20px; /* 아래 여백 설정 */
+	margin-bottom: 20px; /* 아래 여백 설정 */
+	font-size: 15px; /* 폰트 크기 설정 */
+	color: #163b77; /* 글자 색상 설정 */
+	border-bottom: 2px solid #d1e2ff; /* 아래쪽 테두리 설정 */
+}
+
+/* 이미지 */
+.image {
+	width: 700%; /* 너비 설정 */
+	border-bottom: 2px solid #d1e2ff; /* 아래쪽 테두리 설정 */
+	padding: 10px; /* 안쪽 여백 설정 */
+	margin-bottom: 25px; /* 아래 여백 설정 */
+}
+
+/* 상품 정보 */
+.product-card p {
+	font-size: 16px; /* 폰트 크기 설정 */
+	font-weight: regular; /* 폰트 굵기 설정 */
+}
+
+/* 굵은 텍스트 */
+.bold-text {
+	font-weight: bold; /* 폰트 굵기 설정 */
+}
+
+/* 연도 */
+.year {
+	font-size: 18px; /* 폰트 크기 설정 */
+}
+
+/* 하위 요소 스타일 */
+.subtitle label {
+	display: inline-block;
+	width: auto;
+	height: auto;
+}
+
+.subtitle input[type="checkbox"] {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+/* 레인지 입력 */
+input[type=range] {
+	margin-bottom: 40px; /* 아래 여백 설정 */
+}
+
+/* 라벨 */
+label {
+	width: 80%;
+	font-size: 15px; /* 폰트 크기 설정 */
+}
+
 .page-btn {
     position: relative; /* 상대적 위치 설정 */
     left: 50px; /* 왼쪽으로 50px 이동 */
@@ -18,24 +232,24 @@
 		<div class="row">
 			<div class="container_side_bar col-md-4">
 				<div class="filter-column side_bar">
-					<h3 class="title">술 선택</h3>
+					<h3 class="title">술 종류,가격</h3>
 					<p class="subtitle">
-						By type: <select id="myType" onchange="product_init()">
+						By 종류: <select id="myType" onchange="product_init()">
 							<option value="All">All</option>
-							<option value="red">Red</option>
-							<option value="white">White</option>
-							<option value="craft">Craft</option>
-							<option value="dark">Dark</option>
+							<option value="red">레드와인</option>
+							<option value="white">화이트와인</option>
+							<option value="craft">수제맥주</option>
+							<option value="dark">흑맥주</option>
 							<option value="makgeolli">막걸리</option>
 							<option value="cheongju">청주</option>
 							<option value="soju">소주</option>
 						</select>
 					</p>
 					<p class="subtitle">
-						By Price: <span class="bold-text" id="currentPrice"></span>
+						By 가격: <span class="bold-text" id="currentPrice"></span>
 					</p>
 					<input id="myRange" type="range" min="3000" max="70000" value="70000" onchange="product_init()">
-					<p class="subtitle">Select</p>
+					<p class="subtitle">종류선택</p>
 					<div class="checkboxes clearfix">
 						<div>
 							<label for="white-color"> <input type="checkbox" id="white-color" name="white" checked
@@ -44,7 +258,7 @@
 						</div>
 						<div>
 							<label for="craft-color"> <input type="checkbox" id="craft-color" name="craft" checked
-								onchange="product_init()"> Craft
+								onchange="product_init()"> 수제맥주
 							</label>
 						</div>
 						<div>
@@ -82,32 +296,7 @@
 	<div id="product" class="product_list">
 		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
 	</div>
-	<!-- 동적 페이징 -->
-	<div class = "page-btn">
-	<div class="pagination flex justify-center mt-3">
-		<c:set var="paginationLen" value="3" />
-		<c:set var="startPage" value="${page - paginationLen >= 1 ? page - paginationLen : 1}" />
-		<c:set var="endPage" value="${page + paginationLen <= pagesCount ? page + paginationLen : pagesCount}" />
-
-		<c:set var="baseUri" value="?boardId=${boardId}" />
-		<c:set var="baseUri" value="${baseUri}&searchKeywordTypeCode=${searchKeywordTypeCode}" />
-		<c:set var="baseUri" value="${baseUri}&searchKeyword=${searchKeyword}" />
-
-		<c:if test="${startPage > 1}">
-			<a class="btn btn-sm" href="${baseUri}&page=1">1</a>
-			<button class="btn btn-sm btn-disabled">...</button>
-		</c:if>
-
-		<c:forEach begin="${startPage}" end="${endPage}" var="i">
-			<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri}&page=${i}">${i}</a>
-		</c:forEach>
-
-		<c:if test="${endPage < pagesCount}">
-			<button class="btn btn-sm btn-disabled">...</button>
-			<a class="btn btn-sm" href="${baseUri}&page=${pagesCount}">${pagesCount}</a>
-		</c:if>
-	</div>
-	</div>
+	
 </body>
 </html>
 
