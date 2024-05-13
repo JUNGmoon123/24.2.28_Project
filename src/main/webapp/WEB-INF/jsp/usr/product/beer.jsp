@@ -222,6 +222,30 @@ label {
     left: 50px; /* 왼쪽으로 50px 이동 */
     top: -80px; /* 위로 20px 이동 */
 }
+
+/* 하단 바 */
+.bottom-bar {
+	margin-top: 60px;
+	text-align: center;
+}
+
+.page-bar a {
+	text-decoration: none; /* 링크 밑줄 제거 */
+}
+
+.page-bar button {
+	background-color: #f9f9f9; /* 버튼 배경색 */
+	border: 1px solid #ccc; /* 테두리 */
+	color: #333; /* 글자 색상 */
+	padding: 8px 16px; /* 패딩 */
+	margin: 4px; /* 마진 */
+	border-radius: 4px; /* 모서리 둥글게 */
+}
+
+.page-bar button:hover {
+	background-color: #e9e9e9; /* 마우스 호버시 색상 변경 */
+}
+
 </style>
 
 <!DOCTYPE html>
@@ -296,7 +320,25 @@ label {
 	<div id="product" class="product_list">
 		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
 	</div>
-	
+	<div class="bottom-bar">
+	<div class="page-bar">
+		<c:if test="${currentPage > 1}">
+			<a href="?page=${currentPage - 1}&limit=20">
+				<button>이전</button>
+			</a>
+		</c:if>
+		<c:forEach begin="1" end="${totalPages}" var="i">
+			<a href="?page=${i}&limit=20">
+				<button>${i}</button>
+			</a>
+		</c:forEach>
+		<c:if test="${currentPage < totalPages}">
+			<a href="?page=${currentPage + 1}&limit=20">
+				<button>다음</button>
+			</a>
+		</c:if>
+	</div>
+</div>
 </body>
 </html>
 

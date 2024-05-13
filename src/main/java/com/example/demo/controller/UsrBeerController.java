@@ -56,7 +56,8 @@ public class UsrBeerController {
 	@RequestMapping("/usr/product/beer")
 	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "8") int boardId,
 	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
-	        @RequestParam(defaultValue = "") String searchKeyword) {
+	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page,
+		    @RequestParam(defaultValue = "20") int limit) {
 
 	    Rq rq = (Rq) req.getAttribute("rq");
 
@@ -68,10 +69,13 @@ public class UsrBeerController {
 	        return rq.historyBackOnView("없는 게시판이에요");
 	    }
 
-	    int itemsInAPage = 16;
-
+	    int offset = (page - 1) * limit;
+	    int totalPages = (int) Math.ceil((double) articlesCount / limit);
 	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
-
+	    
+	    model.addAttribute("totalPages", totalPages);
+	    model.addAttribute("currentPage", page);
+	    
 	    model.addAttribute("board", board);
 	    model.addAttribute("boardId", boardId);
 	    model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
