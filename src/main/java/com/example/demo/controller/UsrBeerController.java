@@ -52,39 +52,75 @@ public class UsrBeerController {
 //		model.addAttribute("beerList", beerList);
 //		return "usr/product/beer";
 //	}
-
+	
+	//페이지네이션 새로받은쪽
 	@RequestMapping("/usr/product/beer")
 	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "8") int boardId,
 	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
 	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page,
-		    @RequestParam(defaultValue = "20") int limit) {
+	        @RequestParam(defaultValue = "14") int limit, @RequestParam(defaultValue = "") String filterType) {
 
 	    Rq rq = (Rq) req.getAttribute("rq");
 
 	    Board board = boardService.getBoardById(boardId);
 
-	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-
 	    if (board == null) {
 	        return rq.historyBackOnView("없는 게시판이에요");
 	    }
 
+	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword, filterType);
 	    int offset = (page - 1) * limit;
 	    int totalPages = (int) Math.ceil((double) articlesCount / limit);
-	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
-	    
+
+	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword, filterType, offset, limit);
+
 	    model.addAttribute("totalPages", totalPages);
 	    model.addAttribute("currentPage", page);
-	    
 	    model.addAttribute("board", board);
 	    model.addAttribute("boardId", boardId);
 	    model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
 	    model.addAttribute("searchKeyword", searchKeyword);
 	    model.addAttribute("articlesCount", articlesCount);
 	    model.addAttribute("beerList", beerList);
+	    model.addAttribute("filterType", filterType);
 
 	    return "usr/product/beer";
 	}
+	
+	//기존
+//	@RequestMapping("/usr/product/beer")
+//	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "8") int boardId,
+//	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
+//	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page,
+//		    @RequestParam(defaultValue = "20") int limit) {
+//
+//	    Rq rq = (Rq) req.getAttribute("rq");
+//
+//	    Board board = boardService.getBoardById(boardId);
+//
+//	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+//
+//	    if (board == null) {
+//	        return rq.historyBackOnView("없는 게시판이에요");
+//	    }
+//
+//	    int offset = (page - 1) * limit;
+//	    int totalPages = (int) Math.ceil((double) articlesCount / limit);
+//	    
+//	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
+//	    
+//	    model.addAttribute("totalPages", totalPages);
+//	    model.addAttribute("currentPage", page);
+//	    
+//	    model.addAttribute("board", board);
+//	    model.addAttribute("boardId", boardId);
+//	    model.addAttribute("searchKeywordTypeCode", searchKeywordTypeCode);
+//	    model.addAttribute("searchKeyword", searchKeyword);
+//	    model.addAttribute("articlesCount", articlesCount);
+//	    model.addAttribute("beerList", beerList);
+//
+//	    return "usr/product/beer";
+//	}
 // CSV로 DB에 저장한 파일을 가져오기위해 사용했으나, model이 제대로 작동함에따라 사용x
 //	private List<Beer> BeerList(String filePath) {
 //		List<Beer> beerList = new ArrayList<>();

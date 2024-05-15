@@ -33,11 +33,14 @@ public interface BeerRepository {
 					</otherwise>
 				</choose>
 			</if>
+				        <if test="filterType != ''">
+			          AND B.btype = #{filterType}
+			      </if>
 			ORDER BY id DESC
 			</script>
 			""")
 
-	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword);
+	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword, String filterType);
 
 	@Select("""
 			<script>
@@ -45,37 +48,40 @@ public interface BeerRepository {
 			FROM beers AS B
 			WHERE 1
 			<if test="boardId != 0">
-				AND B.boardId = #{boardId}
+			    AND B.boardId = #{boardId}
 			</if>
 			<if test="searchKeyword != ''">
-				<choose>
-					<when test="searchKeywordTypeCode == 'btype'">
-						AND B.btype LIKE CONCAT('%',#{searchKeyword},'%')
-					</when>
-					<when test="searchKeywordTypeCode == 'model'">
-						AND B.model LIKE CONCAT('%',#{searchKeyword},'%')
-					</when>
-					<otherwise>
-						AND B.btype LIKE CONCAT('%',#{searchKeyword},'%')
-						OR B.model LIKE CONCAT('%',#{searchKeyword},'%')
-					</otherwise>
-				</choose>
+			    <choose>
+			        <when test="searchKeywordTypeCode == 'btype'">
+			            AND B.btype LIKE CONCAT('%',#{searchKeyword},'%')
+			        </when>
+			        <when test="searchKeywordTypeCode == 'model'">
+			            AND B.model LIKE CONCAT('%',#{searchKeyword},'%')
+			        </when>
+			        <otherwise>
+			            AND (B.btype LIKE CONCAT('%',#{searchKeyword},'%')
+			            OR B.model LIKE CONCAT('%',#{searchKeyword},'%'))
+			        </otherwise>
+			    </choose>
 			</if>
-			GROUP BY B.id
+			<if test="filterType != ''">
+			    AND B.btype = #{filterType}
+			</if>
 			ORDER BY B.id ASC
+			<if test="offset >= 0 and limit > 0">
+			    LIMIT #{limit} OFFSET #{offset}
+			</if>
 			</script>
 			""")
-	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword);
+	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword,
+			String filterType, int offset, int limit);
 
-	
 	@Select("""
 			SELECT *
 			FROM beers
 			WHERE id = #{id}
 			""")
-	public  Beer getForPrintBeer(int id);
-		
-
+	public Beer getForPrintBeer(int id);
 
 //	@Select("""
 //			SELECT * 
@@ -83,6 +89,5 @@ public interface BeerRepository {
 //			ORDER BY id ASC
 //			""")
 //	public List<Beer> selectList();
-
 
 }

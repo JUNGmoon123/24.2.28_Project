@@ -88,7 +88,7 @@
 	padding: 20px; /* 안쪽 여백 설정 */
 	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.1); /* 그림자 설정 */
 	margin-bottom: 10px; /* 아래 여백 설정 */
-/* 	border: 1px solid green; 테두리 설정 */
+	/* 	border: 1px solid green; 테두리 설정 */
 	vertical-align: top; /* 상단 정렬 */
 }
 
@@ -218,38 +218,84 @@ label {
 }
 
 .page-btn {
-    position: relative; /* 상대적 위치 설정 */
-    left: 50px; /* 왼쪽으로 50px 이동 */
-    top: -80px; /* 위로 20px 이동 */
+	position: relative; /* 상대적 위치 설정 */
+	left: 50px; /* 왼쪽으로 50px 이동 */
+	top: -80px; /* 위로 20px 이동 */
 }
 
 /* 하단 바 */
-.bottom-bar {
-	margin-top: 60px;
-	text-align: center;
-}
 
-.page-bar a {
-	text-decoration: none; /* 링크 밑줄 제거 */
-}
+    .bottom-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff; /* 배경색을 설정하고 필요에 따라 다른 스타일을 적용할 수 있습니다. */
+        padding: 10px; /* 필요에 따라 여백을 조정하세요. */
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 하단에 그림자를 추가합니다. */
+    }
 
-.page-bar button {
-	background-color: #f9f9f9; /* 버튼 배경색 */
-	border: 1px solid #ccc; /* 테두리 */
-	color: #333; /* 글자 색상 */
-	padding: 8px 16px; /* 패딩 */
-	margin: 4px; /* 마진 */
-	border-radius: 4px; /* 모서리 둥글게 */
-}
+    .page-bar {
+        text-align: center; /* 페이지네이션 버튼을 중앙 정렬합니다. */
+    }
+
+    .page-bar a {
+        text-decoration: none;
+        margin: 0 5px; /* 페이지 버튼 사이의 간격을 설정합니다. */
+    }
+
+    .page-bar button {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 8px 16px;
+        margin: 4px;
+        border-radius: 4px;
+    }
+
+    .page-bar button:hover {
+        background-color: #e9e9e9;
+    }
+
+    .page-bar button.active {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+/* 기존 */
+/* .bottom-bar { */
+/* 	margin-top: 60px; */
+/* 	text-align: center; */
+/* } */
+
+/* .page-bar a { */
+/* 	text-decoration: none; /* 링크 밑줄 제거 */ */
+/* } */
+
+/* .page-bar button { */
+/* 	background-color: #f9f9f9; /* 버튼 배경색 */ */
+/* 	border: 1px solid #ccc; /* 테두리 */ */
+/* 	color: #333; /* 글자 색상 */ */
+/* 	padding: 8px 16px; /* 패딩 */ */
+/* 	margin: 4px; /* 마진 */ */
+/* 	border-radius: 4px; /* 모서리 둥글게 */ */
+/* } */
 
 .page-bar button:hover {
 	background-color: #e9e9e9; /* 마우스 호버시 색상 변경 */
 }
-
+/*페이지네이션*/
+.page-bar button.active {
+	background-color: #007bff; /* 강조 색상 */
+	color: #fff; /* 텍스트 색상 */
+}
 </style>
 
 <!DOCTYPE html>
 <html>
+
+
+
 <section class="content mt-8 text-xl px-4">
 	<div>술 메뉴</div>
 	<div class="container-fluid">
@@ -318,27 +364,27 @@ label {
 </section>
 <body>
 	<div id="product" class="product_list">
-		<!-- 맥주 데이터를 동적으로 추가할 곳입니다. -->
+		<!-- 맥주 데이터를 동적으로 추가할 곳입니다.-->
 	</div>
 	<div class="bottom-bar">
-	<div class="page-bar">
-		<c:if test="${currentPage > 1}">
-			<a href="?page=${currentPage - 1}&limit=20">
-				<button>이전</button>
-			</a>
-		</c:if>
-		<c:forEach begin="1" end="${totalPages}" var="i">
-			<a href="?page=${i}&limit=20">
-				<button>${i}</button>
-			</a>
-		</c:forEach>
-		<c:if test="${currentPage < totalPages}">
-			<a href="?page=${currentPage + 1}&limit=20">
-				<button>다음</button>
-			</a>
-		</c:if>
+		<div class="page-bar">
+			<c:if test="${currentPage > 1}">
+				<a href="?page=${currentPage - 1}&limit=15">
+					<button>이전</button>
+				</a>
+			</c:if>
+			<c:forEach begin="1" end="${totalPages}" var="i">
+				<a href="?page=${i}&limit=15">
+					<button class="${i == currentPage ? 'active' : ''}">${i}</button>
+				</a>
+			</c:forEach>
+			<c:if test="${currentPage < totalPages}">
+				<a href="?page=${currentPage + 1}&limit=20">
+					<button>다음</button>
+				</a>
+			</c:if>
+		</div>
 	</div>
-</div>
 </body>
 </html>
 
@@ -372,10 +418,6 @@ label {
 	    cheongju: true,
 	    soju: true
 	};
-	// 페이지 로드 시 초기화 함수 호출
-	window.onload = function() {
-	    product_init();
-	};
 
 	// 초기화 함수
 	//이부분이 없으면 술 상품 사이드 메뉴 By price데이터를 받오지 못한다.
@@ -387,6 +429,10 @@ label {
 	    document.getElementById("currentPrice").innerHTML = price; // 현재 가격 표시
 	    document.getElementById("product").innerHTML = draw_products(price, type); // 제품 표시
 	}
+	// 페이지 로드 시 초기화 함수 호출
+	window.onload = function() {
+	    product_init();
+	};
 
 	// 이벤트 핸들러 등록을 통해 초기값 설정
 	//이부분을 추가했더니 초기값이 제대로 들어가기 시작함.
@@ -411,11 +457,6 @@ label {
 	    }
 	    return content; // content 반환
 	}
-
-	// 제품 카드 생성 함수
-// 	function draw_card(product) {
-// 	    return '<div class="product-card"><h3 class="model">' + product.model + '</h3><img class="image" src="' + product.src + '" alt ="' + product.model + '"><p class="year">Year: <span class="bold-text">' + product.year + '</span></p><p class="color">Color: <span class="bold-text">' + product.color + '</span></p><p class="price">Price: <span class="bold-text">' + product.price + '</span></p></div>'; // 제품 카드 HTML 반환
-// 	}
 
 		// 제품 카드 클릭 이벤트 처리
 	document.addEventListener("click", function(event) {
@@ -455,8 +496,8 @@ label {
 	    return settings[color]; // 해당 색상이 settings 객체에 있는지 확인하고 결과 반환
 	}
 
-
 </script>
+
 
 
 <%@ include file="../common/foot.jspf"%>

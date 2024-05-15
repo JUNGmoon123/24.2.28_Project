@@ -139,7 +139,7 @@ header>div>ul>li:hover>ul {
 }
 
 body {
-	height: 10000px;
+	height: auto;
 }
 /* 탑바 */
 .header_bar {

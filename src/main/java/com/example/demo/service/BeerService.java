@@ -19,14 +19,12 @@ public class BeerService {
 		this.beerRepository = beerRepository;
 	}
 	
-	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
-		return beerRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
+	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword, String filterType) {
+		return beerRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword, filterType);
 	}
 
-	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword) {
-
-		
-		return beerRepository.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword);
+	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword, String filterType, int offset, int limit) {
+	    return beerRepository.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword, filterType, offset, limit);
 	}
 
 	public Beer getForPrintBeer(int id) {
