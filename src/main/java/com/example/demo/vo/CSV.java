@@ -18,4 +18,5 @@ public class CSV {
 	    private String barlatitude;
 	    private String barlongitude;
 	    
+	    private String barimage;
 }

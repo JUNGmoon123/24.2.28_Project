@@ -58,7 +58,7 @@ public class UsrBeerController {
 	public String getProductBeer(HttpServletRequest req, Model model, @RequestParam(defaultValue = "8") int boardId,
 	        @RequestParam(defaultValue = "btype, model") String searchKeywordTypeCode,
 	        @RequestParam(defaultValue = "") String searchKeyword, @RequestParam(defaultValue = "1") int page,
-	        @RequestParam(defaultValue = "14") int limit, @RequestParam(defaultValue = "") String filterType) {
+	        @RequestParam(defaultValue = "14") int limit, @RequestParam(defaultValue = "") String btype) {
 
 	    Rq rq = (Rq) req.getAttribute("rq");
 
@@ -68,11 +68,11 @@ public class UsrBeerController {
 	        return rq.historyBackOnView("없는 게시판이에요");
 	    }
 
-	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword, filterType);
+	    int articlesCount = beerService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword, btype);
 	    int offset = (page - 1) * limit;
 	    int totalPages = (int) Math.ceil((double) articlesCount / limit);
 
-	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword, filterType, offset, limit);
+	    List<Beer> beerList = beerService.getForPrintBeers(boardId, searchKeywordTypeCode, searchKeyword, btype, offset, limit);
 
 	    model.addAttribute("totalPages", totalPages);
 	    model.addAttribute("currentPage", page);
@@ -82,7 +82,7 @@ public class UsrBeerController {
 	    model.addAttribute("searchKeyword", searchKeyword);
 	    model.addAttribute("articlesCount", articlesCount);
 	    model.addAttribute("beerList", beerList);
-	    model.addAttribute("filterType", filterType);
+	    model.addAttribute("btype", btype);
 
 	    return "usr/product/beer";
 	}

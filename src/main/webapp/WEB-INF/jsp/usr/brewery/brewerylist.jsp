@@ -161,13 +161,11 @@ body2 {
 	font-family: Poppins, sans-serif;
 }
 
-
 .blog-card h1 {
 	line-height: 1;
 	margin: 0;
 	font-size: 1.7rem;
 }
-
 
 .blog-card h2 {
 	font-size: 1rem;
@@ -270,32 +268,169 @@ body2 {
 	}
 }
 /* 검색창 스타일옵션 */
-.search_box{
+.search_box {
+	
 }
-.search_box_1{
+
+.search_box_1 {
 	margin-left: 45%;
 }
-.search_option{
-	 max-width: 10rem;
+
+.search_option {
+	max-width: 10rem;
+}
+
+/* 지도옵션 */
+.map_wrap {
+	display: flex; /* Flexbox를 사용하여 자식 요소를 수평으로 배치 */
+	justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
+	align-items: flex-start; /* 수직 방향으로 맞춤 */
+	position: relative;
+	left: 10%;
+	width: 80%;
+	height: 500px;
+	border: 2px solid red;
+	top: 10px;
+	text-align: center;
+}
+
+#map {
+	display: inline-block; /* 추가 지도를 가운데로 옮기기 위해서 text-align과 같이 씀 */
+	overflow: hidden;
+}
+
+.wrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
+
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .info {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #fff;
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.info .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.info .close:hover {
+	cursor: pointer;
+}
+
+.info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .jibun {
+	font-size: 11px;
+	color: #888;
+	margin-top: -2px;
+}
+
+.info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: auto;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background:
+		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+	color: #5085BB;
 }
 </style>
+
+<div class="map_wrap">
+	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
+</div>
 <div class="badge badge-outline">${articlesCount }개</div>
-		<div class="flex-grow"></div>
-		<form class="search_box" action="">
-			<div class="search_box_1">
-			<input type="hidden" name="boardId" value="${param.boardId }" />
+<div class="flex-grow"></div>
+<form class="search_box" action="">
+	<div class="search_box_1">
+		<input type="hidden" name="boardId" value="${param.boardId }" />
 
-			<select data-value="${param.searchKeywordTypeCode }" class=" search_option select select-bordered select-sm w-full" name="searchKeywordTypeCode">
-				<option value="barName,barAddr">전체</option>
-				<option value=barName>양조장이름</option>
-				<option value="barAddr">주소</option>
-			</select>
-			<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
-				class="input-sm input input-bordered w-48 max-w-xs" />
-			<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
+		<select data-value="${param.searchKeywordTypeCode }" class=" search_option select select-bordered select-sm w-full"
+			name="searchKeywordTypeCode">
+			<option value="barName,barAddr">전체</option>
+			<option value=barName>양조장이름</option>
+			<option value="barAddr">주소</option>
+		</select>
+		<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
+			class="input-sm input input-bordered w-48 max-w-xs" />
+		<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
 
-			</div>
-		</form>
+	</div>
+</form>
 <div class="body3">
 	<div class="main_brewery">
 		<div class="body2">
@@ -303,7 +438,7 @@ body2 {
 				<c:if test="${loop.index % 2 == 0}">
 					<div class="blog-card alt">
 						<div class="meta">
-							<div class="photo"style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
+							<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
 							<ul class="details">
 								<li class="author">
 									<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
@@ -340,46 +475,46 @@ body2 {
 					</div>
 				</c:if>
 				<c:if test="${loop.index % 2 != 0}">
-				<div class="blog-card">
-					<div class="meta">
-						<div class="photo" style="background-image: url(https://www.nongsaro.go.kr/cms_contents/1100/202753_MF_BIMG_01.jpg)"></div>
-						<ul class="details">
-							<li class="author">
-								<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
-							</li>
-							<li class="homepage">
-								<a href="${brewery2.barWeb}"></a>
-								July. 15, 2015
-							</li>
-							<li class="tags">
-								<ul>
-									<li>
-										<a href="#">Learn</a>
-									</li>
-									<li>
-										<a href="#">Code</a>
-									</li>
-									<li>
-										<a href="#">HTML</a>
-									</li>
-									<li>
-										<a href="#">CSS</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
+					<div class="blog-card">
+						<div class="meta">
+							<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
+							<ul class="details">
+								<li class="author">
+									<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
+								</li>
+								<li class="homepage">
+									<a href="${brewery2.barWeb}"></a>
+									July. 15, 2015
+								</li>
+								<li class="tags">
+									<ul>
+										<li>
+											<a href="#">Learn</a>
+										</li>
+										<li>
+											<a href="#">Code</a>
+										</li>
+										<li>
+											<a href="#">HTML</a>
+										</li>
+										<li>
+											<a href="#">CSS</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="description">
+							<td style="display: none;">${brewery2.id }</td>
+							<h1>${brewery2.barName }</h1>
+							<h2>연락처 ${brewery2.barNumber }</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+								praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+							<p class="read-more">
+								<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
+							</p>
+						</div>
 					</div>
-					<div class="description">
-						<td style="display: none;">${brewery2.id }</td>
-						<h1>${brewery2.barName }</h1>
-						<h2>연락처 ${brewery2.barNumber }</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
-							praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-						<p class="read-more">
-							<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
-						</p>
-					</div>
-				</div>
 				</c:if>
 			</c:forEach>
 			<!-- 동적 페이징  -->
@@ -408,6 +543,152 @@ body2 {
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
+<script>
+    // Array to hold brewery data
+    var breweries = [];
+    <c:forEach var="brewery2" items="${brewerys2}">
+        breweries.push({
+            name: "${brewery2.barName}",
+            addr: "${brewery2.barAddr}",
+            web: "${brewery2.barWeb}",
+            image: "${brewery2.barimage}",
+            latitude: parseFloat("${brewery2.barlatitude}"),
+            longitude: parseFloat("${brewery2.barlongitude}")
+        });
+    </c:forEach>
+
+    // Initialize the map
+    var mapContainer = document.getElementById('map');
+    var mapOption = {
+        center: new kakao.maps.LatLng(breweries[0].latitude, breweries[0].longitude),
+        level: 3 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
+    };
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // Function to create markers and overlays
+    function createMarker(brewery) {
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(brewery.latitude, brewery.longitude)
+        });
+
+        var content = '<div class="wrap">' +
+            '    <div class="info">' +
+            '        <div class="title">' + brewery.name +
+            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' +
+            '        </div>' +
+            '        <div class="body">' +
+            '            <div class="img">' +
+            '                <img src="' + brewery.image + '" width="50" height="60">' +
+            '            </div>' +
+            '            <div class="desc">' +
+            '                <div class="ellipsis">' + brewery.addr + '</div>' +
+            '                <div class="jibun ellipsis">추가할 내용이 있음?</div>' +
+            '                <div><a href="' + brewery.web + '" target="_blank" class="link">홈페이지</a></div>' +
+            '            </div>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>';
+
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            map: map,
+            position: marker.getPosition()
+        });
+
+        // Attach the overlay to the marker
+        marker.overlay = overlay;
+
+        // Ensure closeOverlay can access the correct overlay
+        window.closeOverlay = function (element) {
+            var parentOverlay = element.parentNode.parentNode.parentNode.parentNode;
+            parentOverlay.style.display = 'none';
+        };
+
+        // Return the marker and overlay
+        return {
+            marker: marker,
+            overlay: overlay
+        };
+    }
+
+    // Create markers for all breweries
+    var markersAndOverlays = [];
+    for (var i = 0; i < breweries.length; i++) {
+        markersAndOverlays.push(createMarker(breweries[i]));
+    }
+
+    // Initially display all overlays
+    for (var j = 0; j < markersAndOverlays.length; j++) {
+        markersAndOverlays[j].overlay.setMap(map);
+    }
+</script>
+<!--
+<script>
+	var barName = "${brewery2.barName}";
+	var barAddr = "${brewery2.barAddr}";
+	var barWeb = "${brewery2.barWeb}";
+	// var barsrc //이미지는 아직 미정
+	var barlatitude = parseFloat("${brewery2.barlatitude}");
+	var barlongitude = parseFloat("${brewery2.barlongitude}");
+	// mapOption의 center를 숨겨진 요소에서 가져온 위도와 경도로 설정합니다.
+	var mapOption = {
+		center : new kakao.maps.LatLng(barlatitude, barlongitude), // 위도와 경도를 사용하여 지도의 중심좌표 설정
+		level : 3
+	};
+
+	// 지도를 표시할 요소를 가져옵니다.
+	var mapContainer = document.getElementById('map');
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	// 지도에 마커를 표시합니다 
+	// 마커의 position을 숨겨진 요소에서 가져온 위도와 경도로 설정합니다.
+	var marker = new kakao.maps.Marker({
+		map : map,
+		position : new kakao.maps.LatLng(barlatitude, barlongitude)
+	// 위도와 경도를 사용하여 마커의 위치 설정
+	});
+
+	// 커스텀 오버레이에 표시할 컨텐츠 입니다
+	var content = '<div class="wrap">'
+			+ '    <div class="info">'
+			+ '        <div class="title">'
+			+ barName
+			+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
+			+ '        </div>'
+			+ '        <div class="body">'
+			+ '            <div class="img">'
+			+ '                <img src="'+ barimage +'" width="73" height="70">'
+			+ '           </div>'
+			+ '            <div class="desc">'
+			+ '                <div class="ellipsis">'
+			+ barAddr
+			+ '</div>'
+			+ '                <div class="jibun ellipsis">추가할 내용이 있음?</div>'
+			+ '                <div><a href="' + barWeb + '" target="_blank" class="link">홈페이지</a></div>'
+			+ '            </div>' + '        </div>' + '    </div>' + '</div>';
+
+	// 마커 위에 커스텀오버레이를 표시합니다
+	var overlay = new kakao.maps.CustomOverlay({
+		content : content,
+		map : map,
+		position : marker.getPosition()
+	});
+
+	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+	kakao.maps.event.addListener(marker, 'click', function() {
+		overlay.setMap(map);
+	});
+
+	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+	function closeOverlay() {
+		overlay.setMap(null);
+	}
+</script>
+-->
+
 </body>
 </html>
 

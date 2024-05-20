@@ -13,9 +13,9 @@ public interface CSVRepository {
 
     @Insert({
             "<script>",
-            "INSERT INTO brewery (barName, barAddr, barNumber, barWeb, barlatitude, barlongitude) VALUES ",
+            "INSERT INTO brewery (barName, barAddr, barNumber, barWeb, barlatitude, barlongitude, barimage) VALUES ",
             "<foreach collection='csvList' item='item' index='index' separator=','>",
-            "(#{item.barName}, #{item.barAddr}, #{item.barNumber}, #{item.barWeb}, #{item.barlatitude}, #{item.barlongitude} )",
+            "(#{item.barName}, #{item.barAddr}, #{item.barNumber}, #{item.barWeb}, #{item.barlatitude}, #{item.barlongitude}, #{item.barimage} )",
             "</foreach>",
             "</script>"
     })

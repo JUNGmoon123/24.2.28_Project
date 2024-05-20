@@ -204,7 +204,7 @@
 		<div class="left_half_main"></div>
 		<div>
 			<div class="bre_img_box">
-				<img src="https://img6.yna.co.kr/etc/inner/KR/2020/12/04/AKR20201204086200805_13_i_P4.jpg" alt="" />
+				<img src="${brewery2.barimage}" alt="" />
 			</div>
 			<div class="bre_text_box hover">
 				<div class="barlatitude" style="display: none;">${brewery2.barlatitude}</div>

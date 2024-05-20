@@ -20,5 +20,5 @@ public class Brewery2 {
     //위도 경도
     private String barlatitude;
     private String barlongitude;
-
+    private String barimage;
 }

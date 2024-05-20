@@ -33,14 +33,14 @@ public interface BeerRepository {
 					</otherwise>
 				</choose>
 			</if>
-				        <if test="filterType != ''">
-			          AND B.btype = #{filterType}
+				        <if test="btype != ''">
+			          AND B.btype = #{btype}
 			      </if>
 			ORDER BY id DESC
 			</script>
 			""")
 
-	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword, String filterType);
+	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword, String btype);
 
 	@Select("""
 			<script>
@@ -64,8 +64,8 @@ public interface BeerRepository {
 			        </otherwise>
 			    </choose>
 			</if>
-			<if test="filterType != ''">
-			    AND B.btype = #{filterType}
+			<if test="btype != ''">
+			    AND B.btype = #{btype}
 			</if>
 			ORDER BY B.id ASC
 			<if test="offset >= 0 and limit > 0">
@@ -74,7 +74,7 @@ public interface BeerRepository {
 			</script>
 			""")
 	public List<Beer> getForPrintBeers(int boardId, String searchKeywordTypeCode, String searchKeyword,
-			String filterType, int offset, int limit);
+			String btype, int offset, int limit);
 
 	@Select("""
 			SELECT *
