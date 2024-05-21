@@ -544,7 +544,7 @@ body2 {
 	</div>
 </div>
 
-<script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 <script>
     // Array to hold brewery data
     var breweries = [];
@@ -563,9 +563,98 @@ body2 {
     var mapContainer = document.getElementById('map');
     var mapOption = {
         center: new kakao.maps.LatLng(breweries[0].latitude, breweries[0].longitude),
-        level: 3 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
+        level: 5 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // Variable to keep track of the currently open overlay and its content
+    var currentOverlay = null;
+
+    // Function to create markers and overlays
+    function createMarker(brewery) {
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: new kakao.maps.LatLng(brewery.latitude, brewery.longitude)
+        });
+
+        var content = '<div class="wrap">' +
+            '    <div class="info">' +
+            '        <div class="title">' + brewery.name + '</div>' +
+            '        <div class="body">' +
+            '            <div class="img">' +
+            '                <img src="' + brewery.image + '" width="50" height="60">' +
+            '            </div>' +
+            '            <div class="desc">' +
+            '                <div class="ellipsis">' + brewery.addr + '</div>' +
+            '                <div class="jibun ellipsis">추가할 내용이 있음?</div>' +
+            '                <div><a href="' + brewery.web + '" target="_blank" class="link">홈페이지</a></div>' +
+            '            </div>' +
+            '        </div>' +
+            '    </div>' +
+            '</div>';
+
+        var overlay = new kakao.maps.CustomOverlay({
+            content: content,
+            position: marker.getPosition(),
+            map: map // Initially, display the overlay
+        });
+
+        // 현재 마커에 대한 오버레이를 추적하는 변수
+        var currentOverlay = null;
+
+        // 마커 클릭 이벤트 추가
+        kakao.maps.event.addListener(marker, 'click', function () {
+            // 현재 오버레이가 열려있으면 닫음
+            if (currentOverlay) {
+                currentOverlay.setMap(null);
+                // 열려있는 오버레이와 클릭한 마커가 같으면 종료
+                if (currentOverlay.getContent() == content) {
+                    currentOverlay = null;
+                    return;
+                }
+            }
+            // 클릭된 마커의 오버레이를 엽니다.
+            overlay.setMap(map);
+            currentOverlay = overlay;
+        });
+
+        return {
+            marker: marker,
+            overlay: overlay
+        };
+    }
+
+    // 모든 브루어리에 대해 마커와 오버레이를 생성합니다.
+    var markersAndOverlays = [];
+    for (var i = 0; i < breweries.length; i++) {
+        markersAndOverlays.push(createMarker(breweries[i]));
+    }
+</script>
+<!-- 
+<script>
+    // Array to hold brewery data
+    var breweries = [];
+    <c:forEach var="brewery2" items="${brewerys2}">
+        breweries.push({
+            name: "${brewery2.barName}",
+            addr: "${brewery2.barAddr}",
+            web: "${brewery2.barWeb}",
+            image: "${brewery2.barimage}",
+            latitude: parseFloat("${brewery2.barlatitude}"),
+            longitude: parseFloat("${brewery2.barlongitude}")
+        });
+    </c:forEach>
+
+    // Initialize the map
+    var mapContainer = document.getElementById('map');
+    var mapOption = {
+        center: new kakao.maps.LatLng(breweries[0].latitude, breweries[0].longitude),
+        level: 5 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
+    };
+    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+    // Variable to keep track of the currently open overlay
+    var currentOverlay = null;
 
     // Function to create markers and overlays
     function createMarker(brewery) {
@@ -594,101 +683,46 @@ body2 {
 
         var overlay = new kakao.maps.CustomOverlay({
             content: content,
-            map: map,
-            position: marker.getPosition()
+            position: marker.getPosition(),
+            map: map // Initially, display the overlay
         });
 
-        // Attach the overlay to the marker
-        marker.overlay = overlay;
-
-        // Ensure closeOverlay can access the correct overlay
+        // 오버레이 닫기 버튼 함수
         window.closeOverlay = function (element) {
-            var parentOverlay = element.parentNode.parentNode.parentNode.parentNode;
-            parentOverlay.style.display = 'none';
+            var overlay = element.closest('.wrap').overlay;
+            overlay.setMap(null);
+            if (currentOverlay === overlay) {
+                currentOverlay = null;
+            }
         };
 
-        // Return the marker and overlay
+        // 마커 클릭 이벤트 추가
+        kakao.maps.event.addListener(marker, 'click', function () {
+            // 현재 열려있는 오버레이가 있으면 닫습니다.
+            if (currentOverlay) {
+                currentOverlay.setMap(null);
+            }
+            // 클릭된 마커의 오버레이를 엽니다.
+            overlay.setMap(map);
+            currentOverlay = overlay;
+        });
+
+        // Assign overlay to the content for easy access in closeOverlay
+        content.overlay = overlay;
+
         return {
             marker: marker,
             overlay: overlay
         };
     }
 
-    // Create markers for all breweries
+    // 모든 브루어리에 대해 마커와 오버레이를 생성합니다.
     var markersAndOverlays = [];
     for (var i = 0; i < breweries.length; i++) {
         markersAndOverlays.push(createMarker(breweries[i]));
     }
-
-    // Initially display all overlays
-    for (var j = 0; j < markersAndOverlays.length; j++) {
-        markersAndOverlays[j].overlay.setMap(map);
-    }
-</script>
-<!--
-<script>
-	var barName = "${brewery2.barName}";
-	var barAddr = "${brewery2.barAddr}";
-	var barWeb = "${brewery2.barWeb}";
-	// var barsrc //이미지는 아직 미정
-	var barlatitude = parseFloat("${brewery2.barlatitude}");
-	var barlongitude = parseFloat("${brewery2.barlongitude}");
-	// mapOption의 center를 숨겨진 요소에서 가져온 위도와 경도로 설정합니다.
-	var mapOption = {
-		center : new kakao.maps.LatLng(barlatitude, barlongitude), // 위도와 경도를 사용하여 지도의 중심좌표 설정
-		level : 3
-	};
-
-	// 지도를 표시할 요소를 가져옵니다.
-	var mapContainer = document.getElementById('map');
-	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-	// 지도에 마커를 표시합니다 
-	// 마커의 position을 숨겨진 요소에서 가져온 위도와 경도로 설정합니다.
-	var marker = new kakao.maps.Marker({
-		map : map,
-		position : new kakao.maps.LatLng(barlatitude, barlongitude)
-	// 위도와 경도를 사용하여 마커의 위치 설정
-	});
-
-	// 커스텀 오버레이에 표시할 컨텐츠 입니다
-	var content = '<div class="wrap">'
-			+ '    <div class="info">'
-			+ '        <div class="title">'
-			+ barName
-			+ '            <div class="close" onclick="closeOverlay()" title="닫기"></div>'
-			+ '        </div>'
-			+ '        <div class="body">'
-			+ '            <div class="img">'
-			+ '                <img src="'+ barimage +'" width="73" height="70">'
-			+ '           </div>'
-			+ '            <div class="desc">'
-			+ '                <div class="ellipsis">'
-			+ barAddr
-			+ '</div>'
-			+ '                <div class="jibun ellipsis">추가할 내용이 있음?</div>'
-			+ '                <div><a href="' + barWeb + '" target="_blank" class="link">홈페이지</a></div>'
-			+ '            </div>' + '        </div>' + '    </div>' + '</div>';
-
-	// 마커 위에 커스텀오버레이를 표시합니다
-	var overlay = new kakao.maps.CustomOverlay({
-		content : content,
-		map : map,
-		position : marker.getPosition()
-	});
-
-	// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-	kakao.maps.event.addListener(marker, 'click', function() {
-		overlay.setMap(map);
-	});
-
-	// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-	function closeOverlay() {
-		overlay.setMap(null);
-	}
 </script>
 -->
-
 </body>
 </html>
 
