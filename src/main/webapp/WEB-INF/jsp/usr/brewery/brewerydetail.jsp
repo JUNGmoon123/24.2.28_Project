@@ -13,7 +13,7 @@
 	position: relative;
 	left: 10%;
 	width: 80%;
-	height: 500px;
+	height: 400px;
 	border: 2px solid red;
 	top: 100px;
 	text-align: center;
@@ -194,7 +194,7 @@
 /* 리뷰css */
 .bre_review_box {
 	width: 40%; /* 리뷰 박스의 너비를 조정하여 맵과 함께 한 공간에 있도록 설정 */
-	height: 500px;
+	height: 400px;
 	border: 2px solid red;
 }
 </style>

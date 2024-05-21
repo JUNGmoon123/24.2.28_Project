@@ -48,7 +48,7 @@ body2 {
 	overflow: hidden;
 	z-index: 0;
 	width: 100%;
-	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* 명암 추가 */
+	box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4); /* 명암 추가 */
 }
 
 /* 블로그 카드 내 하이퍼링크 스타일 */
@@ -230,6 +230,19 @@ body2 {
 	left: 0%;
 }
 
+.search-container {
+    width: 30%; /* 검색창이 차지할 영역의 너비 조정 */
+    float: left; /* 검색창을 왼쪽에 배치 */
+}
+
+.blog-container {
+    width: 65%; /* 블로그 카드가 차지할 영역의 너비 조정 */
+    position: absolute; /* 절대 위치 지정 */
+    right: 6%; /* 오른쪽 여백 설정 */
+    top: 20%; /* 상단 여백 설정 */
+/*     border: 2px solid green; */
+}
+
 /* 미디어 쿼리 */
 @media ( min-width : 640px) {
 	.blog-card {
@@ -269,11 +282,17 @@ body2 {
 }
 /* 검색창 스타일옵션 */
 .search_box {
-	
+/* 	border: 2px solid green; */
+	width: 1000px; /* 너비 조정 (예시로 300px로 설정) */
+	position: absolute; /* 절대 위치로 설정 */
+	top: 15%; /* 원하는 위치로 조정 */
+	right: 0; /* 오른쪽 정렬 */
+	margin-top: 10px; /* 필요에 따라 여백 조정 */
+	margin-right: 50px; /* 필요에 따라 오른쪽 여백 조정 */
 }
 
 .search_box_1 {
-	margin-left: 45%;
+	margin-right: 0; /* 추가 스타일 조정 */
 }
 
 .search_option {
@@ -286,17 +305,18 @@ body2 {
 	justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
 	align-items: flex-start; /* 수직 방향으로 맞춤 */
 	position: relative;
-	left: 10%;
-	width: 80%;
-	height: 500px;
-	border: 2px solid red;
-	top: 10px;
+	left: 2%;
+	width: 35%;
+	height: 800px;
+/* 	border: 2px solid red; */
+	top: 80px;
 	text-align: center;
 }
 
 #map {
 	display: inline-block; /* 추가 지도를 가운데로 옮기기 위해서 text-align과 같이 씀 */
 	overflow: hidden;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* 그림자 추가 */
 }
 
 .wrap {
@@ -408,321 +428,281 @@ body2 {
 .info .link {
 	color: #5085BB;
 }
+
+/* 하단페이지옵션 */
+/* 하단 바 */
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff; /* 배경색을 설정하고 필요에 따라 다른 스타일을 적용할 수 있습니다. */
+	padding: 10px; /* 필요에 따라 여백을 조정하세요. */
+	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 하단에 그림자를 추가합니다. */
+	z-index: 9999; /* 다른 요소 위로 올라가도록 z-index 설정 */
+}
+
+.page-bar {
+	text-align: center; /* 페이지네이션 버튼을 중앙 정렬합니다. */
+}
+
+.page-bar a {
+	text-decoration: none;
+	margin: 0 5px; /* 페이지 버튼 사이의 간격을 설정합니다. */
+}
+
+.page-bar button {
+	background-color: #f9f9f9;
+	border: 1px solid #ccc;
+	color: #333;
+	padding: 8px 16px;
+	margin: 4px;
+	border-radius: 4px;
+}
+
+.page-bar button:hover {
+	background-color: #e9e9e9;
+}
+
+.page-bar button.active {
+	background-color: #007bff;
+	color: #fff;
+}
 </style>
 
 <div class="map_wrap">
 	<div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
 </div>
-<div class="badge badge-outline">${articlesCount }개</div>
-<div class="flex-grow"></div>
-<form class="search_box" action="">
-	<div class="search_box_1">
-		<input type="hidden" name="boardId" value="${param.boardId }" />
 
-		<select data-value="${param.searchKeywordTypeCode }" class=" search_option select select-bordered select-sm w-full"
-			name="searchKeywordTypeCode">
-			<option value="barName,barAddr">전체</option>
-			<option value=barName>양조장이름</option>
-			<option value="barAddr">주소</option>
-		</select>
-		<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
-			class="input-sm input input-bordered w-48 max-w-xs" />
-		<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
+<div class="container">
+	<div class="search-container">
+		<form class="search_box" action="">
+			<div class="search_box_1">
+				<input type="hidden" name="boardId" value="${param.boardId }" />
 
+				<select data-value="${param.searchKeywordTypeCode }" class=" search_option select select-bordered select-sm w-full"
+					name="searchKeywordTypeCode">
+					<option value="barName,barAddr">전체</option>
+					<option value=barName>양조장이름</option>
+					<option value="barAddr">주소</option>
+				</select>
+				<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
+					class="input-sm input input-bordered w-48 max-w-xs" />
+				<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
+
+			</div>
+		</form>
 	</div>
-</form>
-<div class="body3">
-	<div class="main_brewery">
-		<div class="body2">
-			<c:forEach var="brewery2" items="${brewerys2 }" varStatus="loop">
-				<c:if test="${loop.index % 2 == 0}">
-					<div class="blog-card alt">
-						<div class="meta">
-							<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
-							<ul class="details">
-								<li class="author">
-									<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
-								</li>
-								<li class="homepage">
-									<a href="${brewery2.barWeb}"></a>
-									July. 15, 2015
-								</li>
-								<li class="tags">
-									<ul>
-										<li>
-											<a href="#">Learn</a>
+	<div class="blog-container">
+		<div class="body3">
+			<div class="main_brewery">
+				<div class="body2">
+					<c:forEach var="brewery2" items="${brewerys2 }" varStatus="loop">
+						<c:if test="${loop.index % 2 == 0}">
+							<div class="blog-card alt">
+								<div class="meta">
+									<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
+									<ul class="details">
+										<li class="author">
+											<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
 										</li>
-										<li>
-											<a href="#">Code</a>
+										<li class="homepage">
+											<a href="${brewery2.barWeb}"></a>
+											July. 15, 2015
 										</li>
-										<li>
-											<a href="#">JavaScript</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-						<div class="description">
-							<td style="display: none;">${brewery2.id }</td>
-							<h1>${brewery2.barName }</h1>
-							<h2>연락처 ${brewery2.barNumber }</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
-								praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-							<p class="read-more">
-								<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
-							</p>
-						</div>
-					</div>
-				</c:if>
-				<c:if test="${loop.index % 2 != 0}">
-					<div class="blog-card">
-						<div class="meta">
-							<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
-							<ul class="details">
-								<li class="author">
-									<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
-								</li>
-								<li class="homepage">
-									<a href="${brewery2.barWeb}"></a>
-									July. 15, 2015
-								</li>
-								<li class="tags">
-									<ul>
-										<li>
-											<a href="#">Learn</a>
-										</li>
-										<li>
-											<a href="#">Code</a>
-										</li>
-										<li>
-											<a href="#">HTML</a>
-										</li>
-										<li>
-											<a href="#">CSS</a>
+										<li class="tags">
+											<ul>
+												<li>
+													<a href="#">Learn</a>
+												</li>
+												<li>
+													<a href="#">Code</a>
+												</li>
+												<li>
+													<a href="#">JavaScript</a>
+												</li>
+											</ul>
 										</li>
 									</ul>
-								</li>
-							</ul>
-						</div>
-						<div class="description">
-							<td style="display: none;">${brewery2.id }</td>
-							<h1>${brewery2.barName }</h1>
-							<h2>연락처 ${brewery2.barNumber }</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
-								praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-							<p class="read-more">
-								<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
-							</p>
-						</div>
-					</div>
-				</c:if>
-			</c:forEach>
+								</div>
+								<div class="description">
+									<td style="display: none;">${brewery2.id }</td>
+									<h1>${brewery2.barName }</h1>
+									<h2>연락처 ${brewery2.barNumber }</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+										praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+									<p class="read-more">
+										<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
+									</p>
+								</div>
+							</div>
+						</c:if>
+						<c:if test="${loop.index % 2 != 0}">
+							<div class="blog-card">
+								<div class="meta">
+									<div class="photo" style="background-image: url(${brewery2.barimage})"></div>
+									<ul class="details">
+										<li class="author">
+											<a href="${brewery2.barWeb}">홈페이지 바로가기</a>
+										</li>
+										<li class="homepage">
+											<a href="${brewery2.barWeb}"></a>
+											July. 15, 2015
+										</li>
+										<li class="tags">
+											<ul>
+												<li>
+													<a href="#">Learn</a>
+												</li>
+												<li>
+													<a href="#">Code</a>
+												</li>
+												<li>
+													<a href="#">HTML</a>
+												</li>
+												<li>
+													<a href="#">CSS</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<div class="description">
+									<td style="display: none;">${brewery2.id }</td>
+									<h1>${brewery2.barName }</h1>
+									<h2>연락처 ${brewery2.barNumber }</h2>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+										praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+									<p class="read-more">
+										<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
+									</p>
+								</div>
+							</div>
+						</c:if>
+					</c:forEach>
+				</div>
+			</div>
 			<!-- 동적 페이징  -->
-			<div class="pagination2 flex justify-center mt-3">
+			<div class="bottom-bar flex justify-center mt-3">
 				<c:set var="paginationLen" value="3" />
-				<c:set var="startPage" value="${page -  paginationLen  >= 1 ? page - paginationLen : 1}" />
-				<c:set var="endPage" value="${page +  paginationLen  <= pagesCount ? page + paginationLen : pagesCount}" />
+				<c:set var="startPage" value="${page - paginationLen >= 1 ? page - paginationLen : 1}" />
+				<c:set var="endPage" value="${page + paginationLen <= pagesCount ? page + paginationLen : pagesCount}" />
 
-				<c:set var="baseUri" value="?boardId=${boardId }" />
-				<c:set var="baseUri" value="${baseUri }&searchKeywordTypeCode=${searchKeywordTypeCode}" />
-				<c:set var="baseUri" value="${baseUri }&searchKeyword=${searchKeyword}" />
+				<c:set var="baseUri" value="?boardId=${boardId}" />
+				<c:set var="baseUri" value="${baseUri}&searchKeywordTypeCode=${searchKeywordTypeCode}" />
+				<c:set var="baseUri" value="${baseUri}&searchKeyword=${searchKeyword}" />
 
-				<c:if test="${startPage > 1 }">
-					<a class="btn btn-sm" href="${baseUri }&page=1">1</a>
+				<c:if test="${startPage > 1}">
+					<a class="page-btn btn btn-sm" href="${baseUri}&page=1">1</a>
 					<button class="btn btn-sm btn-disabled">...</button>
 				</c:if>
-				<c:forEach begin="${startPage }" end="${endPage }" var="i">
-					<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="${baseUri }&page=${i }">${i }</a>
+				<c:forEach begin="${startPage}" end="${endPage}" var="i">
+					<a class="page-btn btn btn-sm ${param.page == i ? 'btn-active' : ''}" href="${baseUri}&page=${i}">${i}</a>
 				</c:forEach>
 
-				<c:if test="${endPage < pagesCount }">
+				<c:if test="${endPage < pagesCount}">
 					<button class="btn btn-sm btn-disabled">...</button>
-					<a class="btn btn-sm" href="${baseUri }&page=${pagesCount }">${pagesCount }</a>
+					<a class="page-btn btn btn-sm" href="${baseUri}&page=${pagesCount}">${pagesCount}</a>
 				</c:if>
 			</div>
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
+</div>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ef50bc8210ed6065bd9b724884224a1c&libraries=services"></script>
 <script>
-    // Array to hold brewery data
-    var breweries = [];
-    <c:forEach var="brewery2" items="${brewerys2}">
-        breweries.push({
-            name: "${brewery2.barName}",
-            addr: "${brewery2.barAddr}",
-            web: "${brewery2.barWeb}",
-            image: "${brewery2.barimage}",
-            latitude: parseFloat("${brewery2.barlatitude}"),
-            longitude: parseFloat("${brewery2.barlongitude}")
-        });
-    </c:forEach>
+	// Array to hold brewery data
+	var breweries = [];
+	<c:forEach var="brewery2" items="${brewerys2}">
+	breweries.push({
+		name : "${brewery2.barName}",
+		addr : "${brewery2.barAddr}",
+		web : "${brewery2.barWeb}",
+		image : "${brewery2.barimage}",
+		latitude : parseFloat("${brewery2.barlatitude}"),
+		longitude : parseFloat("${brewery2.barlongitude}")
+	});
+	</c:forEach>
 
-    // Initialize the map
-    var mapContainer = document.getElementById('map');
-    var mapOption = {
-        center: new kakao.maps.LatLng(breweries[0].latitude, breweries[0].longitude),
-        level: 5 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
-    };
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+	// Initialize the map
+	var mapContainer = document.getElementById('map');
+	var mapOption = {
+		center : new kakao.maps.LatLng(breweries[0].latitude,
+				breweries[0].longitude),
+		level : 5
+	// 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
+	};
+	var map = new kakao.maps.Map(mapContainer, mapOption);
 
-    // Variable to keep track of the currently open overlay and its content
-    var currentOverlay = null;
+	// Variable to keep track of the currently open overlay and its content
+	var currentOverlay = null;
 
-    // Function to create markers and overlays
-    function createMarker(brewery) {
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(brewery.latitude, brewery.longitude)
-        });
+	// Function to create markers and overlays
+	function createMarker(brewery) {
+		var marker = new kakao.maps.Marker({
+			map : map,
+			position : new kakao.maps.LatLng(brewery.latitude,
+					brewery.longitude)
+		});
 
-        var content = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' + brewery.name + '</div>' +
-            '        <div class="body">' +
-            '            <div class="img">' +
-            '                <img src="' + brewery.image + '" width="50" height="60">' +
-            '            </div>' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">' + brewery.addr + '</div>' +
-            '                <div class="jibun ellipsis">추가할 내용이 있음?</div>' +
-            '                <div><a href="' + brewery.web + '" target="_blank" class="link">홈페이지</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
+		var content = '<div class="wrap">'
+				+ '    <div class="info">'
+				+ '        <div class="title">'
+				+ brewery.name
+				+ '</div>'
+				+ '        <div class="body">'
+				+ '            <div class="img">'
+				+ '                <img src="' + brewery.image + '" width="50" height="60">'
+				+ '            </div>'
+				+ '            <div class="desc">'
+				+ '                <div class="ellipsis">'
+				+ brewery.addr
+				+ '</div>'
+				+ '                <div class="jibun ellipsis">추가할 내용이 있음?</div>'
+				+ '                <div><a href="' + brewery.web + '" target="_blank" class="link">홈페이지</a></div>'
+				+ '            </div>' + '        </div>' + '    </div>'
+				+ '</div>';
 
-        var overlay = new kakao.maps.CustomOverlay({
-            content: content,
-            position: marker.getPosition(),
-            map: map // Initially, display the overlay
-        });
+		var overlay = new kakao.maps.CustomOverlay({
+			content : content,
+			position : marker.getPosition(),
+			map : map
+		// Initially, display the overlay
+		});
 
-        // 현재 마커에 대한 오버레이를 추적하는 변수
-        var currentOverlay = null;
+		// 현재 마커에 대한 오버레이를 추적하는 변수
+		var currentOverlay = null;
 
-        // 마커 클릭 이벤트 추가
-        kakao.maps.event.addListener(marker, 'click', function () {
-            // 현재 오버레이가 열려있으면 닫음
-            if (currentOverlay) {
-                currentOverlay.setMap(null);
-                // 열려있는 오버레이와 클릭한 마커가 같으면 종료
-                if (currentOverlay.getContent() == content) {
-                    currentOverlay = null;
-                    return;
-                }
-            }
-            // 클릭된 마커의 오버레이를 엽니다.
-            overlay.setMap(map);
-            currentOverlay = overlay;
-        });
+		// 마커 클릭 이벤트 추가
+		kakao.maps.event.addListener(marker, 'click', function() {
+			// 현재 오버레이가 열려있으면 닫음
+			if (currentOverlay) {
+				currentOverlay.setMap(null);
+				// 열려있는 오버레이와 클릭한 마커가 같으면 종료
+				if (currentOverlay.getContent() == content) {
+					currentOverlay = null;
+					return;
+				}
+			}
+			// 클릭된 마커의 오버레이를 엽니다.
+			overlay.setMap(map);
+			currentOverlay = overlay;
+		});
 
-        return {
-            marker: marker,
-            overlay: overlay
-        };
-    }
+		return {
+			marker : marker,
+			overlay : overlay
+		};
+	}
 
-    // 모든 브루어리에 대해 마커와 오버레이를 생성합니다.
-    var markersAndOverlays = [];
-    for (var i = 0; i < breweries.length; i++) {
-        markersAndOverlays.push(createMarker(breweries[i]));
-    }
+	// 모든 브루어리에 대해 마커와 오버레이를 생성합니다.
+	var markersAndOverlays = [];
+	for (var i = 0; i < breweries.length; i++) {
+		markersAndOverlays.push(createMarker(breweries[i]));
+	}
 </script>
-<!-- 
-<script>
-    // Array to hold brewery data
-    var breweries = [];
-    <c:forEach var="brewery2" items="${brewerys2}">
-        breweries.push({
-            name: "${brewery2.barName}",
-            addr: "${brewery2.barAddr}",
-            web: "${brewery2.barWeb}",
-            image: "${brewery2.barimage}",
-            latitude: parseFloat("${brewery2.barlatitude}"),
-            longitude: parseFloat("${brewery2.barlongitude}")
-        });
-    </c:forEach>
 
-    // Initialize the map
-    var mapContainer = document.getElementById('map');
-    var mapOption = {
-        center: new kakao.maps.LatLng(breweries[0].latitude, breweries[0].longitude),
-        level: 5 // 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
-    };
-    var map = new kakao.maps.Map(mapContainer, mapOption);
-
-    // Variable to keep track of the currently open overlay
-    var currentOverlay = null;
-
-    // Function to create markers and overlays
-    function createMarker(brewery) {
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: new kakao.maps.LatLng(brewery.latitude, brewery.longitude)
-        });
-
-        var content = '<div class="wrap">' +
-            '    <div class="info">' +
-            '        <div class="title">' + brewery.name +
-            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' +
-            '        </div>' +
-            '        <div class="body">' +
-            '            <div class="img">' +
-            '                <img src="' + brewery.image + '" width="50" height="60">' +
-            '            </div>' +
-            '            <div class="desc">' +
-            '                <div class="ellipsis">' + brewery.addr + '</div>' +
-            '                <div class="jibun ellipsis">추가할 내용이 있음?</div>' +
-            '                <div><a href="' + brewery.web + '" target="_blank" class="link">홈페이지</a></div>' +
-            '            </div>' +
-            '        </div>' +
-            '    </div>' +
-            '</div>';
-
-        var overlay = new kakao.maps.CustomOverlay({
-            content: content,
-            position: marker.getPosition(),
-            map: map // Initially, display the overlay
-        });
-
-        // 오버레이 닫기 버튼 함수
-        window.closeOverlay = function (element) {
-            var overlay = element.closest('.wrap').overlay;
-            overlay.setMap(null);
-            if (currentOverlay === overlay) {
-                currentOverlay = null;
-            }
-        };
-
-        // 마커 클릭 이벤트 추가
-        kakao.maps.event.addListener(marker, 'click', function () {
-            // 현재 열려있는 오버레이가 있으면 닫습니다.
-            if (currentOverlay) {
-                currentOverlay.setMap(null);
-            }
-            // 클릭된 마커의 오버레이를 엽니다.
-            overlay.setMap(map);
-            currentOverlay = overlay;
-        });
-
-        // Assign overlay to the content for easy access in closeOverlay
-        content.overlay = overlay;
-
-        return {
-            marker: marker,
-            overlay: overlay
-        };
-    }
-
-    // 모든 브루어리에 대해 마커와 오버레이를 생성합니다.
-    var markersAndOverlays = [];
-    for (var i = 0; i < breweries.length; i++) {
-        markersAndOverlays.push(createMarker(breweries[i]));
-    }
-</script>
--->
 </body>
 </html>
 
