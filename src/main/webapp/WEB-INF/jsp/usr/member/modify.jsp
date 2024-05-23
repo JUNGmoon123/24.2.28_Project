@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="MEMBER MODIFY"></c:set>
+<c:set var="pageTitle" value=" "></c:set>
 <%@ include file="../common/head.jspf"%>
 <!-- Member modify 관련 -->
 
@@ -91,7 +91,7 @@
 					<tr>
 						<th>새 비밀번호</th>
 						<td>
-							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="text"
+							<input class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" type="password"
 								placeholder="새 비밀번호를 입력해주세요" name="loginPw" />
 						</td>
 					</tr>

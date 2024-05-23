@@ -436,9 +436,10 @@ body2 {
 .bottom-bar {
 	position: fixed;
 	bottom: 0;
-	left: 20%;
-	width: 60%;
-	background-color: #fff; /* 배경색을 설정하고 필요에 따라 다른 스타일을 적용할 수 있습니다. */
+	left: 30%;
+	width: 40%;
+	background-color: #f2f2f2; /* 배경색을 설정하고 필요에 따라 다른 스타일을 적용할 수 있습니다. */
+	border-radius: 20%;
 	padding: 5px; /* 필요에 따라 여백을 조정하세요. */
 	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 하단에 그림자를 추가합니다. */
 	z-index: 9999; /* 다른 요소 위로 올라가도록 z-index 설정 */
