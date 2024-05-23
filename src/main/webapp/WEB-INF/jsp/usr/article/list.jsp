@@ -1,7 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value="#{board.code } ARTICLE LIST"></c:set>
+<c:set var="pageTitle" value=""></c:set>
 <%@ include file="../common/head.jspf"%>
+
+<style>
+/* list쪽 설정 */
+.list_top_bar {
+	width: 40%;
+	height: 40px;
+	margin-top: 50px;
+	margin-left: 100px;
+	/* 	border: 2px solid green; */
+}
+
+.list_top_bar>div {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	flex: 1; /* 동일한 너비의 영역을 가지도록 설정 */
+	text-align: center;
+	border: none; /* 테두리 제거 */
+	position: relative; /* 상대적 위치 설정 */
+	cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+.list_top_bar>div::after {
+	content: '';
+	position: absolute;
+	left: 27%;
+	bottom: -2px; /* 텍스트 아래로 조정 */
+	width: 50%;
+	height: 2px; /* 밑줄의 높이 */
+	background-color: black; /* 밑줄 색상 */
+	opacity: 0; /* 초기에는 밑줄을 숨깁니다. */
+	transition: opacity 0.3s; /* 밑줄 나타내는 애니메이션을 추가합니다. */
+}
+
+.list_top_bar>div:hover::after {
+	white-space: nowrap;
+	opacity: 1; /* 마우스 호버 시 밑줄을 나타냅니다. */
+	visibility: visible;
+	transition: opacity 0.5s, visibility 0.5s;
+}
+
+</style>
 
 <div class="list_top_bar flex ">
 	<div><a href="../article/list?boardId=1&page=1">자유게시판</a></div>
