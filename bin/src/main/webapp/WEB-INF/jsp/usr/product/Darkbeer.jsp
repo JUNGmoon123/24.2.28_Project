@@ -3,10 +3,10 @@
 <c:set var="pageTitle" value="#{board.code } Products"></c:set>
 <%@ include file="../common/head.jspf"%>
 <section class="content mt-8 text-xl px-4">
-	<div>스파클링와인</div>
+	<div>흑맥주</div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="container_side_bar">
+			<div class="container_side_bar ">
 				<div class="filter-column side_bar">
 					<h3 class="title">와인 선택</h3>
 					<p class="subtitle">
@@ -21,7 +21,7 @@
 						By Price:
 						<span class="bold-text" id="currentPrice"></span>
 					</p>
-					<input id="myRange" type="range" min="16000" max="100000" value="30000" onchange="product_init()">
+					<input id="myRange" type="range" min="3000" max="100000" value="30000" onchange="product_init()">
 					<p class="subtitle">Select</p>
 					<div class="checkboxes clearfix">
 						<div class="">
@@ -57,6 +57,7 @@
 		</div>
 	</div>
 </section>
+
 
 
 <%@ include file="../common/foot.jspf"%>

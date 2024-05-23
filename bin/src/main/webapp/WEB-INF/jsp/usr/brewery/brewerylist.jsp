@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value=""></c:set>
+<c:set var="pageTitle" value="양조장찾기"></c:set>
 
 <%@ include file="../common/head.jspf"%>
 
@@ -10,6 +10,7 @@
 <style>
 
 /* 하단 와이너리 리스트모음 */
+/*PEN STYLES*/
 /* 메인 브루어리 스타일 */
 .main_brewery {
 	box-sizing: border-box;
@@ -230,17 +231,16 @@ body2 {
 }
 
 .search-container {
-	width: 30%; /* 검색창이 차지할 영역의 너비 조정 */
-	float: left; /* 검색창을 왼쪽에 배치 */
+    width: 30%; /* 검색창이 차지할 영역의 너비 조정 */
+    float: left; /* 검색창을 왼쪽에 배치 */
 }
 
 .blog-container {
-	width: 65%; /* 블로그 카드가 차지할 영역의 너비 조정 */
-	position: absolute; /* 절대 위치 지정 */
-	right: 2%; /* 오른쪽 여백 설정 */
-	left: 37%;
-	top: 27%; /* 상단 여백 설정 */
-	/*     border: 2px solid green; */
+    width: 65%; /* 블로그 카드가 차지할 영역의 너비 조정 */
+    position: absolute; /* 절대 위치 지정 */
+    right: 6%; /* 오른쪽 여백 설정 */
+    top: 20%; /* 상단 여백 설정 */
+/*     border: 2px solid green; */
 }
 
 /* 미디어 쿼리 */
@@ -282,14 +282,13 @@ body2 {
 }
 /* 검색창 스타일옵션 */
 .search_box {
-	/* 	border: 2px solid green; */
+/* 	border: 2px solid green; */
 	width: 1000px; /* 너비 조정 (예시로 300px로 설정) */
 	position: absolute; /* 절대 위치로 설정 */
 	top: 15%; /* 원하는 위치로 조정 */
 	right: 0; /* 오른쪽 정렬 */
-	left: 36%;
 	margin-top: 10px; /* 필요에 따라 여백 조정 */
-	margin-right: 20px; /* 필요에 따라 오른쪽 여백 조정 */
+	margin-right: 50px; /* 필요에 따라 오른쪽 여백 조정 */
 }
 
 .search_box_1 {
@@ -306,11 +305,11 @@ body2 {
 	justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
 	align-items: flex-start; /* 수직 방향으로 맞춤 */
 	position: relative;
-	left: 5%;
+	left: 2%;
 	width: 35%;
 	height: 800px;
-	/* 	border: 2px solid red; */
-	top: 180px;
+/* 	border: 2px solid red; */
+	top: 80px;
 	text-align: center;
 }
 
@@ -514,24 +513,24 @@ body2 {
 										<li class="tags">
 											<ul>
 												<li>
-													<a href="#">양조장</a>
+													<a href="#">Learn</a>
 												</li>
 												<li>
-													<a href="#">술</a>
+													<a href="#">Code</a>
 												</li>
 												<li>
-													<a href="#">나무위키</a>
+													<a href="#">JavaScript</a>
 												</li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 								<div class="description">
-									<td style="display: none;"></td>
+									<td style="display: none;">${brewery2.id }</td>
 									<h1>${brewery2.barName }</h1>
 									<h2>연락처 ${brewery2.barNumber }</h2>
-									<p>산머루농원은 우리 포도, 산머루를 재배하여 와인을 만드는 토종 와이너리이다. 지하 오크통 숙성 터널 등을 견학하고, 머루 와인 시음, 산머루와인 담그기, 나만의 와인
-										만들기 체험을 해 볼 수 있다. </p>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+										praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
 									<p class="read-more">
 										<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
 									</p>
@@ -572,7 +571,8 @@ body2 {
 									<td style="display: none;">${brewery2.id }</td>
 									<h1>${brewery2.barName }</h1>
 									<h2>연락처 ${brewery2.barNumber }</h2>
-									<p>배상면주가는 우리 술이 속해있는 아시아권에서 '술'과 '술 문화'를 아우르는 최고의 기업이 되고자 합니다. </p>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta
+										praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
 									<p class="read-more">
 										<a href="../brewery/brewerydetail?id=${brewery2.id}">더 알아보기</a>
 									</p>

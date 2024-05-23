@@ -25,13 +25,11 @@
 	width: 40%;
 	height: 100%;
 	border: 1px solid black;
-	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가합니다 */
 }
 
 .right_half_main {
 	width: 60%;
 	height: 100%;
-	
 }
 
 .right-half {
@@ -61,11 +59,10 @@
 
 .beer_text_infobox {
 	position: absolute;
-	top: 630px;
+	top: 650px;
 	width: 80%; /* 이전에 설정된 너비보다 작게 조정 */
 	
 	margin-top : 5px;
-	margin-bottom : 80px;
 	left: 0.5%;
 	background-color: #f2f2f2; /* 배경색 */
 	padding: 10px; /* 안쪽 여백 */
@@ -100,7 +97,7 @@
 					</div>
 					<div class="table_box1">
 						<div class="table_box1_text">
-							<div>연도 : ${beer.byear }</div>
+							<div>${beer.byear }</div>
 						</div>
 					</div>
 					<div class="table_box1">
@@ -110,7 +107,7 @@
 					</div>
 					<div class="table_box1">
 						<div class="table_box1_text">
-							<div>가격 : ${beer.price }원</div>
+							<div>${beer.price }원</div>
 						</div>
 					</div>
 					<div class="table_box1">
@@ -125,7 +122,7 @@
 		</div>
 			<div class="beer_text_infobox">
 				<div class="text_info">
-					<div>술 상품 설명 예시)Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique
+					<div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique
 						repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio
 						sapiente minima cumque numquam!</div>
 				</div>

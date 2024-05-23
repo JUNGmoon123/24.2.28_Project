@@ -447,7 +447,9 @@ CREATE TABLE brewery(
     barName CHAR(50) NOT NULL,
     barAddr CHAR(50) NOT NULL,
     barNumber CHAR(50) NOT NULL,
-    barWeb CHAR(50) NOT NULL
+    barWeb CHAR(50) NOT NULL,
+    barlatitude CHAR(50),
+    barlongitude CHAR(50)
 );
 
 ALTER TABLE brewery ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER id;
@@ -475,22 +477,24 @@ CREATE TABLE beers(
     byear CHAR(50), 
     color CHAR(50), 
     price CHAR(50), 
-    src VARCHAR(255) 
+    src VARCHAR(255),
+    binfo CHAR(50) 
 );
+
 #model은 이름, btype은 선택기준 의미 
-INSERT INTO beers (btype, model, byear, color, price, src) VALUES
-('white', 'white와인', '2016', 'white', '16000', 'https://오아크.com/web/product/medium/202211/42ae59aaa0b992e6b4de509c1e89f34c.jpg'),
-('red', 'red와인', '2015', 'red', '60000', 'https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg'),
-('white', 'white와인', '2022', 'white', '65000', 'https://오아크.com/web/product/medium/202211/bf679203e1c07b565179d7ed927587cb.jpg'),
-('red', 'red와인', '2023', 'red', '50000', 'https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg'),
-('craft', '수제맥주', '2021', 'craft', '5000', 'https://ojsfile.ohmynews.com/STD_IMG_FILE/2021/0310/IE002771543_STD.jpg'),
-('craft', '수제맥주', '1992', 'craft', '12000', 'https://images.emarteveryday.co.kr/images/app/webapps/evd_web2/share/SKU/mall/86/12/8809363881286_1.png'),
-('craft', '수제맥주', '1993', 'craft', '8900', 'https://cdn.imweb.me/thumbnail/20210330/bc061fa6b54a1.jpg'),
-('craft', '수제맥주', '1997', 'craft', '7000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIwIgE2NTo-nkSlCnEe1lHqJht9bZSpuQxVA&usqp=CAU'),
-('dark', '흑맥주', '2012', 'dark', '4000', 'https://image.mycelebs.com/beer/new/sq/241530_sq_00.jpg'),
-('dark', '흑맥주', '2022', 'dark', '8000', 'https://blog.kakaocdn.net/dn/GPutK/btrHBBcHlfG/DdflRd2VHqDB2YslahdWoK/img.jpg'),
-('cheongju', '보리소주', '2022', 'cheongju', '8000', 'https://godomall.speedycdn.net/ecde3d55747f2aa4dbec5952a29271fe/goods/1000001054/image/detail/1000001054_detail_056.jpg'),
-('dark', '흑맥주', '2020', 'dark', '10000', 'https://gomean.co.kr/wp-content/uploads/2023/07/gm-dark-beer-main.jpg');
+INSERT INTO beers (btype, model, byear, color, price, src, binfo) VALUES
+('white', 'white와인', '2016', 'white', '16000', 'https://오아크.com/web/product/medium/202211/42ae59aaa0b992e6b4de509c1e89f34c.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('red', 'red와인', '2015', 'red', '60000', 'https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('white', 'white와인', '2022', 'white', '65000', 'https://오아크.com/web/product/medium/202211/bf679203e1c07b565179d7ed927587cb.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('red', 'red와인', '2023', 'red', '50000', 'https://오아크.com/web/product/medium/202211/f229d7a97041a31794ee25b213b88712.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('craft', '수제맥주', '2021', 'craft', '5000', 'https://ojsfile.ohmynews.com/STD_IMG_FILE/2021/0310/IE002771543_STD.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('craft', '수제맥주', '1992', 'craft', '12000', 'https://images.emarteveryday.co.kr/images/app/webapps/evd_web2/share/SKU/mall/86/12/8809363881286_1.png', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('craft', '수제맥주', '1993', 'craft', '8900', 'https://cdn.imweb.me/thumbnail/20210330/bc061fa6b54a1.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('craft', '수제맥주', '1997', 'craft', '7000', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIwIgE2NTo-nkSlCnEe1lHqJht9bZSpuQxVA&usqp=CAU', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('dark', '흑맥주', '2012', 'dark', '4000', 'https://image.mycelebs.com/beer/new/sq/241530_sq_00.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('dark', '흑맥주', '2022', 'dark', '8000', 'https://blog.kakaocdn.net/dn/GPutK/btrHBBcHlfG/DdflRd2VHqDB2YslahdWoK/img.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('cheongju', '보리소주', '2022', 'cheongju', '8000', 'https://godomall.speedycdn.net/ecde3d55747f2aa4dbec5952a29271fe/goods/1000001054/image/detail/1000001054_detail_056.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!'),
+('dark', '흑맥주', '2020', 'dark', '10000', 'https://gomean.co.kr/wp-content/uploads/2023/07/gm-dark-beer-main.jpg', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis modi officia incidunt facere similique repellendus molestias suscipit reprehenderit esse! Consectetur deleniti perferendis dolor impedit nihil distinctio sapiente minima cumque numquam!');
 
 ALTER TABLE beers ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER id;
 
@@ -534,7 +538,9 @@ SELECT *
 FROM beers
 ORDER BY id;
 
-SELECT * FROM brewery;
+SELECT * 
+FROM brewery
+ORDER BY id;
 
 SELECT * FROM CSV;
 
@@ -697,4 +703,3 @@ GROUP BY RP.relTypeCode,RP.relId
 DROP DATABASE IF EXISTS `project`;
 CREATE DATABASE `project`;
 USE `project`;
-

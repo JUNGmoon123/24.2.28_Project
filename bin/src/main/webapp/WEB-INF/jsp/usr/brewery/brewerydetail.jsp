@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="pageTitle" value=""></c:set>
+<c:set var="pageTitle" value="와이너리 DETAIL"></c:set>
 <%@ include file="../common/head.jspf"%>
 
 <title>와이너리detail</title>
@@ -8,16 +8,15 @@
 <style>
 .map_wrap {
 	display: flex; /* Flexbox를 사용하여 자식 요소를 수평으로 배치 */
+	justify-content: space-between; /* 자식 요소들을 좌우에 공간을 두고 배치 */
 	align-items: flex-start; /* 수직 방향으로 맞춤 */
 	position: relative;
-	left: 30%;
-	width: 50%;
+	left: 10%;
+	width: 80%;
 	height: 400px;
-/* 	border: 2px solid red; */
-	top: 20px;
+	border: 2px solid red;
+	top: 100px;
 	text-align: center;
-	margin-bottom: 80px; /* 하단에 여백 추가 */
-
 }
 
 #map {
@@ -137,9 +136,9 @@
 
 /* 와이너리 detail정보제공 css */
 .table_main {
-	width: 85%;
+	width: 90%;
 	height: 550px;
-	margin-left: 10%; 
+	margin-left: 6%; 
 	overflow: hidden; /* 자식 요소의 범위를 벗어나지 못하도록 설정 */
 
 }
@@ -192,7 +191,12 @@
     margin-right: 10px; /* 이미지 사이의 간격을 설정합니다 */
      box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.5); /* 그림자 효과를 추가합니다 */
 }
-
+/* 리뷰css */
+.bre_review_box {
+	width: 40%; /* 리뷰 박스의 너비를 조정하여 맵과 함께 한 공간에 있도록 설정 */
+	height: 400px;
+	border: 2px solid red;
+}
 </style>
 
 <section class="mt-8 text-xl px-4">
@@ -234,7 +238,12 @@
 
 
 <div class="map_wrap">
-	<div id="map" style="width: 80%; height: 100%; position: relative; overflow: hidden;"></div>
+	<div class="bre_review_box">
+		<div>
+			<p>여기에는 리뷰가 올거에요.</p>
+		</div>
+	</div>
+	<div id="map" style="width: 60%; height: 100%; position: relative; overflow: hidden;"></div>
 </div>
 <!-- 	<div class="map_API" id="map"></div> -->
 <!-- 지도 위에 표시될 마커 카테고리 -->
