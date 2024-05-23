@@ -80,16 +80,6 @@ header>div>ul>li {
 /* .modify-box>tbody>tr:nth-child(5)>td>input, .modify-box>tbody>tr:nth-child(6)>td>input, */
 /* 	.modify-box>tbody>tr:nth-child(7)>td>input { */
 /* } */
-.table-box-1 th, .table-box-1 td {
-	border: 1px solid black;
-	padding: 10px;
-	text-align: center;
-}
-.table-box-1 th, .table-box-1 td {
-	border: 1px solid black;
-	padding: 10px;
-	text-align: center;
-}
 
 /*네비게이션 2차메뉴 */
 header>div>ul>li>ul {
@@ -838,7 +828,6 @@ html, body {
 	transform: translate(-50%, -50%);
 	margin-top: 0px; /* 로그인 창과 뒤로가기 버튼 간격 조정 */
 	z-index: 999;
-	background-color: green;
 }
 
 .login_table {
@@ -861,46 +850,6 @@ html, body {
 	transform: translateX(40%);
 }
 
-/* myPage 메뉴, 바 */
-.myPage_main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 80vh; /* 화면 전체 높이의 80%로 설정 */
-	width: 100%; /* 화면 전체 너비로 설정 */
-	margin: 50px auto; /* 상하 50px, 좌우 자동으로 설정하여 가운데 정렬 */
-}
-
-.myPage_bar {
-	background-color: #808080;
-	background-color: rgb(255, 255, 255, 0.8);
-	width: 70%; /* 너비를 70%로 설정 */
-	max-width: 700px; /* 최대 너비를 500px로 설정 */
-	padding: 30px; /* 내부 여백 설정 */
-	border-radius: 10px; /* 테두리를 둥글게 설정 */
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-}
-
-.myPage_bar table {
-	width: 100%; /* 테이블 너비를 부모 요소에 맞게 설정 */
-	border-collapse: collapse; /* 테이블의 셀 테두리를 합칩니다. */
-}
-
-.myPage_bar th, .myPage_bar td {
-	border: 1px solid black; /* 테두리를 검은색으로 설정합니다. */
-	padding: 8px; /* 셀의 내부 여백을 추가합니다. */
-}
-
-.myPage_btn {
-	width: 90px;
-	height: 60px;
-	margin-top: -60px; /* 위로 이동시키기 위해 음수값으로 설정 */
-	margin-bottom: -450px;
-	margin-left: -500px; /* 좌측 마진을 자동으로 설정하여 우측으로 이동 */
-	margin-right: auto; /* 우측 마진을 자동으로 설정하여 좌측으로 이동 */
-	text-align: center; /* 버튼을 가운데 정렬 */
-	/*     border: 5px solid green; */
-}
 
 /* join쪽 설정하기 */
 .join_main {
@@ -966,8 +915,8 @@ html, body {
 }
 /* 버튼 스타일 */
 .btn {
-	top: 2px;
-	margin-right: 10px;
+	top: 1px;
+	margin-right: 5px;
 	position: relative; /* 버튼의 위치를 자체적으로 설정하려면 필요하지 않음 */
 }
 

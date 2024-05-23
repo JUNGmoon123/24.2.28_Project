@@ -4,6 +4,11 @@
 <%@ include file="../common/head.jspf"%>
 
 <style>
+.main_color {
+    background-color: #f2f2f2; /* 원하는 배경색으로 설정 */
+}
+
+
 /* list쪽 설정 */
 .list_top_bar {
 	width: 40%;
@@ -42,34 +47,83 @@
 	transition: opacity 0.5s, visibility 0.5s;
 }
 
+/* 검색창옵션 */
+.search_box {
+	/* 	border: 2px solid green; */
+	width: 1000px; /* 너비 조정 (예시로 300px로 설정) */
+	position: absolute; /* 절대 위치로 설정 */
+	top: 35%; /* 원하는 위치로 조정 */
+	right: 0; /* 오른쪽 정렬 */
+	left: 60%;
+	margin-top: 10px; /* 필요에 따라 여백 조정 */
+	margin-right: 20px; /* 필요에 따라 오른쪽 여백 조정 */
+}
+
+.search_box_1 {
+	margin-right: 0; /* 추가 스타일 조정 */
+}
+
+.search_option {
+	max-width: 10rem;
+}
+	
+/* 	목록리스트 스타일설정 */
+   .table-box-1 {
+        width: 100%; /* 테이블의 전체 너비를 설정 */
+        max-width: 1200px; /* 원하는 최대 너비로 조정 */
+        margin: 0 auto; /* 테이블을 중앙에 배치 */
+    }
+
+    .table-box-1 th, .table-box-1 td {
+        padding: 8px; /* 셀의 내부 여백 조정 */
+        text-align: center; /* 텍스트 정렬 */
+    }
+
+    .table-box-1 th {
+        background-color: #e2e8f0; /* 헤더 배경색 */
+    }
+
 </style>
 
 <div class="list_top_bar flex ">
-	<div><a href="../article/list?boardId=1&page=1">자유게시판</a></div>
-	<div><a href="../article/list?boardId=2&page=1">술 리뷰</a></div>
-	<div><a href="../article/list?boardId=3&page=1">와이너리 리뷰</a></div>
+	<div>
+		<a href="../article/list?boardId=1&page=1">자유게시판</a>
+	</div>
+	<div>
+		<a href="../article/list?boardId=2&page=1">술 리뷰</a>
+	</div>
+	<div>
+		<a href="../article/list?boardId=3&page=1">와이너리 리뷰</a>
+	</div>
 </div>
 
-<section class="mt-8 text-xl px-4">
+<section class="mt-8 text-xl px-4 main_color">
 	<div class="mx-auto overflow-x-auto">
 		<div class="mb-4 flex">
-			<div class="badge badge-outline">${articlesCount }개</div>
 			<div class="flex-grow"></div>
-			<form action="">
-				<input type="hidden" name="boardId" value="${param.boardId }" />
-				<select data-value="${param.searchKeywordTypeCode }" class="select select-bordered select-sm w-full max-w-xs"
-					name="searchKeywordTypeCode">
-					<option value="title">title</option>
-					<option value="body">body</option>
-					<option value="title,body">title+body</option>
-				</select>
-				<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
-					class="input-sm input input-bordered w-48 max-w-xs" />
-				<button class="btn btn-ghost btn-sm" type="submit">검색</button>
+			<form action="" class="search_box">
+				<div class="search_box_1">
+					<input type="hidden" name="boardId" value="${param.boardId }" />
+					<select data-value="${param.searchKeywordTypeCode }" class="select select-bordered select-sm max-w-xs"
+						name="searchKeywordTypeCode">
+						<option value="title">제목</option>
+						<option value="body">내용</option>
+						<option value="title,body">제목+내용</option>
+					</select>
+					<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
+						class="input-sm input input-bordered w-48 max-w-xs" />
+					<button class="btn btn-ghost btn-sm" type="submit">검색</button>
+				</div>
 			</form>
 		</div>
 	</div>
-	<table class="table-box-1 table" border="1">
+
+	<c:if test="${rq.isLogined() }">
+		<div style="padding-left: 1000px; padding-right: 50px; margin-bottom: 10px; text-align: center;">
+			<a class="hover:underline "  href="../article/write">글 작성하기</a>
+		</div>
+	</c:if>
+	<table class="table-box-1 table">
 		<colgroup>
 			<col style="width: 10%" />
 			<col style="width: 20%" />
@@ -136,14 +190,6 @@
 
 	</div>
 
-	<!-- 	원래 페이징 -->
-	<div class="pagination flex justify-center mt-3">
-		<div class="btn-group">
-			<c:forEach begin="1" end="${pagesCount }" var="i">
-				<a class="btn btn-sm ${param.page == i ? 'btn-active' : '' }" href="?page=${i }&boardId=${param.boardId}">${i }</a>
-			</c:forEach>
-		</div>
-	</div>
 </section>
 
 

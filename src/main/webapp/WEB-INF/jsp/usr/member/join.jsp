@@ -4,9 +4,6 @@
 <%@ include file="../common/head.jspf"%>
 <div class="myPage_background">
 	<div class="box">
-		<ul>
-			<li>3background 속성은 애니메이션 속성을 설정합니다.</li>
-		</ul>
 	</div>
 </div>
 

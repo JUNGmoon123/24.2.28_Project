@@ -239,8 +239,9 @@ body2 {
 	position: absolute; /* 절대 위치 지정 */
 	right: 2%; /* 오른쪽 여백 설정 */
 	left: 37%;
-	top: 27%; /* 상단 여백 설정 */
-	/*     border: 2px solid green; */
+	top: 20%; /* 상단 여백 설정 */
+	
+	margin-bottom: 1300px; /* 기본값은 0이었습니다. */
 }
 
 /* 미디어 쿼리 */
@@ -285,7 +286,7 @@ body2 {
 	/* 	border: 2px solid green; */
 	width: 1000px; /* 너비 조정 (예시로 300px로 설정) */
 	position: absolute; /* 절대 위치로 설정 */
-	top: 15%; /* 원하는 위치로 조정 */
+	top: 10%; /* 원하는 위치로 조정 */
 	right: 0; /* 오른쪽 정렬 */
 	left: 36%;
 	margin-top: 10px; /* 필요에 따라 여백 조정 */
@@ -435,10 +436,10 @@ body2 {
 .bottom-bar {
 	position: fixed;
 	bottom: 0;
-	left: 0;
-	width: 100%;
+	left: 20%;
+	width: 60%;
 	background-color: #fff; /* 배경색을 설정하고 필요에 따라 다른 스타일을 적용할 수 있습니다. */
-	padding: 10px; /* 필요에 따라 여백을 조정하세요. */
+	padding: 5px; /* 필요에 따라 여백을 조정하세요. */
 	box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 하단에 그림자를 추가합니다. */
 	z-index: 9999; /* 다른 요소 위로 올라가도록 z-index 설정 */
 }
@@ -490,7 +491,6 @@ body2 {
 				<input value="${param.searchKeyword }" name="searchKeyword" type="text" placeholder="searchKeyword?"
 					class="input-sm input input-bordered w-48 max-w-xs" />
 				<button class="btn btn-ghost btn-sm btn-outline" type="submit">검색</button>
-
 			</div>
 		</form>
 	</div>
@@ -553,16 +553,13 @@ body2 {
 										<li class="tags">
 											<ul>
 												<li>
-													<a href="#">Learn</a>
+													<a href="#">양조장</a>
 												</li>
 												<li>
-													<a href="#">Code</a>
+													<a href="#">술</a>
 												</li>
 												<li>
-													<a href="#">HTML</a>
-												</li>
-												<li>
-													<a href="#">CSS</a>
+													<a href="#">나무위키</a>
 												</li>
 											</ul>
 										</li>
@@ -630,7 +627,7 @@ body2 {
 	var mapOption = {
 		center : new kakao.maps.LatLng(breweries[0].latitude,
 				breweries[0].longitude),
-		level : 5
+		level : 11
 	// 지도의 초기 확대 수준을 5로 설정하여 더 넓은 범위를 보여줍니다.
 	};
 	var map = new kakao.maps.Map(mapContainer, mapOption);

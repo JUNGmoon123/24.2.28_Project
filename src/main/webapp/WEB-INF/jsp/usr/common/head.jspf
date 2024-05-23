@@ -90,7 +90,6 @@
 							</c:if>
 							<c:if test="${rq.isLogined() }">
 								<li style="text-align: center;">
-									<a class="hover:underline" href="../article/write">WRITE</a>
 									<a class="h-full px-3 flex items-center hover:underline" href="/usr/member/myPage">MYPAGE</a>
 									<a onclick="if(confirm('로그아웃 할래?') == false) return false;" class="hover:underline" href="../member/doLogout">LOGOUT</a>
 								</li>

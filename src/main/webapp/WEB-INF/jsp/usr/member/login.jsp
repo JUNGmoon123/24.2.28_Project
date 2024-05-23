@@ -3,12 +3,47 @@
 <c:set var="pageTitle" value="LOGIN"></c:set>
 <%@ include file="../common/head.jspf"%>
 
+<style>
+.login_table {
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: collapse;
+}
+
+.login_table th, .login_table td {
+	padding: 10px;
+}
+
+.button-container {
+	display: flex;
+	gap: 10px; /* 버튼 사이 간격을 조절 */
+}
+
+.btn-outline {
+	padding: 8px 16px;
+	font-size: 14px;
+	border: 1px solid;
+	border-radius: 4px;
+	color: black; /* 텍스트 색상을 검은색으로 설정 */
+}
+
+.btn-info {
+	color: white;
+}
+
+.btn-info:hover {
+	background-color: #f8f9fa;
+}
+
+.btn-outline:hover {
+	background-color: #f8f9fa;
+	color: black; /* 마우스를 올렸을 때 텍스트 색상을 검은색으로 유지 */
+}
+</style>
+
+
 <div class="background-box4">
-	<div class="box">
-		<ul>
-			<li>3background 속성은 애니메이션 속성을 설정합니다.</li>
-		</ul>
-	</div>
+	<div class="box"></div>
 </div>
 <section class="mt-8 text-xl px-4">
 	<div class="login_main">
@@ -40,17 +75,18 @@
 					<tr>
 						<th></th>
 						<td>
-							<input class="btn btn-outline btn-info w-full max-w-xs" type="submit" value="로그인" />
+							<div class="button-container">
+								<input class="btn btn-outline btn-info" type="submit" value="로그인" />
+								<button class="btn btn-outline btn-info" type="button" onclick="history.back();">뒤로가기</button>
+							</div>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div class="login_back btns flex justify-center mt-4">
-				<button class="btn btn-outline" style="color: black" type="button" onclick="history.back();">뒤로가기</button>
-			</div>
 		</form>
 	</div>
 </section>
+
 
 
 

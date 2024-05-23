@@ -4,7 +4,53 @@
 <%@ include file="../common/head.jspf"%>
 
 <!-- <iframe src="http://localhost:8081/usr/article/doIncreaseHitCountRd?id=372" frameborder="0"></iframe> -->
+<style>
+/* 좋아요싫어요버튼설정 */
+.small-button {
+	width: 70px; /* 원하는 너비로 조정 */
+	height: 30px; /* 원하는 높이로 조정 */
+	font-size: 10px; /* 텍스트 크기 조정 */
+	padding: 2px 5px; /* 버튼 내부 여백 조정 */
+	outline: 1px solid; /* outline 두께와 스타일 설정 */
+	outline-color: #050; /* outline 색상 설정 */
+	margin: 2px;
+	border-radius: 12px; /* 작은 버튼을 둥글게 만듦 */
+}
 
+.btn-outline {
+	padding: 4px 8px; /* 버튼의 내부 여백 조정 */
+	font-size: 12px; /* 버튼 텍스트 크기 조정 */
+	outline: 1px solid; /* 버튼 outline */
+	outline-color: #000; /* 버튼 outline 색상 */
+}
+/*     사용자내용테이블설정 */
+.content-table {
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* 그림자 효과 추가 */
+	margin-bottom: 20px; /* 아래쪽 마진 추가 */
+}
+
+/*    댓글 및 사용자내용 테이블 조정 */
+.table-box-1 {
+	width: 100%; /* 테이블의 전체 너비를 설정 */
+	max-width: 800px; /* 원하는 최대 너비로 조정 */
+	margin: 0 auto; /* 테이블을 중앙에 배치 */
+}
+
+.table-box-1 th, .table-box-1 td {
+	padding: 8px; /* 셀의 내부 여백 조정 */
+	text-align: center; /* 텍스트 정렬 */
+}
+
+.table-box-1 th {
+	background-color: #e2e8f0; /* 헤더 배경색 */
+}
+
+.login-message {
+	text-align: right; /* 오른쪽 정렬 */
+	margin-top: 10px;
+	margin-right: 500px;
+}
+</style>
 <!-- 변수 -->
 <script>
 	const params = {};
@@ -239,14 +285,10 @@ function doModifyReply(replyId) {
 </script>
 
 
-<section class="mt-8 text-xl px-4 ">
-	<div class="">
-		<table class="table-box-1 " border="1">
+<section class="mt-8 text-xl px-4 flex justify-center">
+	<div class="max-w-4xl">
+		<table class="table-box-1 mx-auto content-table">
 			<tbody>
-				<tr>
-					<th>번호</th>
-					<td>${article.id }${goodRP}${badRP}</td>
-				</tr>
 				<tr>
 					<th>작성날짜</th>
 					<td>${article.regDate }</td>
@@ -262,29 +304,27 @@ function doModifyReply(replyId) {
 				<tr>
 					<th>좋아요</th>
 					<td id="likeCount">${article.goodReactionPoint }</td>
-				</tr>
-				<tr>
 					<th>싫어요</th>
 					<td id="DislikeCount">${article.badReactionPoint }</td>
 				</tr>
+				</tr>
+				<tr>
 				<tr>
 					<th>추천 ${usersReaction }</th>
 					<td>
 						<!-- href="/usr/reactionPoint/doGoodReaction?relTypeCode=article&relId=${param.id }&replaceUri=${rq.currentUri}" -->
-						<button id="likeButton" class="btn btn-outline btn-success" onclick="doGoodReaction(${param.id})">좋아요</button>
+						<button id="likeButton" class=" btn-outline btn-success small-button" onclick="doGoodReaction(${param.id})">좋아요</button>
 
-						<button id="DislikeButton" class="btn btn-outline btn-error" onclick="doBadReaction(${param.id})">싫어요</button>
-					</td>
-				</tr>
-				<tr>
-					<th>조회수</th>
-					<td>
-						<span class="article-detail__hit-count">${article.hitCount }</span>
+						<button id="DislikeButton" class="btn-outline btn-error small-button" onclick="doBadReaction(${param.id})">싫어요</button>
 					</td>
 				</tr>
 				<tr>
 					<th>제목</th>
 					<td>${article.title }</td>
+					<th>조회수</th>
+					<td>
+						<span class="article-detail__hit-count">${article.hitCount }</span>
+					</td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -311,18 +351,18 @@ function doModifyReply(replyId) {
 		<form action="../reply/doWrite" method="POST" onsubmit="ReplyWrite__submit(this); return false;">
 			<input type="hidden" name="relTypeCode" value="article" />
 			<input type="hidden" name="relId" value="${article.id }" />
-			<table class="write-box table-box-1" border="1">
+			<table class="write-box table-box-1" border="1" style="background-color: #f3f4f6; border-collapse: collapse;">
 				<tbody>
 					<tr>
-						<th>내용</th>
-						<td>
-							<textarea class="input input-bordered input-primary w-full max-w-xs" autocomplete="off"
-								placeholder="내용을 입력해주세요" name="body"> </textarea>
+						<th style="padding: 10px;">내용</th>
+						<td style="padding: 10px;">
+							<textarea class="input input-bordered input-primary w-full max-w-xs" autocomplete="off" placeholder="내용을 입력해주세요"
+								name="body"> </textarea>
 						</td>
 					</tr>
 					<tr>
 						<th></th>
-						<td>
+						<td style="padding: 10px;">
 							<input class="btn btn-outline btn-info" type="submit" value="댓글 작성" />
 						</td>
 					</tr>
@@ -331,16 +371,22 @@ function doModifyReply(replyId) {
 		</form>
 	</c:if>
 	<c:if test="${!rq.isLogined() }">
-		<a class="btn btn-outline btn-ghost" href="../member/login">LOGIN</a> 하고 댓글 써
+		<div class="login-message">
+			<a class="btn btn-outline btn-ghost  " href="../member/login">로그인 후 댓글작성</a>
+		</div>
 	</c:if>
 	<div class="mx-auto">
 		<h2>댓글 리스트(${repliesCount })</h2>
-		<table class="table-box-1 table" border="1">
+		<table class="table-box-1 table" border="1" style="background-color: #f3f4f6; border-collapse: collapse;">
 			<colgroup>
 				<col style="width: 10%" />
-				<col style="width: 20%" />
-				<col style="width: 60%" />
+				<col style="width: 15%" />
+				<col style="width: 45%" />
 				<col style="width: 10%" />
+				<col style="width: 5%" />
+				<col style="width: 5%" />
+				<col style="width: 5%" />
+				<col style="width: 5%" />
 			</colgroup>
 			<thead>
 				<tr>
@@ -355,7 +401,6 @@ function doModifyReply(replyId) {
 				</tr>
 			</thead>
 			<tbody>
-
 				<c:forEach var="reply" items="${replies }">
 					<tr class="hover">
 						<td>${reply.id }</td>
@@ -371,7 +416,6 @@ function doModifyReply(replyId) {
 						<td>${reply.badReactionPoint }</td>
 						<td>
 							<c:if test="${reply.userCanModify }">
-								<%-- 							href="../reply/modify?id=${reply.id }" --%>
 								<button onclick="toggleModifybtn('${reply.id}');" id="modify-btn-${reply.id }" style="white-space: nowrap;"
 									class="btn btn-outline">수정</button>
 								<button onclick="doModifyReply('${reply.id}');" style="white-space: nowrap; display: none;"
@@ -391,7 +435,6 @@ function doModifyReply(replyId) {
 	</div>
 
 </section>
-
 
 
 <%@ include file="../common/foot.jspf"%>

@@ -458,17 +458,7 @@ label {
 	    return content; // content 반환
 	}
 
-		// 제품 카드 클릭 이벤트 처리
-	document.addEventListener("click", function(event) {
-	    var target = event.target;
-	    if (target.classList.contains("product-card")) {
-	        // 클릭된 요소가 제품 카드인 경우 처리
-	        var model = target.querySelector(".model").textContent; // 제품 모델 가져오기
-	        var year = target.querySelector(".year .bold-text").textContent; // 제품 연도 가져오기
-	        var link = "https://www.soolmarket.com/"; // 링크 생성
-	        window.location.href = link; // 링크로 이동
-	    }
-	});
+
 	// 제품 카드 생성 함수
 	function draw_card(product) {
 // 	    var productId = product.id; // 제품 ID 가져오기
