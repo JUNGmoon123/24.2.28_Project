@@ -39,15 +39,15 @@ CSV파일의 양조장 정보 및 위치 데이터들을 DB에 저장해서, 위
 개인프로젝트 GitHub주소
 https://github.com/JUNGmoon123/24.2.28_Project.git
 
-1. git클론 (참고자료: https://ittrue.tistory.com/91)
+1. **git클론 (참고자료: https://ittrue.tistory.com/91)**
 
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/b59d89ec-8c19-460c-8eaa-8497b93fb934)
 
-2. CSV파일 확인, DB파일 확인(양조장, 술관련 테이블은 나중에 생성)
+2. **CSV파일 확인, DB파일 확인(양조장, 술관련 테이블은 나중에 생성)**
    
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/9bffc2be-ee0c-4dd1-a2b2-e6f8ccbf8f54)
 
-3. CSV데이터값 DB에 저장하기(brewery -> 양조장, beers -> 술)
+3. **CSV데이터값 DB에 저장하기(brewery -> 양조장, beers -> 술)**
    
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/99ccf69e-fb68-4bc4-ad7f-6daf1b186791)
 
@@ -61,7 +61,7 @@ Controller에 CSVController의 적힌URL주소 readAndSvaeToDB로 저장해줍�
 
 그 다음에 boardId와 memberId를 추가해야 합니다(한번에 넣으면 CSV데이터를 못 읽습니다.) 
 
-4. beers테이블도 똑같은 방법으로 합니다.
+4. **beers테이블도 똑같은 방법으로 합니다.**
    
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/28fc3b61-51db-479a-8b64-1d9a3141e98c)
 
