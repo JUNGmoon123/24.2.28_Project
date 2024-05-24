@@ -41,7 +41,7 @@ public class UsrReactionPointController {
 			int goodRP = articleService.getGoodRP(relId);
 			int badRP = articleService.getBadRP(relId);
 
-			return ResultData.from("S-2", "싫어요 눌렀잖어", "goodRP", goodRP, "badRP", badRP);
+			return ResultData.from("S-2", "이미 싫어요 눌렀음", "goodRP", goodRP, "badRP", badRP);
 		}
 
 		ResultData reactionRd = reactionPointService.addGoodReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);
@@ -76,7 +76,7 @@ public class UsrReactionPointController {
 			int goodRP = articleService.getGoodRP(relId);
 			int badRP = articleService.getBadRP(relId);
 
-			return ResultData.from("S-2", "좋아요 눌렀잖어", "goodRP", goodRP, "badRP", badRP);
+			return ResultData.from("S-2", "이미 좋아요 눌렀음", "goodRP", goodRP, "badRP", badRP);
 		}
 
 		ResultData reactionRd = reactionPointService.addBadReactionPoint(rq.getLoginedMemberId(), relTypeCode, relId);

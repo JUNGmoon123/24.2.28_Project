@@ -67,43 +67,6 @@ public class UsrBreweryController2 {
 		return "usr/brewery/brewerylist";
 	}
 	
-//	  @RequestMapping("/usr/brewery/brewerylist")
-//	    @ResponseBody // JSON 형식으로 반환할 것임을 명시
-//	    public Map<String, Object> JsonAPIgps(HttpServletRequest req, Model model, @RequestParam(defaultValue = "1") int boardId,
-//	                                       @RequestParam(defaultValue = "1") int page,
-//	                                       @RequestParam(defaultValue = "barName, barAddr") String searchKeywordTypeCode,
-//	                                       @RequestParam(defaultValue = "") String searchKeyword) {
-//
-//	        Rq rq = (Rq) req.getAttribute("rq");
-//
-//	        Board board = boardService.getBoardById(boardId);
-//
-//	        int articlesCount = breweryService.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
-//
-//	        if (board == null) {
-//	            // 에러 처리 등
-//	            return null;
-//	        }
-//
-//	        int itemsInAPage = 10;
-//	        int pagesCount = (int) Math.ceil(articlesCount / (double) itemsInAPage);
-//
-//	        List<Brewery2> brewerys2 = breweryService.getForPrintBrewerys(boardId, itemsInAPage, page, searchKeywordTypeCode,
-//	                searchKeyword);
-//
-//	        // JSON 형식으로 변환할 Map 생성
-//	        Map<String, Object> responseData = new HashMap<>();
-//	        responseData.put("board", board);
-//	        responseData.put("boardId", boardId);
-//	        responseData.put("page", page);
-//	        responseData.put("pagesCount", pagesCount);
-//	        responseData.put("searchKeywordTypeCode", searchKeywordTypeCode);
-//	        responseData.put("searchKeyword", searchKeyword);
-//	        responseData.put("articlesCount", articlesCount);
-//	        responseData.put("brewerys2", brewerys2);
-//
-//	        return responseData;
-//	    }
 	  
 		@RequestMapping("/usr/brewery/brewerydetail")
 		public String brewerydetail(HttpServletRequest req, Model model, int id) {
