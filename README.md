@@ -40,47 +40,66 @@ CSV파일의 양조장 정보 및 위치 데이터들을 DB에 저장해서, 위
 https://github.com/JUNGmoon123/24.2.28_Project.git
 
 1. git클론 (참고자료: https://ittrue.tistory.com/91)
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/b59d89ec-8c19-460c-8eaa-8497b93fb934)
 
 2. CSV파일 확인, DB파일 확인
+   
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/9bffc2be-ee0c-4dd1-a2b2-e6f8ccbf8f54)
 
 3. CSV데이터값 DB에 저장하기(brewery -> 양조장, beers -> 술)
+   
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/99ccf69e-fb68-4bc4-ad7f-6daf1b186791)
-그중에 brewery, beers 테이블은 먼저 DB테이블을 생성한뒤, 
+그중에 brewery, beers 테이블은 먼저 DB테이블을 생성한뒤,
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/5d0b47a7-55d0-4e2a-b412-962a08cfde2b)
+
 Controller에 CSVController의 적힌URL주소 readAndSvaeToDB로 저장해줍니다.
 
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/b01677a0-1ba4-42d4-be1e-00abacfc2fb2)
+
 그 다음에 boardId와 memberId를 추가해야 합니다(한번에 넣으면 CSV데이터를 못 읽습니다.) 
 
 4. beers테이블도 똑같은 방법으로 합니다.
+   
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/28fc3b61-51db-479a-8b64-1d9a3141e98c)
+
 beers테이블 은 INSERT문까지 넣어주고 CSV데이터를 저장한 뒤에 ALTER문을 실행합니다.
 
 **여기까지DB준비끝**
-![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/83431177-bebd-47e9-9fb0-0cafeb1bdcd7)
 로컬 주소
+![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/83431177-bebd-47e9-9fb0-0cafeb1bdcd7)
+
 
 ## 🎮기능설명
 **메인**
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/13e1b334-1f3b-4512-aa9c-99884b2516e7)
+
 - 바로가기 버튼을 클릭하면 술 상품페이지로 이동합니다.
 
 **술 상품 페이지**
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/228e2b11-dcda-4980-b8b0-3c86b51582f2)
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/cdd466c2-9f53-492f-9b3a-9e4d096fc6ce)
+
 - 종류, 가격을 선택해서 볼 수 있습니다.
 
 **술 상세페이지**
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/c3fa0e93-6504-45a3-a5ea-5ce65fb5060d)
+
 - 정보 및 구매링크 클릭시 연결된 링크로 이동합니다.
 
 **양조장(와이너리) 페이지**
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/7888673b-ac23-4e83-8099-231be79666ab)
+
 - 각 양조장에대한 설명을 볼 수 있고, 검색도 가능합니다.
 - 지도의 마커를 클릭해서 안보이게 할 수도 있습니다.
 
 **양조장(와이너리) 상세페이지**
+
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/78fa11b4-dada-4f01-be53-c42ee9ef3e93)
+
 - 주소 및 전화번호, 양조장에대한 설명을 볼 수 있습니다.
