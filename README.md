@@ -43,18 +43,19 @@ https://github.com/JUNGmoon123/24.2.28_Project.git
 
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/b59d89ec-8c19-460c-8eaa-8497b93fb934)
 
-2. CSV파일 확인, DB파일 확인
+2. CSV파일 확인, DB파일 확인(양조장, 술관련 테이블은 나중에 생성)
    
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/9bffc2be-ee0c-4dd1-a2b2-e6f8ccbf8f54)
 
 3. CSV데이터값 DB에 저장하기(brewery -> 양조장, beers -> 술)
    
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/99ccf69e-fb68-4bc4-ad7f-6daf1b186791)
-그중에 brewery, beers 테이블은 먼저 DB테이블을 생성한뒤,
+
+DB의 나머지 테이블은 먼저 생성해도 되지만,  brewery/beers관련 테이블은 먼저 DB테이블을 생성한뒤,
 
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/5d0b47a7-55d0-4e2a-b412-962a08cfde2b)
 
-Controller에 CSVController의 적힌URL주소 readAndSvaeToDB로 저장해줍니다.
+Controller에 CSVController의 적힌URL주소 readAndSvaeToDB로 저장해줍니다.(csv데이터가 정상 저장됐다고 나옵니다.)
 
 ![image](https://github.com/JUNGmoon123/24.2.28_Project/assets/153145757/b01677a0-1ba4-42d4-be1e-00abacfc2fb2)
 
