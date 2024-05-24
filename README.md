@@ -19,6 +19,9 @@
 ## 📝 프로젝트 아키텍쳐
 ![](https://velog.velcdn.com/images/jihyeon2434/post/429e7dcb-5e58-4ee3-8d79-8f56f5010f94/image.png)
 
+## 프로젝트 PPT
+[개인프로젝트ppt_정다운.pptx](https://github.com/JUNGmoon123/24.2.28_Project/files/15427740/ppt_.pptx)
+
 ## 📌 주요 기능
 [벡앤드]
 - 각종 술 정보 등록
