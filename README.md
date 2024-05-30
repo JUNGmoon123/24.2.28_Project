@@ -46,8 +46,6 @@ CSV파일의 양조장 정보 및 위치 데이터들을 DB에 저장해서, 위
 양조장(와이너리)의 정보 및 위치를 검색해서 볼 수 있습니다.
 
 ## 📘 가이드북
-개인프로젝트 GitHub주소
-https://github.com/JUNGmoon123/24.2.28_Project.git
 
 프로젝트 결과보고서 
 https://docs.google.com/spreadsheets/d/18jBt6KGNGlXjo5fHTlkD6xqE853tsJeThDZ2UKVZSNg/edit?usp=drive_link
